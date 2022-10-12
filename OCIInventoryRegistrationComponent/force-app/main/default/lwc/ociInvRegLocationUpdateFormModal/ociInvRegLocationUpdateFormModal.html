@@ -1,0 +1,90 @@
+<template>
+  <c-oci-inv-reg-modal
+    is-loading={isSubmitting}
+    title={label.OCI_INV_REG_Edit}
+    execute-btn-text={label.OCI_INV_REG_Request}
+    class="edit-form"
+    onexecute={handleExecute}
+  >
+    <div class="no-data" if:false={ready}>{label.OCI_INV_REG_NoData}</div>
+    <form class="location-update-form" if:true={ready}>
+      <lightning-layout
+        vertical-align="stretch"
+        multiple-rows="true"
+        class="x-large"
+      >
+
+        <lightning-layout-item flexibility="auto" padding="around-small">
+          <lightning-badge
+            label={locationIdentifier}
+            class="slds-badge_inverse"
+          ></lightning-badge>
+          <lightning-badge
+            label={inventory.stockKeepingUnit}
+            class="slds-badge_inverse"
+          ></lightning-badge>
+        </lightning-layout-item>
+      </lightning-layout>
+      <lightning-layout multiple-rows="true" class="x-large">
+        <lightning-layout-item flexibility="grow" padding="around-small">
+          <lightning-input
+            type="number"
+            label={label.OCI_INV_REG_OnHand}
+            required
+            onchange={handleOnHandChange}
+            value={inventory.onHand}
+            min="0"
+          ></lightning-input>
+          <lightning-input
+            type="number"
+            label={label.OCI_INV_REG_SafetyStockCount}
+            required
+            onchange={handleSSCChange}
+            value={inventory.safetyStockCount}
+            min="0"
+          ></lightning-input>
+          <lightning-input
+            name="effective-date"
+            class="effective-date"
+            type="datetime"
+            label={label.OCI_INV_REG_EffectiveDate}
+            required
+            onchange={handleEffectivedateChange}
+            value={inventory.effectiveDate}
+          ></lightning-input>
+        </lightning-layout-item>
+
+        <lightning-layout-item flexibility="grow" padding="around-small">
+          <lightning-layout multiple-rows="true" class="x-large">
+            <lightning-layout-item size="12" flexibility="grow">
+              <lightning-layout class="x-large" horizontal-align="end">
+                <lightning-layout-item>
+                  <lightning-button-icon
+                    icon-name="utility:add"
+                    title={label.OCI_INV_REG_Add}
+                    onclick={addFuture}
+                  ></lightning-button-icon>
+                </lightning-layout-item>
+              </lightning-layout>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" flexibility="grow">
+              <lightning-datatable
+                key-field="indexStr"
+                data={futures}
+                row-number-offset={rowOffset}
+                suppress-bottom-bar
+                hide-checkbox-column
+                columns={futureColumns}
+                oncellchange={handleFutureChange}
+                onclick={handleFutureClick}
+                onrowaction={handleFutureRowAction}
+              >
+              </lightning-datatable>
+            </lightning-layout-item>
+          </lightning-layout>
+        </lightning-layout-item>
+      </lightning-layout>
+    </form>
+  </c-oci-inv-reg-modal>
+</template>

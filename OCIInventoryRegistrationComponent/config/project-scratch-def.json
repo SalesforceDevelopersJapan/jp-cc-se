@@ -1,0 +1,25 @@
+{
+  "orgName": "shumpei.yamada company",
+  "edition": "Developer",
+  "features": [
+    "EnableSetPasswordInApi",
+    "OmnichannelInventory",
+    "API"
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "inventorySettings": {
+      "enableOmniChannelInventory": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true,
+      "enableEndUserLanguages": true,
+      "enablePlatformLanguages": true
+    }
+  }
+}

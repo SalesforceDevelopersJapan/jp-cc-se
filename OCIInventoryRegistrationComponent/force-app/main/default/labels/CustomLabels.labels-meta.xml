@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>OCI_INV_REG_LocationGroup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Location Group</shortDescription>
+        <value>Location Group</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Locations</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Locations</shortDescription>
+        <value>Locations</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_PleaseSearchTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Plese search inventory</shortDescription>
+        <value>Plese search inventory</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_PleaseSearchDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select locationg group and input SKU and click search button.</shortDescription>
+        <value>Please select locationg group and input SKU and click search button.</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Loading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_LocationGroupNotFound</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No location group found</shortDescription>
+        <value>No location group found</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_SelectLocationGroup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select location group</shortDescription>
+        <value>Please select location group</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_SKU</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SKU</shortDescription>
+        <value>SKU</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_InventoryNotFound</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Inventory Not Found</shortDescription>
+        <value>Inventory Not Found</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_InventoryNotFoundDescrption</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Inventory information of the SKU was not found.</shortDescription>
+        <value>Inventory information of the SKU was not found.</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Waiting</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Waiting</shortDescription>
+        <value>Waiting</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Futures</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Futures</shortDescription>
+        <value>Futures</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_NoFuture</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No future found</shortDescription>
+        <value>No future found</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Request</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request</shortDescription>
+        <value>Request</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_NoData</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No data found.</shortDescription>
+        <value>No data found.</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_OnHand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>On Hand</shortDescription>
+        <value>On Hand</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Reserved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reserved</shortDescription>
+        <value>Reserved</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_SafetyStockCount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Safety Stock Count</shortDescription>
+        <value>Safety Stock Count</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_SSC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SSC</shortDescription>
+        <value>SSC</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_EffectiveDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Effective Date</shortDescription>
+        <value>Effective Date</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Add</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quantity</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_ExpectedDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Expected Date</shortDescription>
+        <value>Expected Date</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_ATF</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EATF</shortDescription>
+        <value>ATF</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_ATO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ATO</shortDescription>
+        <value>ATO</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_ShowFutures</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show Futures</shortDescription>
+        <value>Show Futures</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_RequestJobFails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Availability update job was finished with status FAILED.</shortDescription>
+        <value>Availability update job was finished with status FAILED.</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_RequestJobCompleted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Availability update job was finished with status COMPLETED.</shortDescription>
+        <value>Availability update job was finished with status COMPLETED.</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_RequestJobOther</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Availability update job was finished with status {0}.</shortDescription>
+        <value>Availability update job was finished with status {0}.</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_RetrievingLocationGroupFail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Retrieving location group was faild</shortDescription>
+        <value>Retrieving location group was faild</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_RetrievingInventoryAvailabilityFail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Retrieving inventory availability was faild</shortDescription>
+        <value>Retrieving inventory availability was faild</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_RequestInventoryAvailabilitySuccess</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Updating inventory availability was requested successfully.</shortDescription>
+        <value>Updating inventory availability was requested successfully.</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_RequestFail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request Faild</shortDescription>
+        <value>Request Faild</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_RequestSuccess</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request Success</shortDescription>
+        <value>Request Success</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Close</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_Execute</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Execute</shortDescription>
+        <value>Execute</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_InventoryRegistration</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Inventory Registration</shortDescription>
+        <value>Inventory Registration</value>
+    </labels>
+</CustomLabels>
