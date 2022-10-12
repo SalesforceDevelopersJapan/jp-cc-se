@@ -1,2 +1,4 @@
 # jp-cc-se
+This repo is used to share sample code from Japan CC SE team.
+
 SFDC cannot guarantee the continued availability of this application software and may, at any time without prior notice, cease to provide this application software in its sole discretion and for any or no reason. Neither SFDC nor the author of this application software is responsible for any damages caused by your use of this application software. SFDC shall have no indemnification obligations nor liability of any type with respect to this application software.This application software may contain bugs, errors and incompatibilities with your configuration of Commerce Cloud Services and is made available on an AS IS basis without any warranty, support, updates, or service level commitments.
