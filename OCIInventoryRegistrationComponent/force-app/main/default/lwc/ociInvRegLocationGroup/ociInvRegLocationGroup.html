@@ -75,7 +75,9 @@
                         width: 100%;
                       "
                     >
-                      <span style="width: 100%">{label.OCI_INV_REG_PleaseSearchTitle}</span>
+                      <span style="width: 100%"
+                        >{label.OCI_INV_REG_PleaseSearchTitle}</span
+                      >
                     </h2>
                   </div>
                 </header>
@@ -84,7 +86,7 @@
                 class="slds-card__body slds-card__body_inner"
                 style="text-align: center"
               >
-              {label.OCI_INV_REG_PleaseSearchDescription}
+                {label.OCI_INV_REG_PleaseSearchDescription}
               </div>
             </article>
           </div>
@@ -100,20 +102,30 @@
         if:true={hasLocationGroup}
       >
         <lightning-layout-item>
-          <h2 style="font-size: 1.2rem; margin: 1rem 0">{label.OCI_INV_REG_LocationGroup}</h2>
+          <h2 style="font-size: 1.2rem; margin: 1rem 0">
+            {label.OCI_INV_REG_LocationGroup}
+          </h2>
           <template for:each={locationGroups} for:item="item">
             <c-oci-inv-reg-inventory-list
               key={item.key}
               location={item}
               is-location-group
+              onfuture={handleFuture}
             ></c-oci-inv-reg-inventory-list>
           </template>
         </lightning-layout-item>
 
         <lightning-layout-item>
-          <h2 style="font-size: 1.2rem; margin: 1rem 0">{label.OCI_INV_REG_Locations}</h2>
+          <h2 style="font-size: 1.2rem; margin: 1rem 0">
+            {label.OCI_INV_REG_Locations}
+          </h2>
           <template for:each={locations} for:item="item">
-            <c-oci-inv-reg-inventory-list key={item.key} location={item}></c-oci-inv-reg-inventory-list>
+            <c-oci-inv-reg-inventory-list
+              key={item.key}
+              location={item}
+              onedit={handleLocationEdit}
+              onfuture={handleFuture}
+            ></c-oci-inv-reg-inventory-list>
           </template>
         </lightning-layout-item>
       </lightning-layout>
@@ -139,4 +151,29 @@
       </lightning-layout>
     </div>
   </div>
+
+  <c-oci-inv-reg-modal
+    disable-execute-btn
+    title={label.OCI_INV_REG_Futures}
+    class="futures"
+  >
+    <span if:false={hasSelectedFutures}>{label.OCI_INV_REG_NoFuture}</span>
+    <lightning-datatable
+      if:true={hasSelectedFutures}
+      key-field="index"
+      data={selectedFutures}
+      row-number-offset={rowOffset}
+      suppress-bottom-bar
+      hide-checkbox-column
+      columns={futureColumns}
+    >
+    </lightning-datatable>
+  </c-oci-inv-reg-modal>
+
+  <c-oci-inv-reg-location-update-form-modal
+    inventory={selectedInventory}
+    location-identifier={selectedId}
+    onexecute={handleExecute}
+  >
+  </c-oci-inv-reg-location-update-form-modal>
 </template>

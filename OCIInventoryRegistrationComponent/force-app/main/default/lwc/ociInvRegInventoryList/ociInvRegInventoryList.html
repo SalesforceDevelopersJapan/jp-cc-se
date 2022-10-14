@@ -11,28 +11,6 @@
         onrowaction={handleRowAction}
       >
       </lightning-datatable>
-
-      
-      <c-oci-inv-reg-modal disable-execute-btn title={label.OCI_INV_REG_Futures} class="futures">
-        <span if:false={hasFutures}>{label.OCI_INV_REG_NoFuture}</span>
-        <lightning-datatable
-          if:true={hasFutures}
-          key-field="index"
-          data={selectedFutures}
-          row-number-offset={rowOffset}
-          suppress-bottom-bar
-          hide-checkbox-column
-          columns={futureColumns}
-        >
-        </lightning-datatable>
-      </c-oci-inv-reg-modal>
-
-      <c-oci-inv-reg-location-update-form-modal
-        inventory={selectedInventory}
-        location-identifier={id}
-        onexecute={handleExecute}
-      >
-      </c-oci-inv-reg-location-update-form-modal>
     </div>
   </lightning-card>
 </template>
