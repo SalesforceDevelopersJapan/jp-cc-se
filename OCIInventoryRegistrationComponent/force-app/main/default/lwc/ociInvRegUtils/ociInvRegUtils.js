@@ -10,6 +10,7 @@ export function showToast(that, title, message, variant) {
     that.dispatchEvent(event);
 }
 
+// e.g. printFormat('Hello {0} {1} !!', 'John', 'Mayer')
 export function printFormat(template, ...arg) {
     if(!template){
         return "";
