@@ -1,4 +1,4 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api } from 'lwc';
 import OCI_INV_REG_ATF from '@salesforce/label/c.OCI_INV_REG_ATF';
 import OCI_INV_REG_ATO from '@salesforce/label/c.OCI_INV_REG_ATO';
 import OCI_INV_REG_EffectiveDate from '@salesforce/label/c.OCI_INV_REG_EffectiveDate';
@@ -13,10 +13,12 @@ import OCI_INV_REG_Edit from '@salesforce/label/c.OCI_INV_REG_Edit';
 export default class OciInvRegInventoryList extends LightningElement {
 
     @api isLocationGroup = false
-    @track inventories = [];
+    @api location
+
+    // Displayed Data
+    inventories = [];
     title = "";
-    locationVal = null
-    rowOffset = 0;
+
     inventoryColumns = [
         { label: OCI_INV_REG_SKU, fieldName: 'stockKeepingUnit', type: 'text', editable: false },
         {
@@ -36,21 +38,7 @@ export default class OciInvRegInventoryList extends LightningElement {
         { label: OCI_INV_REG_OnHand, fieldName: 'onHand', type: 'number', editable: false, initialWidth: 120 },
         { label: OCI_INV_REG_Reserved, fieldName: 'reserved', type: 'number', editable: false, initialWidth: 120 },
         { label: OCI_INV_REG_SafetyStockCount, fieldName: 'safetyStockCount', type: 'number', editable: false, initialWidth: 120 },
-
     ];
-
-    @api
-    get location() {
-        return this.locationVal;
-    }
-
-    set location(val) {
-        if (val) {
-            this.locationVal = val
-            this.title = this.locationVal.locationIdentifier || this.locationVal.locationGroupIdentifier || ""
-            this.inventories = this._generateData();
-        }
-    }
 
     connectedCallback() {
         const actions = [{ label: OCI_INV_REG_ShowFutures, name: 'show_futures' }];
@@ -63,6 +51,10 @@ export default class OciInvRegInventoryList extends LightningElement {
             type: 'action',
             typeAttributes: { rowActions: actions },
         }]
+        if (this.location) {
+            this.title = this.location.locationIdentifier || this.location.locationGroupIdentifier || ""
+            this.inventories = this._generateData();
+        }
     }
 
     handleRowAction(event) {
@@ -79,9 +71,8 @@ export default class OciInvRegInventoryList extends LightningElement {
         }
     }
 
-
     _generateData() {
-        return this.locationVal ? this.locationVal.inventoryRecords.map((i, idx) => {
+        return this.location ? this.location.inventoryRecords.map((i, idx) => {
             return {
                 index: idx,
                 availableToFulfill: i.availableToFulfill,
@@ -96,19 +87,14 @@ export default class OciInvRegInventoryList extends LightningElement {
         }) : [];
     }
 
-
-
     _edit(row) {
-        const e = new CustomEvent('edit', { detail: { row, location: this.locationVal } });
+        const e = new CustomEvent('edit', { detail: { row, location: this.location } });
         this.dispatchEvent(e);
     }
 
     _showFutures(row) {
-        const e = new CustomEvent('future', { detail: { row, location: this.locationVal } });
+        const e = new CustomEvent('future', { detail: { row, location: this.location } });
         this.dispatchEvent(e);
-
     }
-
-
 
 }

@@ -1,4 +1,4 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import getInventoryAvailability from '@salesforce/apex/OciInvRegController.getInventoryAvailability';
 import getLocationGroups from '@salesforce/apex/OciInvRegController.getLocationGroups';
 import { showToast, printFormat } from 'c/ociInvRegUtils'
@@ -42,19 +42,25 @@ export default class OciInvRegLocationGroup extends LightningElement {
         OCI_INV_REG_NoFuture
     }
 
-    @track options = []
-    @track locations = []
-    @track locationGroups = []
-    @track selectedInventory = null;
-    @track selectedFutures = []
+    // Displayed Data
+    options = []
+    locations = []
+    locationGroups = []
 
-    selectedId = ""
-    ready = false
+    // Selected Data State
+    selectedInventory = null;
+    selectedFutures = []
+    selectedLocationId = ""
+
+    // Input State
     sku = ""
     locationGroupId = ""
+
+    // UI State 
+    ready = false
     hasSearched = false
     isSearching = false
-    rowOffset = 0;
+
     futureColumns = [
         {
             label: OCI_INV_REG_ExpectedDate, fieldName: 'expectedDate', type: 'date', editable: false,
@@ -95,7 +101,6 @@ export default class OciInvRegLocationGroup extends LightningElement {
         return this.selectedFutures && this.selectedFutures.length > 0
     }
 
-
     async onSubmit(event) {
         event.preventDefault();
         this.isSearching = true
@@ -123,28 +128,24 @@ export default class OciInvRegLocationGroup extends LightningElement {
     }
 
     handleSku(event) {
-        event.preventDefault();
         this.sku = event.detail.value
     }
 
     handleLocationGroup(event) {
-        event.preventDefault();
         this.locationGroupId = event.detail.value
     }
 
     handleLocationEdit(event) {
-        event.preventDefault();
         const { row, location } = event.detail
         const { index } = row;
         if (index !== -1 && location) {
             this.selectedInventory = { ...location.inventoryRecords[index] };
-            this.selectedId = location.locationIdentifier
+            this.selectedLocationId = location.locationIdentifier
             this.template.querySelector('c-oci-inv-reg-location-update-form-modal').open();
         }
     }
 
     handleFuture(event) {
-        event.preventDefault();
         const { row, location } = event.detail
         const { index } = row;
         if (index !== -1 && location) {
@@ -152,7 +153,6 @@ export default class OciInvRegLocationGroup extends LightningElement {
             this.template.querySelector('c-oci-inv-reg-modal.futures').open();
         }
     }
-
 
     async handleExecute(event) {
         const uploadId = event.detail.uploadId
@@ -185,6 +185,5 @@ export default class OciInvRegLocationGroup extends LightningElement {
                 showToast(this, status, printFormat(OCI_INV_REG_RequestJobOther, status), "warning")
         }
     }
-
 
 }

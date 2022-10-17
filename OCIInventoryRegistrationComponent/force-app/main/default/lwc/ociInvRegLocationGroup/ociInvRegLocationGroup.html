@@ -162,7 +162,7 @@
       if:true={hasSelectedFutures}
       key-field="index"
       data={selectedFutures}
-      row-number-offset={rowOffset}
+      row-number-offset="0"
       suppress-bottom-bar
       hide-checkbox-column
       columns={futureColumns}
@@ -172,7 +172,7 @@
 
   <c-oci-inv-reg-location-update-form-modal
     inventory={selectedInventory}
-    location-identifier={selectedId}
+    location-identifier={selectedLocationId}
     onexecute={handleExecute}
   >
   </c-oci-inv-reg-location-update-form-modal>

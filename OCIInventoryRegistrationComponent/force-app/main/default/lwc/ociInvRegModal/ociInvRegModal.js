@@ -16,7 +16,6 @@ export default class OciInvRegModal extends LightningElement {
     @api closeBtnText = OCI_INV_REG_Close;
     @api disableExecuteBtn = false;
     @api executeBtnText = OCI_INV_REG_Execute;
-    @api ready = false
 
     @api
     close() {
@@ -25,9 +24,7 @@ export default class OciInvRegModal extends LightningElement {
         this.dispatchEvent(e);
     }
 
-    onClose(event){
-        event.preventDefault();
-        event.stopPropagation();
+    onClose(){
         this.close()
     }
 
@@ -39,9 +36,7 @@ export default class OciInvRegModal extends LightningElement {
     }
 
     @api
-    execute(event) {
-        event.preventDefault();
-        event.stopPropagation();
+    execute() {
         const e = new CustomEvent('execute');
         this.dispatchEvent(e);
     }

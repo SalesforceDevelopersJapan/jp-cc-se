@@ -1,4 +1,4 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api } from 'lwc';
 import uploadInventoryAvailability from '@salesforce/apex/OciInvRegController.uploadInventoryAvailability';
 import { showToast } from 'c/ociInvRegUtils'
 import OCI_INV_REG_ExpectedDate from '@salesforce/label/c.OCI_INV_REG_ExpectedDate';
@@ -26,12 +26,17 @@ export default class OciInvRegLocationUpdateFormModal extends LightningElement {
         OCI_INV_REG_SafetyStockCount,
         OCI_INV_REG_EffectiveDate,
         OCI_INV_REG_Add
-
     }
 
     @api locationIdentifier = null
-    @track futures = []
-    @track inventoryVal = null
+
+    // Displayed Data
+    futures = []
+    inventoryVal = null
+
+    // UI State
+    isSubmitting = false
+
     futureColumns = [
         {
             label: OCI_INV_REG_ExpectedDate, fieldName: 'expectedDate', typeAttributes: {
@@ -52,9 +57,7 @@ export default class OciInvRegLocationUpdateFormModal extends LightningElement {
             },
         }
     ];
-    rowOffset = 0;
-    isSubmitting = false
-
+    
     get ready() {
         return !!this.inventoryVal
     }
@@ -82,7 +85,6 @@ export default class OciInvRegLocationUpdateFormModal extends LightningElement {
     }
 
     handleFutureChange(event) {
-        event.preventDefault();
         this.futures = this.futures.map(f => {
             const found = event.detail.draftValues.map(d => {
                 if (d.quantity) {
@@ -95,12 +97,10 @@ export default class OciInvRegLocationUpdateFormModal extends LightningElement {
     }
 
     handleOnHandChange(event) {
-        event.preventDefault();
         this.inventoryVal = { ...this.inventoryVal, onHand: event.detail.value }
     }
 
     handleEffectivedateChange(event) {
-        event.preventDefault();
         this.inventoryVal = { ...this.inventoryVal, effectiveDate: event.detail.value }
     }
 
@@ -114,8 +114,7 @@ export default class OciInvRegLocationUpdateFormModal extends LightningElement {
         event.preventDefault();
     }
 
-    addFuture(event) {
-        event.preventDefault();
+    addFuture() {
         this.futures = this.futures.concat([{
             indexStr: String(this.futures.length),
             quantity: 0,
@@ -134,8 +133,7 @@ export default class OciInvRegLocationUpdateFormModal extends LightningElement {
         }
     }
 
-    async handleExecute(event) {
-        event.preventDefault();
+    async handleExecute() {
         const allValid = [
             ...this.template.querySelectorAll('lightning-input'),
         ].reduce((validSoFar, inputCmp) => {
@@ -153,8 +151,8 @@ export default class OciInvRegLocationUpdateFormModal extends LightningElement {
             futures: this.futures,
             locationId: this.locationIdentifier
         }
-        this.isSubmitting = true
         try {
+            this.isSubmitting = true
             const res = await uploadInventoryAvailability({ request, locationId: this.locationIdentifier })
             const e = new CustomEvent('execute', { detail: { uploadId: res.uploadId } });
             this.dispatchEvent(e);
@@ -165,15 +163,12 @@ export default class OciInvRegLocationUpdateFormModal extends LightningElement {
             this.isSubmitting = false
             this.close();
         }
-
-
     }
 
-
     _generateFutures() {
-        return this.inventoryVal.futures.map((f, i) => {
+        return this.inventoryVal ? this.inventoryVal.futures.map((f, i) => {
             return { ...f, indexStr: String(i) }
-        });
+        }) : [];
     }
 
     _deleteFuture(row) {
