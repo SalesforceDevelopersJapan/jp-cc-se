@@ -23,8 +23,6 @@ public with sharing class OciInvRegController {
     public Integer safetyStockCount { get; set; }
     @AuraEnabled
     public List<UpdateRequestFuture> futures { get; set; }
-    @AuraEnabled
-    public String locationId { get; set; }
   }
 
   @AuraEnabled(cacheable=false)

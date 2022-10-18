@@ -148,8 +148,7 @@ export default class OciInvRegLocationUpdateFormModal extends LightningElement {
             safetyStockCount: Number(this.inventoryVal.safetyStockCount),
             sku: this.inventoryVal.stockKeepingUnit,
             effectiveDate: this.inventoryVal.effectiveDate,
-            futures: this.futures,
-            locationId: this.locationIdentifier
+            futures: this.futures
         }
         try {
             this.isSubmitting = true

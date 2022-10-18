@@ -7,13 +7,13 @@ private class OciInvRegControllerTest {
     updateRequest.sku = 'TestSKU';
     updateRequest.effectiveDate = '2020-12-08T14:05:22.790896-07:00';
     updateRequest.safetyStockCount = 10;
-    updateRequest.locationId = 'TestLocationID';
     updateRequest.futures = new List<OciInvRegController.UpdateRequestFuture>();
     OciInvRegController.OperationRequest operationRequest = new OciInvRegController.OperationRequest();
     operationRequest.location = 'TestLocationID';
     operationRequest.mode = 'UPDATE';
     Test.startTest();
-    System.assert(updateRequest.locationId == operationRequest.location);
+    System.assert(operationRequest.mode == 'UPDATE');
+    System.assert(updateRequest.sku == 'TestSKU');
     Test.stopTest();
   }
 
