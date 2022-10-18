@@ -4,11 +4,11 @@ try {
    * Insert Location Group
    */
   Schema.LocationGroup locationGroup = new Schema.LocationGroup(
-    LocationGroupName = 'サンプルロケーショングループ',
+    LocationGroupName = 'Sample Location Group',
     ExternalReference = 'inventory_m',
     IsEnabled = true,
     ShouldSyncWithOci = true,
-    Description = 'サンプルロケーショングループの説明文'
+    Description = 'Description for Sample Location Group'
   );
   insert locationGroup;
 
@@ -16,20 +16,20 @@ try {
    * Insert Locations for Osaka and Tokyo
    */
   Schema.Location locationOsaka = new Schema.Location(
-    Name = '大阪倉庫',
+    Name = 'Osaka Warehouse',
     ExternalReference = 'inventory_m_osaka',
     LocationType = 'Warehouse',
     ShouldSyncWithOci = true,
     IsInventoryLocation = true,
-    Description = '大阪倉庫ロケーションの説明文'
+    Description = 'Description for Osaka Warehouse'
   );
   Schema.Location locationTokyo = new Schema.Location(
-    Name = '東京倉庫',
+    Name = 'Tokyo Warehouse',
     ExternalReference = 'inventory_m_tokyo',
     LocationType = 'Warehouse',
     ShouldSyncWithOci = true,
     IsInventoryLocation = true,
-    Description = '東京倉庫ロケーションの説明文'
+    Description = 'Description for Tokyo Warehouse'
   );
   insert new List<Schema.Location>{ locationOsaka, locationTokyo };
 
