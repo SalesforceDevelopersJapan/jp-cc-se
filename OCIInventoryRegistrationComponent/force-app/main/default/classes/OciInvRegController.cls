@@ -1,17 +1,17 @@
 public with sharing class OciInvRegController {
-  private class OperationRequest {
-    String location;
-    String mode;
+  public class OperationRequest {
+    public String location;
+    public String mode;
   }
 
-  private class UpdateRequestFuture {
+  public class UpdateRequestFuture {
     @AuraEnabled
     public Integer quantity { get; set; }
     @AuraEnabled
     public String expectedDate { get; set; }
   }
 
-  private class UpdateRequest {
+  public class UpdateRequest {
     String recordId;
     @AuraEnabled
     public Integer onHand { get; set; }

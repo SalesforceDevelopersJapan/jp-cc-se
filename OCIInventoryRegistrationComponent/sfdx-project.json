@@ -4,16 +4,16 @@
             "path": "force-app",
             "default": true,
             "package": "OCIInventoryRegistrationComponent",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT"
+            "versionName": "ver 0.2",
+            "versionNumber": "0.2.0.NEXT"
         }
     ],
-    "name": "TestSFDX",
-    "namespace": "",
+    "name": "OCI Inventory Registration",
+    "namespace": "ociir",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "55.0",
     "packageAliases": {
-        "OCIInventoryRegistrationComponent": "0Ho5h000000GmpeCAC",
-        "OCIInventoryRegistrationComponent@0.1.0-1": "04t5h000000IqZtAAK"
+        "OCIInventoryRegistrationComponent": "0Ho5h000000XZHhCAO",
+        "OCIInventoryRegistrationComponent@0.1.0-1": "04t5h000000YurzAAC"
     }
 }
