@@ -18,6 +18,6 @@ You can add this component named "OCI Inventory Registration Component" to any p
 
 ## Sample Data
 ```
-sfdx force:apex:execute -f sample_data/data.apex
+sfdx force:apex:execute -f ../../data/OCIInventoryRegistrationComponent/data.apex
 ```
 
