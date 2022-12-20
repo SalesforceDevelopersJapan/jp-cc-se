@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "B2Band2CGMOPayment",
+  "name": "GMOPayment",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "56.0"
