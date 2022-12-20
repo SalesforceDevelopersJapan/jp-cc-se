@@ -1,0 +1,55 @@
+<!-- sldsValidatorIgnore -->
+<template>
+  <form class="card-form">
+    <div class="input">
+      <lightning-input
+        type="text"
+        placeholder="4111111111111111"
+        label="番号"
+        maxlength="16"
+        autocomplete="cc-number"
+        required
+        onchange={handleCardNumberChange}
+      ></lightning-input>
+      <lightning-input
+        type="text"
+        placeholder="Taro Yamada"
+        maxlength="50"
+        label="名義"
+        autocomplete="cc-name"
+        required
+        onchange={handleHolderNameChange}
+      ></lightning-input>
+      <lightning-input
+        type="text"
+        placeholder="YYYYMM"
+        maxlength="6"
+        label="有効期限"
+        autocomplete="cc-exp"
+        required
+        onchange={handleExpireChange}
+      ></lightning-input>
+      <lightning-input
+        type="text"
+        placeholder="123"
+        maxlength="3"
+        label="CVC"
+        autocomplete="cc-csc"
+        required
+        onchange={handleCVCChange}
+      ></lightning-input>
+      <lightning-input
+        type="checkbox"
+        label="このカードを保存する"
+        onchange={handleSaveCardChange}
+      ></lightning-input>
+    </div>
+    <!-- <div class="button">
+        <lightning-button
+          variant="brand"
+          label="保存"
+          onclick={save}
+        ></lightning-button>
+      </div> -->
+  </form>
+</template>

@@ -1,0 +1,23 @@
+{
+    "apiVersion": "56.0",
+    "hubOrgAdminEmail": "¥",
+    "hubOrgAdminUsername": "",
+    "hubOrgAdminPassword": "",
+    "hubOrgMyDomain": "",
+    "hubOrgAlias": "DevHub",
+    "sfdcLoginUrl": "https://$(hostname):6101",
+    "instanceUrl": "https://localhost:6101",
+    "scratchOrgs": [
+        {
+            "scratchOrgAdminUsername": "demo@1commerce.com",
+            "scratchOrgBuyerUsername": "buyer@1commerce.com",
+            "scratchOrgAlias": "1sorg",
+            "stores": [
+                {
+                    "storeName": "1commerce",
+                    "paymentAdapter": "StripeClientSide"
+                }
+            ]
+        }
+    ]
+}

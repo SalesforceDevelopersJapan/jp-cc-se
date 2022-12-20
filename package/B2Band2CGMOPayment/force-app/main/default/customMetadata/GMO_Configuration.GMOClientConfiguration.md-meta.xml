@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>GMOClientConfiguration</label>
+    <protected>true</protected>
+    <values>
+        <field>jsUrl__c</field>
+        <value xsi:type="xsd:string">https://stg.static.mul-pay.jp/ext/js/token.js</value>
+    </values>
+    <values>
+        <field>shopId__c</field>
+        <value xsi:type="xsd:string">tshop00059671</value>
+    </values>
+    <values>
+        <field>shopNC__c</field>
+        <value xsi:type="xsd:string">GMOAdapterShop_NC</value>
+    </values>
+    <values>
+        <field>siteNC__c</field>
+        <value xsi:type="xsd:string">GMOAdapterSite_NC</value>
+    </values>
+</CustomMetadata>
