@@ -63,6 +63,7 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
       response.getBody()
     );
     if (responseBody.containsKey('ErrCode')) {
+      //TODO Need more error handling
       String errorInfo = (String) responseBody.get('ErrInfo');
       throw new GMOValidationException(
         'Cound not entry transaction: ' + errorInfo
@@ -90,6 +91,7 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
       response.getBody()
     );
     if (responseBody.containsKey('ErrCode')) {
+      //TODO Need more error handling
       String errorInfo = (String) responseBody.get('ErrInfo');
       throw new GMOValidationException(
         'Cound not execute transaction: ' + errorInfo
@@ -108,7 +110,7 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     Integer amount = Math.round(postAuthRequest.amount);
     String userId = UserInfo.getUserId();
     saveMember(userId);
-    // TODO: original id is used instead of order id. need to consider another way.
+    //TODO Original id is used instead of order id. need to consider another way.
     String id = GMOUtils.generateId();
     Map<String, Object> entryMap = entryTransaction(id, amount);
     Map<String, Object> execMap = executeTransaction(
