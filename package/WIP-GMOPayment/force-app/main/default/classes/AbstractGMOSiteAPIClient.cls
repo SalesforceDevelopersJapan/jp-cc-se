@@ -47,7 +47,7 @@ public abstract class AbstractGMOSiteAPIClient {
         return post('/SearchCard.idPass', params);
     }
 
-    protected String buildRequestBody(Map<String, Object> params){
+    protected virtual String buildRequestBody(Map<String, Object> params){
         String body = GMOUtils.urlEncodedParams(params);
         if(!String.isEmpty(body)){
             body += '&';

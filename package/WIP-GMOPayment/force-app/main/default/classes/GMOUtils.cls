@@ -36,12 +36,14 @@ public class GMOUtils {
     }
 
     public static GMO_Configuration__mdt getMetadata(){
-        Cache.OrgPartition partition = Cache.Org.getPartition('local.gmo');
-        if(partition.contains('configulation')){
-            return (GMO_Configuration__mdt)partition.get('configulation');
+        return [SELECT jsUrl__c, shopId__c, shopNC__c, siteNC__c, shopPass__c, siteId__c, sitePass__c FROM GMO_Configuration__mdt][0];
+    }
+
+    public static String generateId(){
+        String seed = String.valueOf(Crypto.getRandomInteger());
+        if(seed.length() > 7){
+            seed = seed.SubString(0,7);
         }
-        GMO_Configuration__mdt config = [SELECT jsUrl__c, shopId__c, shopNC__c, siteNC__c FROM GMO_Configuration__mdt][0];
-        partition.put('configulation', config, 3600);
-        return config;
+        return seed + '-' +  String.valueOf(Datetime.now().formatGMT('yyyyMMddHHmmssSSS'));
     }
 }

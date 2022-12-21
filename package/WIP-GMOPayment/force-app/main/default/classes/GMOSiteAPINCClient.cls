@@ -1,16 +1,16 @@
-public class GMOShopAPIClient extends AbstractGMOShopAPIClient{
+public class GMOSiteAPINCClient extends AbstractGMOSiteAPIClient {
 
-    private static GMOShopAPIClient instance = null;
+    private static GMOSiteAPINCClient instance = null;
     private String namedCredential;
 
-    private GMOShopAPIClient(String namedCredential){
+    private GMOSiteAPINCClient(String namedCredential){
         this.namedCredential = namedCredential;
     }
 
-    public static GMOShopAPIClient getInstance(){
+    public static GMOSiteAPINCClient getInstance(){
         GMO_Configuration__mdt metadata = GMOUtils.getMetadata();
-        if(instance == null || instance.namedCredential != metadata.shopNC__C){
-            instance = new GMOShopAPIClient(metadata.shopNC__C);
+        if(instance == null || instance.namedCredential != metadata.siteNC__c){
+            instance = new GMOSiteAPINCClient(metadata.siteNC__c);
         }
         return instance;
     }

@@ -1,11 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
-// import saveCard from '@salesforce/apex/GMOPaymentAdapter.saveCard';
-// import entryTransaction from '@salesforce/apex/GMOPaymentAdapter.entryTransaction';
-import searchCard from '@salesforce/apex/GMOPaymentAdapter.searchCard';
-import saveMember from '@salesforce/apex/GMOPaymentAdapter.saveMember';
-import searchMember from '@salesforce/apex/GMOPaymentAdapter.searchMember';
-// import contextApi from 'commerce/contextApi';
+// import searchCard from '@salesforce/apex/GMOPaymentController.searchCard';
 // import checkoutApi from 'commerce/checkoutApi';
 // checkoutApi.paymentClientRequest(); should be available in the future.
 
@@ -19,7 +14,8 @@ export default class GmoCardElement extends LightningElement {
         expire: "",
         holdername: "",
     };
-    _savecard = false
+    // _savecard = false
+    // _selectedCard = ""
     _card;
 
 
@@ -29,10 +25,12 @@ export default class GmoCardElement extends LightningElement {
         this._clientConfiguration = clientConfiguration;
         this._card = this.template.querySelector('.card-form');
         await loadScript(this, this._clientConfiguration.gmoJsUrl);
-        const cards = await searchCard();
-        if ("ErrInfo" in cards === false) {
-            console.log(this._makeCardList(cards))
-        }
+        // When checkoutApi.paymentClientRequest() is available, search cards and make select list
+        // const cards = await searchCard();
+        // if ("ErrInfo" in cards === false) {
+        //     console.log(this._makeCardList(cards))
+        //     // make card select list
+        // }
     }
 
     _makeCardList(cards) {
@@ -52,43 +50,32 @@ export default class GmoCardElement extends LightningElement {
         throw Error("[" + reponse.ErrCode + "]" + reponse.ErrInfo)
     }
 
+    async _saveCard(token){
+        const card = await saveCard({ token })
+        if ("ErrInfo" in card) {
+            _throwGMOError(card)
+        }
+    }
+
 
     // このメソッド完了時にpostAuthorizePaymentが呼ばれる
     @api
     async completePayment(_billingAddress) {
         try {
-            let member = await searchMember();
-            if ("ErrInfo" in member) {
-                if (member.ErrInfo.includes("E01390002")) {
-                    // If member does not exist, save member.
-                    member = await saveMember();
-                    if ("ErrInfo" in member) {
-                        _throwGMOError(member)
-                    }
-                } else {
-                    _throwGMOError(member)
-                }
-            }
-            let responseCode;
-            let token;
-            if (this._savecard) {
-                token = await this._getToken(2);
-                // const card = await saveCard({ token: token.tokenObject.token[0] })
-                // if ("ErrInfo" in card) {
-                //     _throwGMOError(card)
-                // }
-                responseCode = token.tokenObject.token[1]
-            } else {
-                token = await this._getToken(1);
-                responseCode = token.tokenObject.token[0]
-            }
-
-
-            // const { default: csrfToken } = await import('@app/csrfToken');
-            // const context = await contextApi.getAppContext()
-            // context.webstoreId
-
-
+            // When checkoutApi.paymentClientRequest() is available... 
+            // const additionalData = {}
+            // if user choose to save card pass second token to paymentData
+            // if(this._savecard){
+            //     const token = await this._getToken(2);
+            //     const additionalData.savecardtoken = savecardtoken: token.tokenObject.token[0]
+            // }
+            // if user select thier card, pass card sequesnce number to paymentData
+            // if(this._selectedCard){
+            //     const additionalData.selectedCard = this._selectedCard
+            // }
+            // checkoutApi.paymentClientRequest(additionalData)
+            const token = await this._getToken(1);
+            const responseCode = token.tokenObject.token[0]
             return {
                 responseCode
             }
@@ -163,8 +150,12 @@ export default class GmoCardElement extends LightningElement {
         this._inputVal = { ...this._inputVal, securitycode: event.detail.value }
     }
 
-    handleSaveCardChange(event) {
-        this._savecard = event.detail.checked
-    }
+    // handleSaveCardChange(event) {
+    //     this._savecard = event.detail.checked
+    // }
+
+    // handleCardChange(event) {
+    //     this._selectedCard = event.detail.value
+    // }
 
 }

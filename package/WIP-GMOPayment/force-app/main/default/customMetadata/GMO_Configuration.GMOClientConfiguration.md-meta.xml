@@ -15,7 +15,19 @@
         <value xsi:type="xsd:string">GMOAdapterShop_NC</value>
     </values>
     <values>
+        <field>shopPass__c</field>
+        <value xsi:type="xsd:string">2274nub5</value>
+    </values>
+    <values>
+        <field>siteId__c</field>
+        <value xsi:type="xsd:string">tsite00049754</value>
+    </values>
+    <values>
         <field>siteNC__c</field>
         <value xsi:type="xsd:string">GMOAdapterSite_NC</value>
+    </values>
+    <values>
+        <field>sitePass__c</field>
+        <value xsi:type="xsd:string">1xbpxsk3</value>
     </values>
 </CustomMetadata>

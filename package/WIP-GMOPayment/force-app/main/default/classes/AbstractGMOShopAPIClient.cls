@@ -19,7 +19,7 @@ public abstract class AbstractGMOShopAPIClient {
         return post('/AlterTran.idPass', params);
     }
 
-    protected String buildRequestBody(Map<String, Object> params){
+    protected virtual String buildRequestBody(Map<String, Object> params){
         String body = GMOUtils.urlEncodedParams(params);
         if(!String.isEmpty(body)){
             body += '&';
