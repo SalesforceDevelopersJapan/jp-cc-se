@@ -20,7 +20,6 @@ force-app/main/default/*/*
 !force-app/main/default/objects/GMO*
 !force-app/main/default/namedCredentials/GMO*
 !force-app/main/default/remoteSiteSettings/gmo*
-!force-app/main/default/paymentGatewayProviders/GMO*
 
 
 

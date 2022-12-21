@@ -46,4 +46,10 @@ public class GMOUtils {
         }
         return seed + '-' +  String.valueOf(Datetime.now().formatGMT('yyyyMMddHHmmssSSS'));
     }
+
+    public static String makeYYMM(Integer year, Integer month){
+        return Datetime.newInstance(year, month, 01).format('YYMM');
+    }
+
+
 }
