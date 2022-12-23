@@ -8,8 +8,8 @@ public class GMOShopAPINCClient extends AbstractGMOShopAPIClient{
     }
 
     public static GMOShopAPINCClient getInstance(){
-        GMO_Configuration__mdt metadata = GMOUtils.getMetadata();
-        if(instance == null || instance.namedCredential != metadata.shopNC__C){
+        if(instance == null){
+            GMO_Configuration__mdt metadata = GMOUtils.getMetadata();
             instance = new GMOShopAPINCClient(metadata.shopNC__C);
         }
         return instance;

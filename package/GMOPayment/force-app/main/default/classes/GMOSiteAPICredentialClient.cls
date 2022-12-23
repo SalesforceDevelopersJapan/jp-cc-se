@@ -10,8 +10,8 @@ public class GMOSiteAPICredentialClient extends AbstractGMOSiteAPIClient {
     }
 
     public static GMOSiteAPICredentialClient getInstance(){
-        GMO_Configuration__mdt metadata = GMOUtils.getMetadata();
         if(instance == null){
+            GMO_Configuration__mdt metadata = GMOUtils.getMetadata();
             instance = new GMOSiteAPICredentialClient(metadata.siteId__c, metadata.sitePass__c);
         }
         return instance;

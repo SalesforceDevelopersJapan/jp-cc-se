@@ -8,8 +8,8 @@ public class GMOSiteAPINCClient extends AbstractGMOSiteAPIClient {
     }
 
     public static GMOSiteAPINCClient getInstance(){
-        GMO_Configuration__mdt metadata = GMOUtils.getMetadata();
-        if(instance == null || instance.namedCredential != metadata.siteNC__c){
+        if(instance == null){
+            GMO_Configuration__mdt metadata = GMOUtils.getMetadata();
             instance = new GMOSiteAPINCClient(metadata.siteNC__c);
         }
         return instance;
