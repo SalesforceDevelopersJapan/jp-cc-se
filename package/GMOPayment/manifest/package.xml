@@ -10,10 +10,6 @@
 		<name>CspTrustedSite</name>
 	</types>
 	<types>
-		<members>GMO_Configuration.GMOClientConfiguration</members>
-		<name>CustomMetadata</name>
-	</types>
-	<types>
 		<members>GMO_Configuration__mdt</members>
 		<name>CustomObject</name>
 	</types>
