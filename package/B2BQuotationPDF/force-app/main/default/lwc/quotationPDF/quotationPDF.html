@@ -1,0 +1,13 @@
+<template>
+    <!-- <object type="application/pdf" data={pdf}></object> -->
+    <!-- <iframe src={pdf} width="100%" height="100%"></iframe>
+
+    <embed src={pdf} type="application/pdf" width="100%" height="100%"> -->
+         <lightning-button
+                variant="brand"
+                label="PDF を作成"
+                onclick={showPDF}
+                disabled={isDisabled}
+                if:false={isGuest}
+              ></lightning-button>
+</template>
