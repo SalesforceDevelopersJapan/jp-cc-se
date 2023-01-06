@@ -1,0 +1,52 @@
+<template>
+    <template if:true={communityUserIsGuest}>
+        <p>Hello Guest!</p>
+    </template>
+
+    <template if:false={communityUserIsGuest}>
+
+        <lightning-card title="Manage Multi-Carts" icon-name="standard:webcart">
+            <div class="slds-m-around_medium">
+                <lightning-input type="text" label="Cart Name" value={newCartName} onchange={handleKeyChange} class="slds-m-bottom_small" ></lightning-input>
+                <lightning-button label="Create" onclick={handleCreateCartEvent} class="slds-m-left_x-small"></lightning-button>
+            </div>
+            
+            <div class="slds-m-around_medium">
+                <template if:true={carts}>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                            <tr>
+                                <th><div class="slds-truncate" title="Cart Name">Cart Name</div></th>
+                                <th><div class="slds-truncate" title="Primary Secondary">Primary/Secondary</div></th>
+                                <th><div class="slds-truncate" title="Actions">Actions</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={carts} for:item="cart">
+                                <tr key={cart.id} class="slds-hint-parent">
+                                    <td>{cart.Name}</td>
+                                    <td>
+                                        <template if:false={cart.IsSecondary}>
+                                            <span class="slds-badge slds-theme_success">Primary</span>
+                                        </template>
+                                        <template if:true={cart.IsSecondary}>
+                                            <span class="slds-badge">Secondary</span>
+                                        </template>
+                                    </td>
+                                    <td>
+                                        <template if:true={cart.IsSecondary}>
+                                            <lightning-button label="Set Primary" title={cart.Id} onclick={handleSetPrimaryCartEvent} class="slds-m-left_x-small"></lightning-button>
+                                            <lightning-button label="Delete" title={cart.Id} onclick={handleDeleteCartEvent} class="slds-m-left_x-small"></lightning-button>        
+                                        </template>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+            </div>  
+            <p slot="footer">This is a sample component. Please use this as a reference.</p>
+        </lightning-card>
+
+    </template> 
+</template>
