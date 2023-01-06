@@ -1,0 +1,155 @@
+<template>
+  <lightning-layout class="x-large">
+    <lightning-layout-item flexibility="grow">
+    <lightning-combobox
+            name="progress"
+            label="Status"
+            value={cartId}
+            placeholder="Select Progress"
+            options={cartOptions}
+            onchange={handleCartChange} ></lightning-combobox>
+        </lightning-layout-item>
+    <lightning-layout-item flexibility="grow">
+      <lightning-input
+        type="text"
+        label="Dummy"
+        variant="label-hidden"
+        onchange={handleInput}
+        onkeyup={handleInputKeyUp}
+        placeholder="Enter keyword (e.g. product name, product code)"
+        style="margin: 1rem 0"
+      ></lightning-input>
+    </lightning-layout-item>
+  </lightning-layout>
+
+  <template if:false={isSearching}>
+    <template if:true={isSearched}>
+      <template if:false={isNoResult}>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Product Code</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <template for:each={result.products} for:item="product">
+              <tr key={product.id} class="slds-hint-parent">
+                <td><img class="product-images" src={product.imageUrl} /></td>
+                <td>{product.productCode}</td>
+                <td>{product.name}</td>
+                <td>{product.listPrice} → {product.unitPrice}</td>
+                <td>
+                  <form onsubmit={addToCart}>
+                    <input
+                      type="hidden"
+                      value={product.id}
+                      name="productId"
+                    />
+                    <input
+                      type="number"
+                      min="0"
+                      value="0"
+                      class="slds-input_counter"
+                      name="quantity"
+                    />
+                    <lightning-button
+                      type="submit"
+                      label="Add To Cart"
+                      class="slds-m-left_x-small"
+                    ></lightning-button>
+                  </form>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+
+        <div>
+          <p class="slds-m-vertical_medium content">
+            {result.total}件中　{start}件～{end}件を表示中。
+            {page}/{totalPage}ページ
+          </p>
+          <lightning-layout>
+            <lightning-layout-item>
+              <lightning-button
+                label="前へ"
+                icon-name="utility:chevronleft"
+                onclick={previousHandler}
+                disabled={isFirstPage}
+              ></lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item flexibility="grow"></lightning-layout-item>
+            <lightning-layout-item>
+              <lightning-button
+                label="次へ"
+                icon-name="utility:chevronright"
+                icon-position="right"
+                onclick={nextHandler}
+                disabled={isLastPage}
+              ></lightning-button>
+            </lightning-layout-item>
+          </lightning-layout>
+        </div>
+      </template>
+
+      <template if:true={isNoResult}>
+        <lightning-layout
+          vertical-align="stretch"
+          multiple-rows="true"
+          class="x-large"
+        >
+          <lightning-layout-item flexibility="grow">
+            <div class="not-found">
+              <h2
+                style="font-weight: 500; font-size: 1.2rem; text-align: center"
+              >
+                検索結果が見つかりませんでした。
+              </h2>
+              <p style="padding: 1rem; text-align: center">
+                検索結果が見つかりませんでした。
+              </p>
+            </div>
+          </lightning-layout-item>
+        </lightning-layout>
+      </template>
+    </template>
+
+    <template if:false={isSearched}>
+      <lightning-layout
+        vertical-align="stretch"
+        multiple-rows="true"
+        class="x-large"
+      >
+        <lightning-layout-item flexibility="grow">
+          <div class="not-searched">
+            <h2 style="font-weight: 500; font-size: 1.2rem; text-align: center">
+              検索してください
+            </h2>
+            <p style="padding: 1rem; text-align: center">
+              まだ検索されていません。
+            </p>
+          </div>
+        </lightning-layout-item>
+      </lightning-layout>
+    </template>
+  </template>
+
+  <template if:true={isSearching}>
+    <div class="demo-only" style="height: 6rem; position: relative">
+      <div class="slds-spinner_container">
+        <div
+          role="status"
+          class="slds-spinner slds-spinner_medium slds-spinner_brand"
+        >
+          <span class="slds-assistive-text">Loading</span>
+          <div class="slds-spinner__dot-a"></div>
+          <div class="slds-spinner__dot-b"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+</template>
