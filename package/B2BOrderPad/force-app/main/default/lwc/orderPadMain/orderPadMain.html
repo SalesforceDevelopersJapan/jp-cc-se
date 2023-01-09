@@ -1,14 +1,16 @@
 <template>
   <lightning-layout class="x-large">
-    <lightning-layout-item flexibility="grow">
-    <lightning-combobox
-            name="progress"
-            label="Status"
-            value={cartId}
-            placeholder="Select Progress"
-            options={cartOptions}
-            onchange={handleCartChange} ></lightning-combobox>
-        </lightning-layout-item>
+    <lightning-layout-item style="align-self: center" flexibility="grow">
+      <lightning-combobox
+        name="progress"
+        label="Dummy"
+        variant="label-hidden"
+        value={cartId}
+        placeholder="Select Cart"
+        options={cartOptions}
+        onchange={handleCartChange}
+      ></lightning-combobox>
+    </lightning-layout-item>
     <lightning-layout-item flexibility="grow">
       <lightning-input
         type="text"
@@ -25,14 +27,16 @@
   <template if:false={isSearching}>
     <template if:true={isSearched}>
       <template if:false={isNoResult}>
-        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <table
+          class="slds-table slds-table_cell-buffer slds-table_bordered result-items"
+        >
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Product Code</th>
-              <th>Price</th>
-              <th></th>
+              <th class="width10"></th>
+              <th class="width20">Product Code</th>
+              <th class="width30">Name</th>
+              <th class="width10">Price</th>
+              <th class="width30"></th>
             </tr>
           </thead>
           <tbody>
@@ -44,23 +48,25 @@
                 <td>{product.listPrice} → {product.unitPrice}</td>
                 <td>
                   <form onsubmit={addToCart}>
-                    <input
-                      type="hidden"
-                      value={product.id}
-                      name="productId"
-                    />
-                    <input
-                      type="number"
-                      min="0"
-                      value="0"
-                      class="slds-input_counter"
-                      name="quantity"
-                    />
-                    <lightning-button
-                      type="submit"
-                      label="Add To Cart"
-                      class="slds-m-left_x-small"
-                    ></lightning-button>
+                    <input type="hidden" value={product.id} name="productId" />
+                    <lightning-layout>
+                      <lightning-layout-item size="4" style="align-self: center" padding="around-small" flexibility="auto">
+                        <input
+                        style="width: 100%"
+                          type="number"
+                          min="0"
+                          value="0"
+                          name="quantity"
+                        />
+                      </lightning-layout-item>
+                      <lightning-layout-item size="8" padding="around-small" flexibility="auto">
+                        <lightning-button
+                          type="submit"
+                          label="Add To Cart"
+                          class="slds-m-left_x-small"
+                        ></lightning-button>
+                      </lightning-layout-item>
+                    </lightning-layout>
                   </form>
                 </td>
               </tr>

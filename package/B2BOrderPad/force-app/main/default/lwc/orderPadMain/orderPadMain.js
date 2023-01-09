@@ -1,42 +1,41 @@
-import { LightningElement, api, wire } from 'lwc';
+import { LightningElement, api, wire, track } from 'lwc';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import searchProducts from '@salesforce/apex/B2BOrderPadController.searchProducts';
 import addToCart from '@salesforce/apex/B2BOrderPadController.addToCart';
 import getCarts from '@salesforce/apex/B2BOrderPadController.getCarts';
 import ACCOUNTID_FIELD from '@salesforce/schema/Contact.AccountId';
-import userId from '@salesforce/user/Id';
 
 export default class OrderPadMain extends LightningElement {
 
     PAGE_SIZE = 20
 
     accountId;
-    // result;
-    result = {
-        total: 124,
-        pageSize: 20,
-        currency: "USD",
-        products: [
-            {
-                imageUrl: "/img/b2b/default-product-image.svg",
-                name: "Alpine Energy CO2 Cartridge for Smart Dispenser - 24 Pack",
-                id: "01t5D000004VQ99QAG",
-                listPrice: "59.99",
-                unitPrice: "55.5",
-                productCode: "6010007",
-                sku: "6010007"
-            },
-            {
-                imageUrl: "/img/b2b/default-product-image.svg",
-                name: "2 Alpine Energy CO2 Cartridge for Smart Dispenser - 24 Pack",
-                id: "201t5D000004VQ99QAG",
-                listPrice: "259.99",
-                unitPrice: "255.5",
-                productCode: "26010007",
-                sku: "26010007"
-            },
-        ]
-    };
+    result;
+    // result = {
+    //     total: 124,
+    //     pageSize: 20,
+    //     currency: "USD",
+    //     products: [
+    //         {
+    //             imageUrl: "/img/b2b/default-product-image.svg",
+    //             name: "Alpine Energy CO2 Cartridge for Smart Dispenser - 24 Pack",
+    //             id: "01t5D000004VQ99QAG",
+    //             listPrice: "59.99",
+    //             unitPrice: "55.5",
+    //             productCode: "6010007",
+    //             sku: "6010007"
+    //         },
+    //         {
+    //             imageUrl: "/img/b2b/default-product-image.svg",
+    //             name: "2 Alpine Energy CO2 Cartridge for Smart Dispenser - 24 Pack",
+    //             id: "201t5D000004VQ99QAG",
+    //             listPrice: "259.99",
+    //             unitPrice: "255.5",
+    //             productCode: "26010007",
+    //             sku: "26010007"
+    //         },
+    //     ]
+    // };
 
     keyword = ""
     page = 1
@@ -50,7 +49,7 @@ export default class OrderPadMain extends LightningElement {
     @api recordId;
 
 
-    cartOptions = [];
+    @track cartOptions = [];
     cartId = ""
     handleCartChange(e) {
         this.cartId = e.detail.value;
@@ -62,31 +61,32 @@ export default class OrderPadMain extends LightningElement {
     async handleContactData({ error, data }) {
         if (data) {
             this.accountId = getFieldValue(data, ACCOUNTID_FIELD)
-            const data = await getCarts({
+            const carts = await getCarts({
                 webstoreId: this.webstoreId,
                 effectiveAccountId: this.accountId,
-                ownerId: userId
+                contactId: this.recordId
             })
-            this._convertCartToOption(data)
+            this._convertCartToOption(carts)
+            const found = carts.find((c)=>!c.IsSecondary)
+            this.cartId = found ? found.Id : ""
         } else if (error) {
             console.error(error)
         }
     }
 
-    async addToCart(e) {
-        e.preventDefault();
-        const formData = new FormData(e.submitter.form)
+    async addToCart(event) {
+        event.preventDefault();
+        const formData = new FormData(event.submitter.form)
         const data = {}
-        for (var pair of formData.entries()) {
+        for (let pair of formData.entries()) {
             data[pair[0]] = pair[1]
         }
         try {
-            await _addToCart(data.productId, data.quantity)
+            await this._addToCart(data.productId, data.quantity)
         } catch (e) {
             console.error(e)
         }
     }
-
 
     async _search() {
         try {
@@ -124,7 +124,7 @@ export default class OrderPadMain extends LightningElement {
     }
 
     get isLastPage() {
-        return this.page == this.totalPage;
+        return this.page === this.totalPage;
     }
 
     get isNoResult() {
@@ -179,7 +179,7 @@ export default class OrderPadMain extends LightningElement {
             groupingOption: "NoGrouping"
         }
 
-        return await searchProducts({
+        return searchProducts({
             webstoreId: this.webstoreId,
             effectiveAccountId: this.accountId,
             productSearchInput: request
@@ -192,11 +192,10 @@ export default class OrderPadMain extends LightningElement {
 
         const request = {
             productId,
-            quantity,
-            type: "Product"
+            quantity
         }
 
-        return await addToCart({
+        return addToCart({
             webstoreId: this.webstoreId,
             effectiveAccountId: this.accountId,
             activeCartOrId: this.cartId,
@@ -207,7 +206,7 @@ export default class OrderPadMain extends LightningElement {
 
     _convertCartToOption(data){
         this.cartOptions = data.map(d =>{
-            return { label: d.Name, value: d.Id }
+            return { label: d.IsSecondary ? d.Name : `${d.Name} (Primary)`, value: d.Id }
         })
     }
 

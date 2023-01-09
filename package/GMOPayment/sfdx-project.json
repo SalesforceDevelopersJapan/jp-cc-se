@@ -8,5 +8,6 @@
   "name": "GMOPayment",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "56.0"
+  "sourceApiVersion": "56.0",
+  "pushPackageDirectoriesSequentially": true
 }
