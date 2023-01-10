@@ -1,15 +1,16 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import isGuest from '@salesforce/user/isGuest';
 import userId from '@salesforce/user/Id';
-import getCarts from '@salesforce/apex/B2BMultiCartController.getCarts';
-import createCart from '@salesforce/apex/B2BMultiCartController.createCart';
-import deleteCart from '@salesforce/apex/B2BMultiCartController.deleteCart';
-import setPrimaryCart from '@salesforce/apex/B2BMultiCartController.setPrimaryCart';
+import getCarts from '@salesforce/apex/MultiCartController.getCarts';
+import createCart from '@salesforce/apex/MultiCartController.createCart';
+import deleteCart from '@salesforce/apex/MultiCartController.deleteCart';
+import setPrimaryCart from '@salesforce/apex/MultiCartController.setPrimaryCart';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class ManageMultiCarts extends LightningElement {
-    @api effectiveAccountId;
     @api webstoreId;
+    @api useForB2BCommerce;
+    @api effectiveAccountId;
 
     communityUserIsGuest = isGuest;
     communityUserId = userId;
@@ -19,8 +20,14 @@ export default class ManageMultiCarts extends LightningElement {
     newCartName = 'My New Cart';
     selectedCartId;
 
-    @wire(getCarts, { webstoreId: '$webstoreId', effectiveAccountId: '$effectiveAccountId', ownerId: '$communityUserId' })
+    @wire(getCarts, { webstoreId: '$webstoreId', effectiveAccountId: '$effectiveAccountId', ownerId: '$communityUserId', useForB2BCommerce: '$useForB2BCommerce' })
     wiredCarts({ data, error }) {
+
+        //console.log('webstoreId: ' + this.webstoreId);
+        //console.log('effectiveAccountId: ' + this.effectiveAccountId);
+        //console.log('ownerId: ' + this.communityUserId);
+        //console.log('useForB2BCommerce: ' + this.useForB2BCommerce);
+
         if (data) {
             console.log('Carts loaded');
             this.carts = data;
@@ -36,7 +43,7 @@ export default class ManageMultiCarts extends LightningElement {
     handleCreateCartEvent(event) {
         console.log('createCart: ' + this.newCartName);
 
-        createCart({ webstoreId: this.webstoreId, effectiveAccountId: this.effectiveAccountId, cartName: this.newCartName })
+        createCart({ webstoreId: this.webstoreId, effectiveAccountId: this.effectiveAccountId, cartName: this.newCartName, useForB2BCommerce: this.useForB2BCommerce })
         .then((result) => {
             console.log('Cart created: ' + result);
 
@@ -67,7 +74,7 @@ export default class ManageMultiCarts extends LightningElement {
         this.selectedCartId = event.target.title;
         console.log('deleteCart: ' + this.selectedCartId);
 
-        deleteCart({ webstoreId: this.webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: this.selectedCartId })
+        deleteCart({ webstoreId: this.webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: this.selectedCartId, useForB2BCommerce: this.useForB2BCommerce })
         .then((result) => {
             console.log('Cart deleted: ' + result);
 
@@ -98,7 +105,7 @@ export default class ManageMultiCarts extends LightningElement {
         this.selectedCartId = event.target.title;
         console.log('setPrimaryCart: ' + this.selectedCartId);
         
-        setPrimaryCart({ webstoreId: this.webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: this.selectedCartId })
+        setPrimaryCart({ webstoreId: this.webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: this.selectedCartId, useForB2BCommerce: this.useForB2BCommerce })
         .then((result) => {
             console.log('Cart set as Primary: ' + result);
 
