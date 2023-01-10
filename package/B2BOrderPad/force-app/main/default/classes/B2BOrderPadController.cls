@@ -28,6 +28,20 @@ public with sharing class B2BOrderPadController {
   }
 
   @AuraEnabled(cacheable=false)
+  public static List<WebStoreBuyerGroup> getWebStoreIDs(String accountId) {
+    return [
+      SELECT WebStoreId, BuyerGroupId
+      FROM WebStoreBuyerGroup
+      WHERE
+        BuyerGroupId IN (
+          SELECT BuyerGroupId
+          FROM BuyerGroupMember
+          WHERE BuyerId = :accountId
+        )
+    ];
+  }
+
+  @AuraEnabled(cacheable=false)
   public static List<Webcart> getCarts(
     String webstoreId,
     String effectiveAccountId,
