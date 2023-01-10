@@ -28,9 +28,9 @@ public with sharing class B2BOrderPadController {
   }
 
   @AuraEnabled(cacheable=false)
-  public static List<WebStoreBuyerGroup> getWebStoreIDs(String accountId) {
+  public static List<WebStore> getWebStoreIDs(String accountId) {
     return [
-      SELECT WebStoreId, BuyerGroupId
+      SELECT WebStore.Id, WebStore.Name
       FROM WebStoreBuyerGroup
       WHERE
         BuyerGroupId IN (
