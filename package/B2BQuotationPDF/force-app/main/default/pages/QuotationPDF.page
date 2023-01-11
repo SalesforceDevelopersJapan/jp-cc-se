@@ -1,6 +1,157 @@
+<!-- https://developer.salesforce.com/docs/atlas.ja-jp.pages.meta/pages/pages_compref.htm -->
 <apex:page applyHtmlTag="false" showHeader="false" applyBodyTag="false" controller="QuotationPDFController" renderAs="pdf">
-<!-- Begin Default Content REMOVE THIS -->
-<h1>Congratulations</h1>
-This is your new Page
-<apex:outputLabel value="{!test}"/> 
+    <head>
+        <style>
+          @page {
+            size: 8.27in 11.69in;
+          }
+          body {
+            font-family: Arial Unicode MS;
+            font-size: 10px;
+          }
+          table,
+          td,
+          th {
+            border-bottom: 1px solid black;
+          }
+          table {
+            border-collapse: collapse;
+            text-align: right;
+          }
+          .title {
+            text-align: center;
+          }
+          .remark,
+          .table-container,
+          .table-header,
+          .table-container {
+            margin: 20px 0;
+          }
+        </style>
+      </head>
+    
+      <body>
+        <div class="container">
+          <h1 class="title">御見積書</h1>
+    
+          <div class="header">
+            <div style="float: left">
+              <h2>株式会社○○ 御中</h2>
+              <span>〒</span><span>123-1234</span><br />
+              <span>東京都千代田区1-1-1</span><br />
+              <span>〇〇タワー111</span><br />
+              <span>TEL:</span><span>03-1111-1111</span><br />
+              <span>FAX:</span><span>03-1111-1111</span>
+            </div>
+    
+            <div style="text-align: right">
+              <span>見積作成日：</span> <big><span>2023年9月30日</span></big><br />
+              <span>見積番号：</span> <big><span>S123456</span></big><br />
+              <h3>〇〇株式会社</h3>
+              <span>〒100-0000</span><br />
+              <span>東京都千代田区9-9-9</span><br />
+              <span>〇〇タワー9999</span><br />
+              <span>TEL: 03-9999-9999</span><br />
+              <span>FAX: 03-9999-9999</span><br />
+            </div>
+          </div>
+    
+          <div class="table-header">
+            <div>
+              <big>下記のとおり御<span>見積</span>申し上げます。</big>
+            </div>
+            <div style="text-align: right">単位: 円</div>
+          </div>
+    
+          <div class="table-container">
+            <table style="width: 100%">
+              <thead>
+                <tr>
+                  <th style="width: 4em; text-align: left;">No.</th>
+                  <th style="text-align: left;">品名</th>
+                  <th style="width: 4em">数量</th>
+                  <th style="width: 4em">単位</th>
+                  <th>単価</th>
+                  <th>金額</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: left;">1</td>
+                  <td style="text-align: left;">うたっておどる機械</td>
+                  <td>1</td>
+                  <td>個</td>
+                  <td>10,000</td>
+                  <td>10,000</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">1</td>
+                  <td style="text-align: left;">うたっておどる機械</td>
+                  <td>1</td>
+                  <td>個</td>
+                  <td>10,000</td>
+                  <td>10,000</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">1</td>
+                  <td style="text-align: left;">うたっておどる機械</td>
+                  <td>1</td>
+                  <td>個</td>
+                  <td>10,000</td>
+                  <td>10,000</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">1</td>
+                  <td style="text-align: left;">うたっておどる機械</td>
+                  <td>1</td>
+                  <td>個</td>
+                  <td>10,000</td>
+                  <td>10,000</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">1</td>
+                  <td style="text-align: left;">うたっておどる機械</td>
+                  <td>1</td>
+                  <td>個</td>
+                  <td>10,000</td>
+                  <td>10,000</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">1</td>
+                  <td style="text-align: left;">うたっておどる機械</td>
+                  <td>1</td>
+                  <td>個</td>
+                  <td>10,000</td>
+                  <td>10,000</td>
+                </tr>
+                <tr>
+                  <td colspan="4"></td>
+                  <td colspan="1">小計</td>
+                  <td colspan="1">60,000</td>
+                </tr>
+                <tr>
+                  <td colspan="4"></td>
+                  <td colspan="1">消費税(<span>5</span>%)</td>
+                  <td colspan="1">500</td>
+                </tr>
+                <tr>
+                  <td colspan="4"></td>
+                  <td colspan="1">合計</td>
+                  <td colspan="1">
+                    <big><span>60,500</span></big>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    
+          <div class="remark">
+            <h4>備考</h4>
+            備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト<br />
+            備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト<br />
+            備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト<br />
+            備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト<br />
+          </div>
+        </div>
+      </body>
 </apex:page>
