@@ -24,8 +24,13 @@
           .remark,
           .table-container,
           .table-header,
-          .table-container {
+          .table-container,
+          .summary-table-container {
+            width: 100%;
             margin: 20px 0;
+          }
+          .summary-table-container table{
+            margin: 0 0 0 auto;
           }
         </style>
       </head>
@@ -36,17 +41,16 @@
     
           <div class="header">
             <div style="float: left">
-              <h2>株式会社○○ 御中</h2>
-              <span>〒</span><span>123-1234</span><br />
-              <span>東京都千代田区1-1-1</span><br />
-              <span>〇〇タワー111</span><br />
-              <span>TEL:</span><span>03-1111-1111</span><br />
-              <span>FAX:</span><span>03-1111-1111</span>
+              <h2><apex:outputText value="{!account.Name}" /> 御中</h2>
+              <span>〒</span><span><apex:outputText value="{!account.ShippingPostalCode}" /></span><br />
+              <span><apex:outputText value="{!account.ShippingState}" /><apex:outputText value="{!account.ShippingCity}" /></span><br />
+              <span><apex:outputText value="{!account.ShippingStreet}" /></span><br />
+              <span>TEL:</span><span><apex:outputText value="{!account.Phone}" /></span><br />
+              <span>FAX:</span><span><apex:outputText value="{!account.Fax}" /></span>
             </div>
     
             <div style="text-align: right">
-              <span>見積作成日：</span> <big><span>2023年9月30日</span></big><br />
-              <span>見積番号：</span> <big><span>S123456</span></big><br />
+              <span>見積作成日時：</span> <big><span></span><span><apex:outputText value="{!today}" /></span></big><br />
               <h3>〇〇株式会社</h3>
               <span>〒100-0000</span><br />
               <span>東京都千代田区9-9-9</span><br />
@@ -60,88 +64,89 @@
             <div>
               <big>下記のとおり御<span>見積</span>申し上げます。</big>
             </div>
-            <div style="text-align: right">単位: 円</div>
           </div>
     
           <div class="table-container">
             <table style="width: 100%">
               <thead>
                 <tr>
-                  <th style="width: 4em; text-align: left;">No.</th>
+                  <th style="width: 6em; text-align: left;">No.</th>
                   <th style="text-align: left;">品名</th>
                   <th style="width: 4em">数量</th>
                   <th style="width: 4em">単位</th>
-                  <th>単価</th>
-                  <th>金額</th>
+                  <th>単価（リスト）</th>
+                  <th>単価（販売）</th>
+                  <th>金額（税抜）</th>
                 </tr>
               </thead>
               <tbody>
+
+              <apex:repeat value="{!items}" var="item">
                 <tr>
-                  <td style="text-align: left;">1</td>
-                  <td style="text-align: left;">うたっておどる機械</td>
-                  <td>1</td>
+                  <td style="text-align: left;"><apex:outputText value="{!item.productDetails.sku}" /></td>
+                  <td style="text-align: left;"><apex:outputText value="{!item.name}" /></td>
+                  <td><apex:outputText value="{!item.quantity}" /></td>
                   <td>個</td>
-                  <td>10,000</td>
-                  <td>10,000</td>
-                </tr>
-                <tr>
-                  <td style="text-align: left;">1</td>
-                  <td style="text-align: left;">うたっておどる機械</td>
-                  <td>1</td>
-                  <td>個</td>
-                  <td>10,000</td>
-                  <td>10,000</td>
-                </tr>
-                <tr>
-                  <td style="text-align: left;">1</td>
-                  <td style="text-align: left;">うたっておどる機械</td>
-                  <td>1</td>
-                  <td>個</td>
-                  <td>10,000</td>
-                  <td>10,000</td>
-                </tr>
-                <tr>
-                  <td style="text-align: left;">1</td>
-                  <td style="text-align: left;">うたっておどる機械</td>
-                  <td>1</td>
-                  <td>個</td>
-                  <td>10,000</td>
-                  <td>10,000</td>
-                </tr>
-                <tr>
-                  <td style="text-align: left;">1</td>
-                  <td style="text-align: left;">うたっておどる機械</td>
-                  <td>1</td>
-                  <td>個</td>
-                  <td>10,000</td>
-                  <td>10,000</td>
-                </tr>
-                <tr>
-                  <td style="text-align: left;">1</td>
-                  <td style="text-align: left;">うたっておどる機械</td>
-                  <td>1</td>
-                  <td>個</td>
-                  <td>10,000</td>
-                  <td>10,000</td>
-                </tr>
-                <tr>
-                  <td colspan="4"></td>
-                  <td colspan="1">小計</td>
-                  <td colspan="1">60,000</td>
-                </tr>
-                <tr>
-                  <td colspan="4"></td>
-                  <td colspan="1">消費税(<span>5</span>%)</td>
-                  <td colspan="1">500</td>
-                </tr>
-                <tr>
-                  <td colspan="4"></td>
-                  <td colspan="1">合計</td>
-                  <td colspan="1">
-                    <big><span>60,500</span></big>
+                  <td>
+                    <apex:outputText value="{0, number, currency}">
+                        <apex:param value="{!VALUE(item.listPrice)}"></apex:param>
+                    </apex:outputText>
+                  </td>
+                  <td>
+                    <apex:outputText value="{0, number, currency}">
+                        <apex:param value="{!VALUE(item.salesPrice)}"></apex:param>
+                    </apex:outputText>
+                  </td>
+                  <td>
+                    <apex:outputText value="{0, number, currency}">
+                        <apex:param value="{!VALUE(item.totalPrice)}"></apex:param>
+                    </apex:outputText>
                   </td>
                 </tr>
+              </apex:repeat>
               </tbody>
+            </table>
+          </div>
+
+
+          <div class="summary-table-container">
+            <table>
+                <tbody>
+                    <tr>
+                        <th style="text-align: left;">小計</th>
+                        <td>
+                            <apex:outputText value="{0, number, currency}">
+                                <apex:param value="{!VALUE(summary.totalProductAmount)}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">諸経費</th>
+                        <td>
+                            <apex:outputText value="{0, number, currency}">
+                                <apex:param value="{!VALUE(summary.totalChargeAmount)}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">消費税</th>
+                        <td>
+                            <apex:outputText value="{0, number, currency}">
+                                <apex:param value="{!VALUE(summary.totalTaxAmount)}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;">合計</th>
+                        <td>
+                            <big><span>
+                                <apex:outputText value="{0, number, currency}">
+                                    <apex:param value="{!VALUE(summary.grandTotalAmount)}"></apex:param>
+                                </apex:outputText>
+                            </span></big>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
           </div>
     

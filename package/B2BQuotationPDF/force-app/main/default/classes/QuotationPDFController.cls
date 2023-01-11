@@ -1,7 +1,8 @@
 public with sharing class QuotationPDFController {
-  private final ConnectApi.CartSummary summary;
-  private final Account account;
-  private final List<ConnectApi.CartItemResult> items;
+  public ConnectApi.CartSummary summary { get; set; }
+  public Account account { get; set; }
+  public List<ConnectApi.CartItem> items { get; set; }
+  public String today { get; set; }
 
   public QuotationPDFController() {
     String webstoreId = ApexPages.currentPage()
@@ -10,6 +11,7 @@ public with sharing class QuotationPDFController {
     String activeCartOrId = ApexPages.currentPage()
       .getParameters()
       .get('activeCartOrId');
+
     // Let this use context account data for security
     ConnectApi.CartItemCollection cart = ConnectApi.CommerceCart.getCartItems(
       webstoreId,
@@ -17,18 +19,32 @@ public with sharing class QuotationPDFController {
       activeCartOrId
     );
     this.summary = cart.cartSummary;
-    this.items = cart.cartItems;
+
+    List<ConnectApi.CartItem> cartItems = new List<ConnectApi.CartItem>();
+    for (ConnectApi.CartItemResult item : cart.cartItems) {
+        cartItems.add((ConnectApi.CartItem)item.cartItem);
+    }
+    this.items = cartItems;
+
+    System.debug(this.summary);
+    System.debug(this.items);
+
     sObject accountSObj = [
-      SELECT Id, Name
+      SELECT
+        Id,
+        Name,
+        ShippingPostalCode,
+        ShippingState,
+        ShippingCity,
+        ShippingStreet,
+        Phone,
+        Fax
       FROM Account
       WHERE Id = :this.summary.accountId
       LIMIT 1
     ];
     this.account = (Account) accountSObj;
-  }
-
-  public ConnectApi.CartSummary getSummary() {
-    return this.summary;
+    this.today = System.now().format('yyyy/MM/dd HH:mm', 'JST');
   }
 
   @AuraEnabled(cacheable=false)
@@ -46,7 +62,4 @@ public with sharing class QuotationPDFController {
       throw new AuraHandledException(e.getMessage());
     }
   }
-
 }
-
-
