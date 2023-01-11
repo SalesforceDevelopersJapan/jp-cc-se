@@ -26,6 +26,15 @@ import OrderPad_No_Search_Result_Found_Description from '@salesforce/label/c.Ord
 import OrderPad_Not_Searched_Yet from '@salesforce/label/c.OrderPad_Not_Searched_Yet';
 import OrderPad_Not_Searched_Yet_Description from '@salesforce/label/c.OrderPad_Not_Searched_Yet_Description';
 import OrderPad_Loading from '@salesforce/label/c.OrderPad_Loading';
+import OrderPad_Retrieving_Data_Faild from '@salesforce/label/c.OrderPad_Retrieving_Data_Faild';
+import OrderPad_Adding_Item_Success from '@salesforce/label/c.OrderPad_Adding_Item_Success';
+import OrderPad_Adding_Item_Success_Description from '@salesforce/label/c.OrderPad_Adding_Item_Success_Description';
+import OrderPad_Adding_Item_Failed from '@salesforce/label/c.OrderPad_Adding_Item_Failed';
+import OrderPad_Searching_Items_Failed from '@salesforce/label/c.OrderPad_Searching_Items_Failed';
+import OrderPad_Primary_Cart from '@salesforce/label/c.OrderPad_Primary_Cart';
+import OrderPad_No_Store_Found from '@salesforce/label/c.OrderPad_No_Store_Found';
+
+
 
 
 export default class OrderPadMain extends LightningElement {
@@ -82,7 +91,7 @@ export default class OrderPadMain extends LightningElement {
             await this._retrieveWebstore()
         } else if (error) {
             console.error(error)
-            this._showToast("Retrieving initial data was faild.", JSON.stringify(error), "error")
+            this._showToast(OrderPad_Retrieving_Data_Faild, JSON.stringify(error), "error")
         }
     }
 
@@ -100,10 +109,12 @@ export default class OrderPadMain extends LightningElement {
             const quantity = result.quantity;
             const cartName = this.cartOptions.find(c => c.value === this.cartId).label
             const webstoreName = this.webstoreOptions.find(c => c.value === this.webstoreId).label
-            this._showToast("Adding item to cart was success", `Adding ${quantity} "${productName}" to "${cartName}" in "${webstoreName}" was success.`, "success")
+            this._showToast(OrderPad_Adding_Item_Success,
+                this._printFormat(OrderPad_Adding_Item_Success_Description, quantity, productName, cartName, webstoreName)
+                , "success")
         } catch (e) {
             console.error(e)
-            this._showToast("Adding item to cart was failed.", e.message, "error")
+            this._showToast(OrderPad_Adding_Item_Failed, e.message, "error")
         } finally {
             this.isWaiting = false
         }
@@ -144,27 +155,27 @@ export default class OrderPadMain extends LightningElement {
         return this.result && !this.isSearching;
     }
 
-    get disableSearchInput(){
+    get disableSearchInput() {
         return this.isWaiting || !this.accountId || !this.webstoreId
     }
 
-    get disableWebstoreCombo(){
+    get disableWebstoreCombo() {
         return this.isWaiting || this.webstoreOptions.length <= 0
     }
 
-    get disableCartCombo(){
+    get disableCartCombo() {
         return this.isWaiting || this.cartOptions.length <= 0
     }
 
-    get disableAddToCartBtn(){
+    get disableAddToCartBtn() {
         return this.isWaiting || !this.webstoreId || !this.accountId || !this.cartId
     }
 
-    get resultItemCount(){
+    get resultItemCount() {
         return this._printFormat(OrderPad_Result_Item_Count, this.start, this.end, this.totalCount)
     }
 
-    get resultTotalPage(){
+    get resultTotalPage() {
         return this._printFormat(OrderPad_Result_Total_Page, this.totalPage);
     }
 
@@ -192,7 +203,7 @@ export default class OrderPadMain extends LightningElement {
         this.dispatchEvent(event);
     }
 
-    _initializePagingState(){
+    _initializePagingState() {
         this.page = 1
         this.start = 0
         this.end = 0
@@ -221,8 +232,8 @@ export default class OrderPadMain extends LightningElement {
 
     async _retrieveWebstore() {
         const webstores = await getWebStores({ accountId: this.accountId })
-        if(!webstores || webstores.length <= 0 ){
-            throw Error("No webstore found.")
+        if (!webstores || webstores.length <= 0) {
+            throw Error(OrderPad_No_Store_Found)
         }
         this._convertWebstoresToOption(webstores)
         this.webstoreId = webstores[0].WebStore.Id
@@ -242,7 +253,7 @@ export default class OrderPadMain extends LightningElement {
         } catch (e) {
             this.result = null;
             console.error(e)
-            this._showToast("Searching items was failed.", e.message, "error")
+            this._showToast(OrderPad_Searching_Items_Failed, e.message, "error")
         } finally {
             this.isSearching = false
         }
@@ -296,7 +307,7 @@ export default class OrderPadMain extends LightningElement {
 
     _convertCartsToOption(data) {
         this.cartOptions = data.map(d => {
-            return { label: d.IsSecondary ? d.Name : `${d.Name} (Primary)`, value: d.Id }
+            return { label: d.IsSecondary ? d.Name : this._printFormat(OrderPad_Primary_Cart, d.Name), value: d.Id }
         })
     }
 
@@ -328,10 +339,10 @@ export default class OrderPadMain extends LightningElement {
     }
 
     _printFormat(template, ...arg) {
-        if(!template){
+        if (!template) {
             return "";
         }
-        for(let i = 0; i < arg.length; i++){
+        for (let i = 0; i < arg.length; i++) {
             template = template.replace(`{${i}}`, arg[i]);
         }
         return template

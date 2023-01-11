@@ -1,13 +1,30 @@
 {
-  "orgName": "shumpei.yamada company",
+  "orgName": "Test B2B Company",
   "edition": "Developer",
-  "features": ["EnableSetPasswordInApi"],
+  "features": ["Communities", "B2BCommerce", "B2BAuraTemplateEnabled", "OrderManagement", "EnableSetPasswordInApi"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
     },
-    "mobileSettings": {
-      "enableS1EncryptedStoragePref2": false
+    "experienceBundleSettings": {
+      "enableExperienceBundleMetadata": true
+    },
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    },
+    "orderManagementSettings": {
+      "enableOrderManagement": true
+    },
+    "orderSettings": {
+      "enableOrders": true,
+      "enableEnhancedCommerceOrders": true,
+      "enableOptionalPricebook": true
+    },
+    "commerceSettings": {
+      "commerceEnabled": true
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
     }
   }
 }

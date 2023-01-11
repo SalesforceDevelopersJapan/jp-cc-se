@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>OrderPad_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Pad</shortDescription>
+        <value>Order Pad</value>
+    </labels>
+    <labels>
         <fullName>OrderPad_Webstore</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -139,5 +146,54 @@
         <protected>false</protected>
         <shortDescription>Loading</shortDescription>
         <value>Loading</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Retrieving_Data_Faild</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Retrieving initial data was faild.</shortDescription>
+        <value>Retrieving initial data was faild.</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Adding_Item_Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adding item to cart was success.</shortDescription>
+        <value>Adding item to cart was success.</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Adding_Item_Success_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adding {0} "{1}" to "{2}" in "{3}" was success.</shortDescription>
+        <value>Adding {0} "{1}" to "{2}" in "{3}" was success.</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_No_Store_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No webstore found.</shortDescription>
+        <value>No webstore found.</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Adding_Item_Failed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adding item to cart was failed.</shortDescription>
+        <value>Adding item to cart was failed.</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Searching_Items_Failed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Searching items was failed.</shortDescription>
+        <value>Searching items was failed.</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Primary_Cart</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>{0} (Primary)</shortDescription>
+        <value>{0} (Primary)</value>
     </labels>
 </CustomLabels>
