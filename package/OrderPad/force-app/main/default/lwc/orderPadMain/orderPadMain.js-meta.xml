@@ -12,7 +12,6 @@
             <objects>
                 <object>Contact</object>
             </objects>
-            <property name="webstoreId" type="String" label="Webstore Id"></property>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

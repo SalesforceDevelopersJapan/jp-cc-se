@@ -34,7 +34,7 @@ export default class QuotationPDF extends LightningElement {
     }
 
     get isDisabled() {
-        return !(webstoreId && this.cartId)
+        return !(webstoreId)
     }
 
     get isGuest() {

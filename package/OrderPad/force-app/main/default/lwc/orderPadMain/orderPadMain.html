@@ -1,25 +1,40 @@
 <template>
+  
   <lightning-layout class="x-large">
     <lightning-layout-item style="align-self: center" flexibility="grow">
       <lightning-combobox
         name="progress"
-        label="Dummy"
-        variant="label-hidden"
-        value={cartId}
-        placeholder="Select Cart"
-        options={cartOptions}
-        onchange={handleCartChange}
+        label={label.OrderPad_Webstore}
+        value={webstoreId}
+        placeholder={label.OrderPad_Select_Webstore}
+        options={webstoreOptions}
+        onchange={handleWebstoreChange}
+        disabled={disableWebstoreCombo}
       ></lightning-combobox>
     </lightning-layout-item>
+    <lightning-layout-item style="align-self: center" flexibility="grow">
+      <lightning-combobox
+        name="progress"
+        label={label.OrderPad_Select_Cart}
+        value={cartId}
+        placeholder={label.OrderPad_Cart}
+        options={cartOptions}
+        onchange={handleCartChange}
+        disabled={disableCartCombo}
+      ></lightning-combobox>
+    </lightning-layout-item>
+  </lightning-layout>
+
+  <lightning-layout class="x-large">
     <lightning-layout-item flexibility="grow">
       <lightning-input
         type="text"
-        label="Dummy"
-        variant="label-hidden"
+        label={label.OrderPad_Keyword_Search}
         onchange={handleInput}
         onkeyup={handleInputKeyUp}
-        placeholder="Enter keyword (e.g. product name, product code)"
+        placeholder={label.OrderPad_Enter_Keyword}
         style="margin: 1rem 0"
+        disabled={disableSearchInput}
       ></lightning-input>
     </lightning-layout-item>
   </lightning-layout>
@@ -33,9 +48,10 @@
           <thead>
             <tr>
               <th class="width10"></th>
-              <th class="width20">Product Code</th>
-              <th class="width30">Name</th>
-              <th class="width10">Price</th>
+              <th class="width10">{label.OrderPad_Product_Code}</th>
+              <th class="width30">{label.OrderPad_Product_Name}</th>
+              <th class="width10">{label.OrderPad_List_Price}</th>
+              <th class="width10">{label.OrderPad_Unit_Price}</th>
               <th class="width30"></th>
             </tr>
           </thead>
@@ -45,10 +61,16 @@
                 <td><img class="product-images" src={product.imageUrl} /></td>
                 <td>{product.productCode}</td>
                 <td>{product.name}</td>
-                <td>{product.listPrice} → {product.unitPrice}</td>
+                <td>
+                  <lightning-formatted-number value={product.listPrice} format-style="currency" currency-code={result.currency}></lightning-formatted-number>
+                </td>
+                <td>
+                  <lightning-formatted-number value={product.unitPrice} format-style="currency" currency-code={result.currency}></lightning-formatted-number>
+                </td>
                 <td>
                   <form onsubmit={addToCart}>
                     <input type="hidden" value={product.id} name="productId" />
+                    <input type="hidden" value={product.name} name="productName" />
                     <lightning-layout>
                       <lightning-layout-item size="4" style="align-self: center" padding="around-small" flexibility="auto">
                         <input
@@ -62,8 +84,9 @@
                       <lightning-layout-item size="8" padding="around-small" flexibility="auto">
                         <lightning-button
                           type="submit"
-                          label="Add To Cart"
+                          label={label.OrderPad_Add_To_Cart}
                           class="slds-m-left_x-small"
+                          disabled={disableAddToCartBtn}
                         ></lightning-button>
                       </lightning-layout-item>
                     </lightning-layout>
@@ -76,13 +99,12 @@
 
         <div>
           <p class="slds-m-vertical_medium content">
-            {result.total}件中　{start}件～{end}件を表示中。
-            {page}/{totalPage}ページ
+            {resultItemCount}    {resultTotalPage} 
           </p>
           <lightning-layout>
             <lightning-layout-item>
               <lightning-button
-                label="前へ"
+                label={label.OrderPad_Previous}
                 icon-name="utility:chevronleft"
                 onclick={previousHandler}
                 disabled={isFirstPage}
@@ -91,7 +113,7 @@
             <lightning-layout-item flexibility="grow"></lightning-layout-item>
             <lightning-layout-item>
               <lightning-button
-                label="次へ"
+                label={label.OrderPad_Next}
                 icon-name="utility:chevronright"
                 icon-position="right"
                 onclick={nextHandler}
@@ -113,10 +135,10 @@
               <h2
                 style="font-weight: 500; font-size: 1.2rem; text-align: center"
               >
-                検索結果が見つかりませんでした。
+              {label.OrderPad_No_Search_Result_Found}
               </h2>
               <p style="padding: 1rem; text-align: center">
-                検索結果が見つかりませんでした。
+                {label.OrderPad_No_Search_Result_Found_Description}
               </p>
             </div>
           </lightning-layout-item>
@@ -133,10 +155,10 @@
         <lightning-layout-item flexibility="grow">
           <div class="not-searched">
             <h2 style="font-weight: 500; font-size: 1.2rem; text-align: center">
-              検索してください
+              {label.OrderPad_Not_Searched_Yet}
             </h2>
             <p style="padding: 1rem; text-align: center">
-              まだ検索されていません。
+              {label.OrderPad_Not_Searched_Yet_Description}
             </p>
           </div>
         </lightning-layout-item>
@@ -151,7 +173,7 @@
           role="status"
           class="slds-spinner slds-spinner_medium slds-spinner_brand"
         >
-          <span class="slds-assistive-text">Loading</span>
+          <span class="slds-assistive-text">{label.OrderPad_Loading}</span>
           <div class="slds-spinner__dot-a"></div>
           <div class="slds-spinner__dot-b"></div>
         </div>

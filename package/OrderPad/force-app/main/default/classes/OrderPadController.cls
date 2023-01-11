@@ -1,4 +1,4 @@
-public with sharing class B2BOrderPadController {
+public with sharing class OrderPadController {
   @AuraEnabled(cacheable=false)
   public static ConnectApi.ProductSearchResults searchProducts(
     String webstoreId,
@@ -19,6 +19,7 @@ public with sharing class B2BOrderPadController {
     String activeCartOrId,
     ConnectApi.CartItemInput cartItemInput
   ) {
+    cartItemInput.type = ConnectApi.CartItemType.Product;
     return ConnectApi.CommerceCart.addItemToCart(
       webstoreId,
       effectiveAccountId,
@@ -28,7 +29,7 @@ public with sharing class B2BOrderPadController {
   }
 
   @AuraEnabled(cacheable=false)
-  public static List<WebStore> getWebStoreIDs(String accountId) {
+  public static List<WebStoreBuyerGroup> getWebStores(String accountId) {
     return [
       SELECT WebStore.Id, WebStore.Name
       FROM WebStoreBuyerGroup

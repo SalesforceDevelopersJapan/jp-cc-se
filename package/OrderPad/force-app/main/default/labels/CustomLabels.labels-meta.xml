@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>OrderPad_Webstore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Webstore</shortDescription>
+        <value>Webstore</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Select_Webstore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Select Webstore</shortDescription>
+        <value>Please Select Webstore</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Cart</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cart</shortDescription>
+        <value>Cart</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Select_Cart</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Select Cart</shortDescription>
+        <value>Please Select Cart</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Keyword_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Keyword Search</shortDescription>
+        <value>Keyword Search</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Enter_Keyword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter keyword (e.g. product name, product code)</shortDescription>
+        <value>Enter keyword (e.g. product name, product code)</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Product_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Code</shortDescription>
+        <value>Code</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Product_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_List_Price</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>List Price</shortDescription>
+        <value>List Price</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Unit_Price</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unit Price</shortDescription>
+        <value>Unit Price</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Add_To_Cart</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add To Cart</shortDescription>
+        <value>Add To Cart</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Result_Item_Count</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>{0} - {1} of {2} items.</shortDescription>
+        <value>{0} - {1} of {2} items.</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Result_Total_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total {0} pages.</shortDescription>
+        <value>Total {0} pages.</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Previous</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Prev</shortDescription>
+        <value>Prev</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_No_Search_Result_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Search Result Found</shortDescription>
+        <value>No Search Result Found</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_No_Search_Result_Found_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No search result found. Please search other keyword.</shortDescription>
+        <value>No search result found. Please search other keyword.</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Not_Searched_Yet</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Search Products</shortDescription>
+        <value>Please Search Products</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Not_Searched_Yet_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please search products with keyword(e.g. Product Code, Product Name).</shortDescription>
+        <value>Please search products with keyword(e.g. Product Code, Product Name).</value>
+    </labels>
+    <labels>
+        <fullName>OrderPad_Loading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading</shortDescription>
+        <value>Loading</value>
+    </labels>
+</CustomLabels>
