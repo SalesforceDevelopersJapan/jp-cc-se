@@ -1,18 +1,14 @@
-# Salesforce DX Project: Next Steps
+# Order Pad Sample
+ This package provide order pad which you can add items to cart on behalf of customer.
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+ ![](images/orderpad.png)
 
-## How Do You Plan to Deploy Your Changes?
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
 
-## Configure Your Salesforce DX Project
+ ## Setting Instruction
+ This component is available on only contact record page.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+ 1. Go to application builder for contact page
+ 1. Drag and drop component "Order Pad" to any space
+ 1. You can use `{!$Label.OrderPad_Title}` as label as you want.
+    ![](images/setting.png)
