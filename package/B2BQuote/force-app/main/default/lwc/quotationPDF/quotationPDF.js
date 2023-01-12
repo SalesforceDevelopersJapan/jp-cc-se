@@ -4,22 +4,22 @@ import isGuest from '@salesforce/user/isGuest';
 import webstoreId from '@salesforce/webstore/Id'
 
 export default class QuotationPDF extends LightningElement {
+    
 
     _toBlob(base64, mime_ctype) {
         var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
         var bin = atob(base64.replace(/^.*,/, ''));
         var buffer = new Uint8Array(bin.length);
-        for (var i = 0; i < bin.length; i++) {
+        for (let i = 0; i < bin.length; i++) {
             buffer[i] = bin.charCodeAt(i);
         }
         try {
-            var blob = new Blob([bom, buffer.buffer], {
+            return new Blob([bom, buffer.buffer], {
                 type: mime_ctype,
             });
         } catch (e) {
             return false;
         }
-        return blob;
     }
 
     async showPDF() {

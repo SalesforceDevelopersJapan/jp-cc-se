@@ -1,0 +1,9 @@
+<template>
+  <lightning-button
+    variant="brand"
+    label="PDF を作成"
+    onclick={showPDF}
+    disabled={isDisabled}
+    if:false={isGuest}
+  ></lightning-button>
+</template>

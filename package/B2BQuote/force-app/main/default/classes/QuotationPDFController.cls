@@ -25,10 +25,6 @@ public with sharing class QuotationPDFController {
         cartItems.add((ConnectApi.CartItem)item.cartItem);
     }
     this.items = cartItems;
-
-    System.debug(this.summary);
-    System.debug(this.items);
-
     sObject accountSObj = [
       SELECT
         Id,

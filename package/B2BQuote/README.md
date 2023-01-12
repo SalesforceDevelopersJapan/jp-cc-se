@@ -11,3 +11,10 @@
 
 Visualforce Pages
 `QuotationPDF`
+
+
+
+https://help.salesforce.com/s/articleView?id=sf.b2b_commerce_page_shopping_cart_quote.htm&type=5
+
+
+https://appexchange.salesforce.com/listingDetail?listingId=a0N4V00000GYYJHUA5&tab=e
