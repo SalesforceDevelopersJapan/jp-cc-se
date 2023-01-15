@@ -1,5 +1,5 @@
 <!-- https://developer.salesforce.com/docs/atlas.ja-jp.pages.meta/pages/pages_compref.htm -->
-<apex:page applyHtmlTag="false" showHeader="false" applyBodyTag="false" controller="QuotationPDFController" renderAs="pdf">
+<apex:page applyHtmlTag="false" showHeader="false" applyBodyTag="false" controller="QuoteVFPDFController" renderAs="pdf">
     <head>
         <style>
           @page {

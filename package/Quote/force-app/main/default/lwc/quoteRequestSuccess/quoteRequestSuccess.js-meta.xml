@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Quote Request Success</masterLabel>
+    <description>Quote Request Success</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__Tab</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightning__FlowScreen</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property
+                name="quoteNumber"
+                label="Quote Number"
+                type="String"
+                description="Quote Number"
+            />
+            <property
+                name="quoteId"
+                label="Quote ID"
+                type="String"
+                description="Quote ID"
+            />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

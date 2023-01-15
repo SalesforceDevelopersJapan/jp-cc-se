@@ -1,0 +1,8 @@
+<template>
+  <div if:true={isQuoteAccessible}>
+    <a href={url} onclick={handleClick}>Quote List</a>
+  </div>
+  <div if:false={isQuoteAccessible}>
+    You do not have permission to access to Quote.
+  </div>
+</template>

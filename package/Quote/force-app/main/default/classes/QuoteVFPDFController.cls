@@ -1,10 +1,10 @@
-public with sharing class QuotationPDFController {
+public with sharing class QuoteVFPDFController {
   public ConnectApi.CartSummary summary { get; set; }
   public Account account { get; set; }
   public List<ConnectApi.CartItem> items { get; set; }
   public String today { get; set; }
 
-  public QuotationPDFController() {
+  public QuoteVFPDFController() {
     String webstoreId = ApexPages.currentPage()
       .getParameters()
       .get('webstoreId');
@@ -47,7 +47,7 @@ public with sharing class QuotationPDFController {
   public static String getPDF(String webstoreId, String activeCartOrId) {
     try {
       PageReference pageRef = new PageReference(
-        '/apex/QuotationPDF?webstoreId=' +
+        '/apex/QuoteVFPDF?webstoreId=' +
           webstoreId +
           '&activeCartOrId=' +
           activeCartOrId

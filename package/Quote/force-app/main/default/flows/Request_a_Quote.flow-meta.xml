@@ -119,6 +119,7 @@
             <targetReference>Assign_Single_to_List</targetReference>
         </connector>
     </assignments>
+    <environments>Default</environments>
     <formulas>
         <name>OppName</name>
         <dataType>String</dataType>
@@ -215,9 +216,21 @@
         </connector>
         <inputAssignments>
             <field>AdditionalCity</field>
+            <value>
+                <elementReference>get_Cart_Details.BillingCity</elementReference>
+            </value>
         </inputAssignments>
         <inputAssignments>
             <field>ContactId</field>
+            <value>
+                <elementReference>get_Cart_Details.Owner:User.Contact.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <elementReference>Reason_for_Quote</elementReference>
+            </value>
         </inputAssignments>
         <inputAssignments>
             <field>ExpirationDate</field>
@@ -241,12 +254,6 @@
             <field>Pricebook2Id</field>
             <value>
                 <elementReference>PriceBookId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Reason_For_Quote__c</field>
-            <value>
-                <elementReference>Reason_for_Quote</elementReference>
             </value>
         </inputAssignments>
         <object>Quote</object>
@@ -276,7 +283,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>recordId</elementReference>
+                <elementReference>cartId</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -297,7 +304,7 @@
             <field>CartId</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>recordId</elementReference>
+                <elementReference>cartId</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -389,10 +396,10 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Name</field>
+            <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Label.DE_WebStoreName</elementReference>
+                <elementReference>webstoreId</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -413,7 +420,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>recordId</elementReference>
+                <elementReference>cartId</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -437,31 +444,19 @@
             <targetReference>Home_Redirect</targetReference>
         </connector>
         <fields>
-            <name>QuoteSuccess</name>
-            <extensionName>c:successPage</extensionName>
+            <name>Quote_Request_Success</name>
+            <extensionName>c:quoteRequestSuccess</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
-                <name>successMessage</name>
-                <value>
-                    <stringValue>Quote has been requested. Our representative will get in touch with you soon!!</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>linkLabel</name>
-                <value>
-                    <elementReference>get_quote_details.QuoteNumber</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>navRecord</name>
+                <name>quoteId</name>
                 <value>
                     <elementReference>Create_Quote</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
-                <name>showCustomLink</name>
+                <name>quoteNumber</name>
                 <value>
-                    <booleanValue>true</booleanValue>
+                    <elementReference>get_quote_details.QuoteNumber</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -507,6 +502,13 @@
     </start>
     <status>Active</status>
     <variables>
+        <name>cartId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>PriceBookId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -530,7 +532,7 @@
         <objectType>QuoteLineItem</objectType>
     </variables>
     <variables>
-        <name>recordId</name>
+        <name>webstoreId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
