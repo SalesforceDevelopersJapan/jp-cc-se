@@ -3,6 +3,7 @@ public with sharing class QuoteVFPDFController {
   public Account account { get; set; }
   public List<ConnectApi.CartItem> items { get; set; }
   public String today { get; set; }
+  public String accountName { get; set; }
 
   public QuoteVFPDFController() {
     String webstoreId = ApexPages.currentPage()
@@ -41,6 +42,7 @@ public with sharing class QuoteVFPDFController {
     ];
     this.account = (Account) accountSObj;
     this.today = System.now().format('yyyy/MM/dd HH:mm', 'JST');
+    this.accountName = String.format(Label.Quote_VFPDFHonorific, new string[] { this.account.Name });
   }
 
   @AuraEnabled(cacheable=false)

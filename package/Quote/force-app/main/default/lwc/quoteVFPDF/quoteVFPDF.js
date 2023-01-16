@@ -3,10 +3,16 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getPDF from '@salesforce/apex/QuoteVFPDFController.getPDF';
 import isGuest from '@salesforce/user/isGuest';
 import webstoreId from '@salesforce/webstore/Id'
+import Quote_GeneratePDFButton from '@salesforce/label/c.Quote_GeneratePDFButton';
+import Quote_GeneratePDFFailed from '@salesforce/label/c.Quote_GeneratePDFFailed';
 
 export default class QuoteVFPDF extends LightningElement {
 
     isGenerating = false
+
+    label = {
+        Quote_GeneratePDFButton
+    }
 
     _toBlob(base64, mime_ctype) {
         var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
@@ -43,7 +49,7 @@ export default class QuoteVFPDF extends LightningElement {
             const fileUrl = URL.createObjectURL(blob)
             window.open(fileUrl)
         } catch (e) {
-            this._showToast("Generating PDF was faild.", e.message, "error")
+            this._showToast(Quote_GeneratePDFFailed, e.message, "error")
         } finally {
             this.isGenerating = false
         }

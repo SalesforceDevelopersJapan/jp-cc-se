@@ -37,32 +37,32 @@
     
       <body>
         <div class="container">
-          <h1 class="title">御見積書</h1>
+          <h1 class="title"><apex:outputText value="{!$Label.Quote_VFPDFTitle}" /></h1>
     
           <div class="header">
             <div style="float: left">
-              <h2><apex:outputText value="{!account.Name}" /> 御中</h2>
-              <span>〒</span><span><apex:outputText value="{!account.ShippingPostalCode}" /></span><br />
+              <h2><apex:outputText value="{!accountName}" /></h2>
+              <span><apex:outputText value="{!$Label.Quote_VFPDFPostalCode}" /></span><span><apex:outputText value="{!account.ShippingPostalCode}" /></span><br />
               <span><apex:outputText value="{!account.ShippingState}" /><apex:outputText value="{!account.ShippingCity}" /></span><br />
               <span><apex:outputText value="{!account.ShippingStreet}" /></span><br />
-              <span>TEL:</span><span><apex:outputText value="{!account.Phone}" /></span><br />
-              <span>FAX:</span><span><apex:outputText value="{!account.Fax}" /></span>
+              <span><apex:outputText value="{!$Label.Quote_VFPDFTel}" /></span><span><apex:outputText value="{!account.Phone}" /></span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFFax}" /></span><span><apex:outputText value="{!account.Fax}" /></span>
             </div>
     
             <div style="text-align: right">
-              <span>見積作成日時：</span> <big><span></span><span><apex:outputText value="{!today}" /></span></big><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFGenaratedDate}" /></span><big><span></span><span><apex:outputText value="{!today}" /></span></big><br />
               <h3>〇〇株式会社</h3>
-              <span>〒100-0000</span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFPostalCode}" />100-0000</span><br />
               <span>東京都千代田区9-9-9</span><br />
               <span>〇〇タワー9999</span><br />
-              <span>TEL: 03-9999-9999</span><br />
-              <span>FAX: 03-9999-9999</span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFTel}" /> 03-9999-9999</span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFFax}" /> 03-9999-9999</span><br />
             </div>
           </div>
     
           <div class="table-header">
             <div>
-              <big>下記のとおり御<span>見積</span>申し上げます。</big>
+              <big><apex:outputText value="{!$Label.Quote_VFPDFDescription}" /></big>
             </div>
           </div>
     
@@ -70,13 +70,12 @@
             <table style="width: 100%">
               <thead>
                 <tr>
-                  <th style="width: 6em; text-align: left;">No.</th>
-                  <th style="text-align: left;">品名</th>
-                  <th style="width: 4em">数量</th>
-                  <th style="width: 4em">単位</th>
-                  <th>単価（リスト）</th>
-                  <th>単価（販売）</th>
-                  <th>金額（税抜）</th>
+                  <th style="width: 6em; text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFTableColumnNo}" /></th>
+                  <th style="text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFTableColumnProductName}" /></th>
+                  <th style="width: 4em"><apex:outputText value="{!$Label.Quote_VFPDFTableColumnQuantity}" /></th>
+                  <th><apex:outputText value="{!$Label.Quote_VFPDFTableColumnListPrice}" /></th>
+                  <th><apex:outputText value="{!$Label.Quote_VFPDFTableColumnSalePrice}" /></th>
+                  <th><apex:outputText value="{!$Label.Quote_VFPDFTableColumnAmount}" /></th>
                 </tr>
               </thead>
               <tbody>
@@ -86,7 +85,6 @@
                   <td style="text-align: left;"><apex:outputText value="{!item.productDetails.sku}" /></td>
                   <td style="text-align: left;"><apex:outputText value="{!item.name}" /></td>
                   <td><apex:outputText value="{!item.quantity}" /></td>
-                  <td>個</td>
                   <td>
                     <apex:outputText value="{0, number, currency}">
                         <apex:param value="{!VALUE(item.listPrice)}"></apex:param>
@@ -113,7 +111,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <th style="text-align: left;">小計</th>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFTotalProductAmount}" /></th>
                         <td>
                             <apex:outputText value="{0, number, currency}">
                                 <apex:param value="{!VALUE(summary.totalProductAmount)}"></apex:param>
@@ -121,7 +119,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">諸経費</th>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFTotalChargeAmount}" /></th>
                         <td>
                             <apex:outputText value="{0, number, currency}">
                                 <apex:param value="{!VALUE(summary.totalChargeAmount)}"></apex:param>
@@ -129,7 +127,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">消費税</th>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFTotalTaxAmount}" /></th>
                         <td>
                             <apex:outputText value="{0, number, currency}">
                                 <apex:param value="{!VALUE(summary.totalTaxAmount)}"></apex:param>
@@ -137,7 +135,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th style="text-align: left;">合計</th>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFGrandTotalAmount}" /></th>
                         <td>
                             <big><span>
                                 <apex:outputText value="{0, number, currency}">
@@ -151,7 +149,7 @@
           </div>
     
           <div class="remark">
-            <h4>備考</h4>
+            <h4><apex:outputText value="{!$Label.Quote_VFPDFRemark}" /></h4>
             備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト<br />
             備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト<br />
             備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト備考テキスト<br />

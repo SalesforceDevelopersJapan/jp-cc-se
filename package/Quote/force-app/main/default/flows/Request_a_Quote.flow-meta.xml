@@ -22,7 +22,7 @@
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
-    <apiVersion>52.0</apiVersion>
+    <apiVersion>55.0</apiVersion>
     <assignments>
         <name>Assign_Single_to_List</name>
         <label>Assign Single to List</label>
@@ -131,7 +131,7 @@
         <expression>&apos;New Quote For &apos;+{!$User.FirstName}+&apos;,&apos;+{!$User.LastName}</expression>
     </formulas>
     <interviewLabel>Request a Quote {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>B2B Request a Quote</label>
+    <label>Request a Quote</label>
     <loops>
         <name>Loop_Through_Cart_Items</name>
         <label>Loop Through Cart Items</label>
@@ -437,9 +437,9 @@
         <label>Quote Request Message</label>
         <locationX>1270</locationX>
         <locationY>471</locationY>
-        <allowBack>true</allowBack>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
+        <allowPause>false</allowPause>
         <connector>
             <targetReference>Home_Redirect</targetReference>
         </connector>
@@ -463,6 +463,7 @@
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
+        <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
@@ -471,25 +472,26 @@
         <label>Request for quote</label>
         <locationX>468</locationX>
         <locationY>199</locationY>
-        <allowBack>true</allowBack>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
+        <allowPause>false</allowPause>
         <connector>
             <targetReference>get_cart_lines</targetReference>
         </connector>
         <fields>
             <name>Quote_Needed_By</name>
             <dataType>Date</dataType>
-            <fieldText>Quote Needed By</fieldText>
+            <fieldText>{!$Label.Quote_RequestDialogExpiry}</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>Reason_for_Quote</name>
-            <fieldText>Reason for Quote</fieldText>
+            <fieldText>{!$Label.Quote_RequestDialogReason}</fieldText>
             <fieldType>LargeTextArea</fieldType>
             <isRequired>true</isRequired>
         </fields>
+        <nextOrFinishButtonLabel>Request</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>

@@ -1,199 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>OrderPad_Title</fullName>
+        <fullName>Quote_RequestDialogExpiry</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Order Pad</shortDescription>
-        <value>Order Pad</value>
+        <shortDescription>Quote Needed By</shortDescription>
+        <value>Quote Needed By</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Webstore</fullName>
+        <fullName>Quote_RequestDialogReason</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Webstore</shortDescription>
-        <value>Webstore</value>
+        <shortDescription>Reason for Quote</shortDescription>
+        <value>Reason for Quote</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Select_Webstore</fullName>
+        <fullName>Quote_RequestSuccess</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Please Select Webstore</shortDescription>
-        <value>Please Select Webstore</value>
+        <shortDescription>Success</shortDescription>
+        <value>Success</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Cart</fullName>
+        <fullName>Quote_RequestSuccessDescription</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Cart</shortDescription>
-        <value>Cart</value>
+        <shortDescription>Quote has been requested. Our representative will get in touch with you soon!!</shortDescription>
+        <value>Quote has been requested. Our representative will get in touch with you soon!!</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Select_Cart</fullName>
+        <fullName>Quote_RequestSuccessQuoteNumber</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Please Select Cart</shortDescription>
-        <value>Please Select Cart</value>
+        <shortDescription>Quote Number:</shortDescription>
+        <value>Quote Number:</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Keyword_Search</fullName>
+        <fullName>Quote_GeneratePDFButton</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Keyword Search</shortDescription>
-        <value>Keyword Search</value>
+        <shortDescription>Generate PDF</shortDescription>
+        <value>Generate PDF</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Enter_Keyword</fullName>
+        <fullName>Quote_GeneratePDFFailed</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Enter keyword (e.g. product name, product code)</shortDescription>
-        <value>Enter keyword (e.g. product name, product code)</value>
+        <shortDescription>Generating PDF was faild.</shortDescription>
+        <value>Generating PDF was faild.</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Product_Code</fullName>
+        <fullName>Quote_QuoteListViewLink</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Code</shortDescription>
-        <value>Code</value>
+        <shortDescription>Quote List</shortDescription>
+        <value>Quote List</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Product_Name</fullName>
+        <fullName>Quote_QuoteNoPermission</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Name</shortDescription>
-        <value>Name</value>
+        <shortDescription>You do not have permission to access to Quote.</shortDescription>
+        <value>You do not have permission to access to Quote.</value>
+    </labels>
+
+    <labels>
+        <fullName>Quote_VFPDFTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote</shortDescription>
+        <value>Quote</value>
     </labels>
     <labels>
-        <fullName>OrderPad_List_Price</fullName>
+        <fullName>Quote_VFPDFHonorific</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dear {0}</shortDescription>
+        <value>Dear {0}</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFPostalCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Postal Code : </shortDescription>
+        <value>Postal Code : </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TEL : </shortDescription>
+        <value>TEL : </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFFax</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAX : </shortDescription>
+        <value>FAX : </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFGenaratedDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote Date : </shortDescription>
+        <value>Quote Date : </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote as follows: </shortDescription>
+        <value>Quote as follows: </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTableColumnNo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No. </shortDescription>
+        <value>No.</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTableColumnProductName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ProductName</shortDescription>
+        <value>ProductName</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTableColumnQuantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quantity</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTableColumnListPrice</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>List Price</shortDescription>
         <value>List Price</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Unit_Price</fullName>
+        <fullName>Quote_VFPDFTableColumnSalePrice</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Unit Price</shortDescription>
-        <value>Unit Price</value>
+        <shortDescription>Sale Price</shortDescription>
+        <value>Sale Price</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Add_To_Cart</fullName>
+        <fullName>Quote_VFPDFTableColumnAmount</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Add To Cart</shortDescription>
-        <value>Add To Cart</value>
+        <shortDescription>Amount</shortDescription>
+        <value>Amount</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Result_Item_Count</fullName>
+        <fullName>Quote_VFPDFTotalProductAmount</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>{0} - {1} of {2} items.</shortDescription>
-        <value>{0} - {1} of {2} items.</value>
+        <shortDescription>Total Product Amount</shortDescription>
+        <value>Total Product Amount</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Result_Total_Page</fullName>
+        <fullName>Quote_VFPDFTotalChargeAmount</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Total {0} pages.</shortDescription>
-        <value>Total {0} pages.</value>
+        <shortDescription>Total Charge Amount</shortDescription>
+        <value>Total Charge Amount</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Previous</fullName>
+        <fullName>Quote_VFPDFTotalTaxAmount</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Prev</shortDescription>
-        <value>Prev</value>
+        <shortDescription>Total Tax Amount</shortDescription>
+        <value>Total Tax Amount</value>
     </labels>
     <labels>
-        <fullName>OrderPad_Next</fullName>
+        <fullName>Quote_VFPDFGrandTotalAmount</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Next</shortDescription>
-        <value>Next</value>
+        <shortDescription>Grand Total Amount</shortDescription>
+        <value>Grand Total Amount</value>
     </labels>
     <labels>
-        <fullName>OrderPad_No_Search_Result_Found</fullName>
+        <fullName>Quote_VFPDFRemark</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>No Search Result Found</shortDescription>
-        <value>No Search Result Found</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_No_Search_Result_Found_Description</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>No search result found. Please search other keyword.</shortDescription>
-        <value>No search result found. Please search other keyword.</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_Not_Searched_Yet</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Please Search Products</shortDescription>
-        <value>Please Search Products</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_Not_Searched_Yet_Description</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Please search products with keyword(e.g. Product Code, Product Name).</shortDescription>
-        <value>Please search products with keyword(e.g. Product Code, Product Name).</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_Loading</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Loading</shortDescription>
-        <value>Loading</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_Retrieving_Data_Faild</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Retrieving initial data was faild.</shortDescription>
-        <value>Retrieving initial data was faild.</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_Adding_Item_Success</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Adding item to cart was success.</shortDescription>
-        <value>Adding item to cart was success.</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_Adding_Item_Success_Description</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Adding {0} "{1}" to "{2}" in "{3}" was success.</shortDescription>
-        <value>Adding {0} "{1}" to "{2}" in "{3}" was success.</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_No_Store_Found</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>No webstore found.</shortDescription>
-        <value>No webstore found.</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_Adding_Item_Failed</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Adding item to cart was failed.</shortDescription>
-        <value>Adding item to cart was failed.</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_Searching_Items_Failed</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Searching items was failed.</shortDescription>
-        <value>Searching items was failed.</value>
-    </labels>
-    <labels>
-        <fullName>OrderPad_Primary_Cart</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>{0} (Primary)</shortDescription>
-        <value>{0} (Primary)</value>
+        <shortDescription>Remark</shortDescription>
+        <value>Remark</value>
     </labels>
 </CustomLabels>

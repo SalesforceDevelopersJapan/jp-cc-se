@@ -1,115 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
-        <name>OrderPad_Title</name>
-        <label>注文パッド</label>
+        <name>Quote_RequestDialogExpiry</name>
+        <label>見積希望日</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Webstore</name>
-        <label>ストア</label>
+        <name>Quote_RequestDialogReason</name>
+        <label>見積理由</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Select_Webstore</name>
-        <label>ストアを選択してください</label>
+        <name>Quote_RequestSuccess</name>
+        <label>見積依頼完了</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Cart</name>
-        <label>カート</label>
+        <name>Quote_RequestSuccessDescription</name>
+        <label>見積依頼が完了しました。後ほど担当営業がご連絡差し上げます。</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Select_Cart</name>
-        <label>カートを選択してください</label>
+        <name>Quote_RequestSuccessQuoteNumber</name>
+        <label>見積番号：</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Keyword_Search</name>
-        <label>キーワード検索</label>
+        <name>Quote_GeneratePDFButton</name>
+        <label>PDF を生成</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Enter_Keyword</name>
-        <label>キーワードを入力して Enter を押してください。（例：商品名、商品コード）</label>
+        <name>Quote_GeneratePDFFailed</name>
+        <label>PDF の生成に失敗しました。</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Product_Code</name>
-        <label>コード</label>
+        <name>Quote_QuoteListViewLink</name>
+        <label>見積一覧</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Product_Name</name>
-        <label>商品名</label>
+        <name>Quote_QuoteNoPermission</name>
+        <label>見積へアクセスする権限がありません。</label>
     </customLabels>
-    <customLabels>
-        <name>OrderPad_List_Price</name>
-        <label>リスト価格</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Unit_Price</name>
-        <label>ユニット価格</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Add_To_Cart</name>
-        <label>カートに追加</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Result_Item_Count</name>
-        <label>{2} 件中 {0} - {1} 件表示中。</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Result_Total_Page</name>
-        <label>全 {0} ページ。</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Previous</name>
-        <label>前へ</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Next</name>
-        <label>次へ</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_No_Search_Result_Found</name>
-        <label>検索結果が見つかりませんでした</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_No_Search_Result_Found_Description</name>
-        <label>検索結果が見つかりませんでした。異なるキーワードで再度検索してください。</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Not_Searched_Yet</name>
-        <label>検索してください。</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Not_Searched_Yet_Description</name>
-        <label>お好きなキーワードで検索してください。（例：商品名、商品コード）</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Loading</name>
-        <label>ローディング中</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Retrieving_Data_Faild</name>
-        <label>情報の取得に失敗しました</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Adding_Item_Success</name>
-        <label>カートへ追加しました</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Adding_Item_Success_Description</name>
-        <label>{0} 個の"{1}"を"{3}"ストアのカート"{2}"に追加しました。</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_No_Store_Found</name>
-        <label>ストアが見つかりません</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Adding_Item_Failed</name>
-        <label>カートへの追加に失敗しました</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Searching_Items_Failed</name>
-        <label>商品検索に失敗しました</label>
-    </customLabels>
-    <customLabels>
-        <name>OrderPad_Primary_Cart</name>
-        <label>{0} （プライマリ）</label>
-    </customLabels>
+    <flowDefinitions>
+        <flows>
+            <label>見積リクエスト</label>
+            <screens>
+                <name>Quote_Request_Message</name>
+                <nextOrFinishButtonLabel>閉じる</nextOrFinishButtonLabel>
+            </screens>
+            <screens>
+                <name>Request_for_quote</name>
+                <nextOrFinishButtonLabel>リクエスト</nextOrFinishButtonLabel>
+            </screens>
+        </flows>
+        <fullName>Request_a_Quote</fullName>
+    </flowDefinitions>
 </Translations>

@@ -7,12 +7,10 @@ export default class QuoteRequest extends LightningElement {
     summary
 
     async connectedCallback(){
-        console.log("TestconnectedCallback")
         this.summary = await getCartSummary({webstoreId})
     }
 
     get inputVariables() {
-        console.log("TestinputVariables")
         return [
             {
                 name: 'webstoreId',

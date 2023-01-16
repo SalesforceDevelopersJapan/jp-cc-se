@@ -1,8 +1,8 @@
 <template>
   <div if:true={isQuoteAccessible}>
-    <a href={url} onclick={handleClick}>Quote List</a>
+    <a href={url} onclick={handleClick}>{label.Quote_QuoteListViewLink}</a>
   </div>
   <div if:false={isQuoteAccessible}>
-    You do not have permission to access to Quote.
+    {label.Quote_QuoteNoPermission}
   </div>
 </template>

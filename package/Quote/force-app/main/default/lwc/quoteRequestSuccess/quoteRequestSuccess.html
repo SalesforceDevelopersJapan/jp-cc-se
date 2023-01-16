@@ -12,25 +12,23 @@
       >
         <i class="checkmark">✓</i>
       </div>
-      <h1>Success</h1>
+      <h1>{label.Quote_RequestSuccess}</h1>
       <p>
-        Quote has been requested. Our representative will get in touch with you
-        soon!!
+        {label.Quote_RequestSuccessDescription}
         <br />
-
         <a
           href={recordPageUrl}
           onclick={handleClick}
           class="slds-text-link_reset"
           if:true={isQuoteAccessible}
         >
-          Quote Number:
+          {label.Quote_RequestSuccessQuoteNumber}
           <span class="slds-text-link" style="color: #0176d3 !important"
             >{quoteNumber}</span
           >
         </a>
         <span if:false={isQuoteAccessible}>
-          Quote Number:
+          {label.Quote_RequestSuccessQuoteNumber}
           <span>{quoteNumber}</span>
         </span>
       </p>
