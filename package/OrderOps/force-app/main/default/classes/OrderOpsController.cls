@@ -1,4 +1,4 @@
-public with sharing class OrderPadController {
+public with sharing class OrderOpsController {
   @AuraEnabled(cacheable=false)
   public static ConnectApi.ProductSearchResults searchProducts(
     String webstoreId,

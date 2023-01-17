@@ -1,115 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
-        <name>OrderPad_Title</name>
+        <name>OrderOps_Title</name>
         <label>注文パッド</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Webstore</name>
+        <name>OrderOps_Webstore</name>
         <label>ストア</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Select_Webstore</name>
+        <name>OrderOps_Select_Webstore</name>
         <label>ストアを選択してください</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Cart</name>
+        <name>OrderOps_Cart</name>
         <label>カート</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Select_Cart</name>
+        <name>OrderOps_Select_Cart</name>
         <label>カートを選択してください</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Keyword_Search</name>
+        <name>OrderOps_Keyword_Search</name>
         <label>キーワード検索</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Enter_Keyword</name>
+        <name>OrderOps_Enter_Keyword</name>
         <label>キーワードを入力して Enter を押してください。（例：商品名、商品コード）</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Product_Code</name>
+        <name>OrderOps_Product_Code</name>
         <label>コード</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Product_Name</name>
+        <name>OrderOps_Product_Name</name>
         <label>商品名</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_List_Price</name>
+        <name>OrderOps_List_Price</name>
         <label>リスト価格</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Unit_Price</name>
+        <name>OrderOps_Unit_Price</name>
         <label>ユニット価格</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Add_To_Cart</name>
+        <name>OrderOps_Add_To_Cart</name>
         <label>カートに追加</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Result_Item_Count</name>
+        <name>OrderOps_Result_Item_Count</name>
         <label>{2} 件中 {0} - {1} 件表示中。</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Result_Total_Page</name>
+        <name>OrderOps_Result_Total_Page</name>
         <label>全 {0} ページ。</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Previous</name>
+        <name>OrderOps_Previous</name>
         <label>前へ</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Next</name>
+        <name>OrderOps_Next</name>
         <label>次へ</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_No_Search_Result_Found</name>
+        <name>OrderOps_No_Search_Result_Found</name>
         <label>検索結果が見つかりませんでした</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_No_Search_Result_Found_Description</name>
+        <name>OrderOps_No_Search_Result_Found_Description</name>
         <label>検索結果が見つかりませんでした。異なるキーワードで再度検索してください。</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Not_Searched_Yet</name>
+        <name>OrderOps_Not_Searched_Yet</name>
         <label>検索してください。</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Not_Searched_Yet_Description</name>
+        <name>OrderOps_Not_Searched_Yet_Description</name>
         <label>お好きなキーワードで検索してください。（例：商品名、商品コード）</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Loading</name>
+        <name>OrderOps_Loading</name>
         <label>ローディング中</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Retrieving_Data_Faild</name>
+        <name>OrderOps_Retrieving_Data_Faild</name>
         <label>情報の取得に失敗しました</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Adding_Item_Success</name>
+        <name>OrderOps_Adding_Item_Success</name>
         <label>カートへ追加しました</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Adding_Item_Success_Description</name>
+        <name>OrderOps_Adding_Item_Success_Description</name>
         <label>{0} 個の"{1}"を"{3}"ストアのカート"{2}"に追加しました。</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_No_Store_Found</name>
+        <name>OrderOps_No_Store_Found</name>
         <label>ストアが見つかりません</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Adding_Item_Failed</name>
+        <name>OrderOps_Adding_Item_Failed</name>
         <label>カートへの追加に失敗しました</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Searching_Items_Failed</name>
+        <name>OrderOps_Searching_Items_Failed</name>
         <label>商品検索に失敗しました</label>
     </customLabels>
     <customLabels>
-        <name>OrderPad_Primary_Cart</name>
+        <name>OrderOps_Primary_Cart</name>
         <label>{0} （プライマリ）</label>
     </customLabels>
 </Translations>

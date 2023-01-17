@@ -1,0 +1,184 @@
+<template>
+  
+    <lightning-layout class="x-large">
+      <lightning-layout-item style="align-self: center" flexibility="grow">
+        <lightning-combobox
+          name="progress"
+          label={label.OrderOps_Webstore}
+          value={webstoreId}
+          placeholder={label.OrderOps_Select_Webstore}
+          options={webstoreOptions}
+          onchange={handleWebstoreChange}
+          disabled={disableWebstoreCombo}
+        ></lightning-combobox>
+      </lightning-layout-item>
+      <lightning-layout-item style="align-self: center" flexibility="grow">
+        <lightning-combobox
+          name="progress"
+          label={label.OrderOps_Cart}
+          value={cartId}
+          placeholder={label.OrderOps_Select_Cart}
+          options={cartOptions}
+          onchange={handleCartChange}
+          disabled={disableCartCombo}
+        ></lightning-combobox>
+      </lightning-layout-item>
+    </lightning-layout>
+  
+    <lightning-layout class="x-large">
+      <lightning-layout-item flexibility="grow">
+        <lightning-input
+          type="text"
+          label={label.OrderOps_Keyword_Search}
+          onchange={handleInput}
+          onkeyup={handleInputKeyUp}
+          placeholder={label.OrderOps_Enter_Keyword}
+          style="margin: 1rem 0"
+          disabled={disableSearchInput}
+        ></lightning-input>
+      </lightning-layout-item>
+    </lightning-layout>
+  
+    <template if:false={isSearching}>
+      <template if:true={isSearched}>
+        <template if:false={isNoResult}>
+          <table
+            class="slds-table slds-table_cell-buffer slds-table_bordered result-items"
+          >
+            <thead>
+              <tr>
+                <th class="width10"></th>
+                <th class="width10">{label.OrderOps_Product_Code}</th>
+                <th class="width30">{label.OrderOps_Product_Name}</th>
+                <th class="width10">{label.OrderOps_List_Price}</th>
+                <th class="width10">{label.OrderOps_Unit_Price}</th>
+                <th class="width30"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <template for:each={result.products} for:item="product">
+                <tr key={product.id} class="slds-hint-parent">
+                  <td><img class="product-images" src={product.imageUrl} /></td>
+                  <td>{product.productCode}</td>
+                  <td>{product.name}</td>
+                  <td>
+                    <lightning-formatted-number value={product.listPrice} format-style="currency" currency-code={result.currency}></lightning-formatted-number>
+                  </td>
+                  <td>
+                    <lightning-formatted-number value={product.unitPrice} format-style="currency" currency-code={result.currency}></lightning-formatted-number>
+                  </td>
+                  <td>
+                    <form onsubmit={addToCart}>
+                      <input type="hidden" value={product.id} name="productId" />
+                      <input type="hidden" value={product.name} name="productName" />
+                      <lightning-layout>
+                        <lightning-layout-item size="4" style="align-self: center" padding="around-small" flexibility="auto">
+                          <input
+                          style="width: 100%"
+                            type="number"
+                            min="0"
+                            value="0"
+                            name="quantity"
+                          />
+                        </lightning-layout-item>
+                        <lightning-layout-item size="8" padding="around-small" flexibility="auto">
+                          <lightning-button
+                            type="submit"
+                            label={label.OrderOps_Add_To_Cart}
+                            class="slds-m-left_x-small"
+                            disabled={disableAddToCartBtn}
+                          ></lightning-button>
+                        </lightning-layout-item>
+                      </lightning-layout>
+                    </form>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+  
+          <div>
+            <p class="slds-m-vertical_medium content">
+              {resultItemCount}    {resultTotalPage} 
+            </p>
+            <lightning-layout>
+              <lightning-layout-item>
+                <lightning-button
+                  label={label.OrderOps_Previous}
+                  icon-name="utility:chevronleft"
+                  onclick={previousHandler}
+                  disabled={isFirstPage}
+                ></lightning-button>
+              </lightning-layout-item>
+              <lightning-layout-item flexibility="grow"></lightning-layout-item>
+              <lightning-layout-item>
+                <lightning-button
+                  label={label.OrderOps_Next}
+                  icon-name="utility:chevronright"
+                  icon-position="right"
+                  onclick={nextHandler}
+                  disabled={isLastPage}
+                ></lightning-button>
+              </lightning-layout-item>
+            </lightning-layout>
+          </div>
+        </template>
+  
+        <template if:true={isNoResult}>
+          <lightning-layout
+            vertical-align="stretch"
+            multiple-rows="true"
+            class="x-large"
+          >
+            <lightning-layout-item flexibility="grow">
+              <div class="not-found">
+                <h2
+                  style="font-weight: 500; font-size: 1.2rem; text-align: center"
+                >
+                {label.OrderOps_No_Search_Result_Found}
+                </h2>
+                <p style="padding: 1rem; text-align: center">
+                  {label.OrderOps_No_Search_Result_Found_Description}
+                </p>
+              </div>
+            </lightning-layout-item>
+          </lightning-layout>
+        </template>
+      </template>
+  
+      <template if:false={isSearched}>
+        <lightning-layout
+          vertical-align="stretch"
+          multiple-rows="true"
+          class="x-large"
+        >
+          <lightning-layout-item flexibility="grow">
+            <div class="not-searched">
+              <h2 style="font-weight: 500; font-size: 1.2rem; text-align: center">
+                {label.OrderOps_Not_Searched_Yet}
+              </h2>
+              <p style="padding: 1rem; text-align: center">
+                {label.OrderOps_Not_Searched_Yet_Description}
+              </p>
+            </div>
+          </lightning-layout-item>
+        </lightning-layout>
+      </template>
+    </template>
+  
+    <template if:true={isSearching}>
+      <div class="demo-only" style="height: 6rem; position: relative">
+        <div class="slds-spinner_container">
+          <div
+            role="status"
+            class="slds-spinner slds-spinner_medium slds-spinner_brand"
+          >
+            <span class="slds-assistive-text">{label.OrderOps_Loading}</span>
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </template>
+  

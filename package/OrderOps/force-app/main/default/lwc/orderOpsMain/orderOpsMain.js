@@ -1,65 +1,65 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
-import searchProducts from '@salesforce/apex/OrderPadController.searchProducts';
-import addToCart from '@salesforce/apex/OrderPadController.addToCart';
-import getCarts from '@salesforce/apex/OrderPadController.getCarts';
-import getWebStores from '@salesforce/apex/OrderPadController.getWebStores';
+import searchProducts from '@salesforce/apex/OrderOpsController.searchProducts';
+import addToCart from '@salesforce/apex/OrderOpsController.addToCart';
+import getCarts from '@salesforce/apex/OrderOpsController.getCarts';
+import getWebStores from '@salesforce/apex/OrderOpsController.getWebStores';
 import ACCOUNTID_FIELD from '@salesforce/schema/Contact.AccountId';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import OrderPad_Webstore from '@salesforce/label/c.OrderPad_Webstore';
-import OrderPad_Select_Webstore from '@salesforce/label/c.OrderPad_Select_Webstore';
-import OrderPad_Cart from '@salesforce/label/c.OrderPad_Cart';
-import OrderPad_Select_Cart from '@salesforce/label/c.OrderPad_Select_Cart';
-import OrderPad_Keyword_Search from '@salesforce/label/c.OrderPad_Keyword_Search';
-import OrderPad_Enter_Keyword from '@salesforce/label/c.OrderPad_Enter_Keyword';
-import OrderPad_Product_Code from '@salesforce/label/c.OrderPad_Product_Code';
-import OrderPad_Product_Name from '@salesforce/label/c.OrderPad_Product_Name';
-import OrderPad_List_Price from '@salesforce/label/c.OrderPad_List_Price';
-import OrderPad_Unit_Price from '@salesforce/label/c.OrderPad_Unit_Price';
-import OrderPad_Add_To_Cart from '@salesforce/label/c.OrderPad_Add_To_Cart';
-import OrderPad_Result_Item_Count from '@salesforce/label/c.OrderPad_Result_Item_Count';
-import OrderPad_Result_Total_Page from '@salesforce/label/c.OrderPad_Result_Total_Page';
-import OrderPad_Previous from '@salesforce/label/c.OrderPad_Previous';
-import OrderPad_Next from '@salesforce/label/c.OrderPad_Next';
-import OrderPad_No_Search_Result_Found from '@salesforce/label/c.OrderPad_No_Search_Result_Found';
-import OrderPad_No_Search_Result_Found_Description from '@salesforce/label/c.OrderPad_No_Search_Result_Found_Description';
-import OrderPad_Not_Searched_Yet from '@salesforce/label/c.OrderPad_Not_Searched_Yet';
-import OrderPad_Not_Searched_Yet_Description from '@salesforce/label/c.OrderPad_Not_Searched_Yet_Description';
-import OrderPad_Loading from '@salesforce/label/c.OrderPad_Loading';
-import OrderPad_Retrieving_Data_Faild from '@salesforce/label/c.OrderPad_Retrieving_Data_Faild';
-import OrderPad_Adding_Item_Success from '@salesforce/label/c.OrderPad_Adding_Item_Success';
-import OrderPad_Adding_Item_Success_Description from '@salesforce/label/c.OrderPad_Adding_Item_Success_Description';
-import OrderPad_Adding_Item_Failed from '@salesforce/label/c.OrderPad_Adding_Item_Failed';
-import OrderPad_Searching_Items_Failed from '@salesforce/label/c.OrderPad_Searching_Items_Failed';
-import OrderPad_Primary_Cart from '@salesforce/label/c.OrderPad_Primary_Cart';
-import OrderPad_No_Store_Found from '@salesforce/label/c.OrderPad_No_Store_Found';
+import OrderOps_Webstore from '@salesforce/label/c.OrderOps_Webstore';
+import OrderOps_Select_Webstore from '@salesforce/label/c.OrderOps_Select_Webstore';
+import OrderOps_Cart from '@salesforce/label/c.OrderOps_Cart';
+import OrderOps_Select_Cart from '@salesforce/label/c.OrderOps_Select_Cart';
+import OrderOps_Keyword_Search from '@salesforce/label/c.OrderOps_Keyword_Search';
+import OrderOps_Enter_Keyword from '@salesforce/label/c.OrderOps_Enter_Keyword';
+import OrderOps_Product_Code from '@salesforce/label/c.OrderOps_Product_Code';
+import OrderOps_Product_Name from '@salesforce/label/c.OrderOps_Product_Name';
+import OrderOps_List_Price from '@salesforce/label/c.OrderOps_List_Price';
+import OrderOps_Unit_Price from '@salesforce/label/c.OrderOps_Unit_Price';
+import OrderOps_Add_To_Cart from '@salesforce/label/c.OrderOps_Add_To_Cart';
+import OrderOps_Result_Item_Count from '@salesforce/label/c.OrderOps_Result_Item_Count';
+import OrderOps_Result_Total_Page from '@salesforce/label/c.OrderOps_Result_Total_Page';
+import OrderOps_Previous from '@salesforce/label/c.OrderOps_Previous';
+import OrderOps_Next from '@salesforce/label/c.OrderOps_Next';
+import OrderOps_No_Search_Result_Found from '@salesforce/label/c.OrderOps_No_Search_Result_Found';
+import OrderOps_No_Search_Result_Found_Description from '@salesforce/label/c.OrderOps_No_Search_Result_Found_Description';
+import OrderOps_Not_Searched_Yet from '@salesforce/label/c.OrderOps_Not_Searched_Yet';
+import OrderOps_Not_Searched_Yet_Description from '@salesforce/label/c.OrderOps_Not_Searched_Yet_Description';
+import OrderOps_Loading from '@salesforce/label/c.OrderOps_Loading';
+import OrderOps_Retrieving_Data_Faild from '@salesforce/label/c.OrderOps_Retrieving_Data_Faild';
+import OrderOps_Adding_Item_Success from '@salesforce/label/c.OrderOps_Adding_Item_Success';
+import OrderOps_Adding_Item_Success_Description from '@salesforce/label/c.OrderOps_Adding_Item_Success_Description';
+import OrderOps_Adding_Item_Failed from '@salesforce/label/c.OrderOps_Adding_Item_Failed';
+import OrderOps_Searching_Items_Failed from '@salesforce/label/c.OrderOps_Searching_Items_Failed';
+import OrderOps_Primary_Cart from '@salesforce/label/c.OrderOps_Primary_Cart';
+import OrderOps_No_Store_Found from '@salesforce/label/c.OrderOps_No_Store_Found';
 
 
 
 
-export default class OrderPadMain extends LightningElement {
+export default class OrderOpsMain extends LightningElement {
 
     label = {
-        OrderPad_Webstore,
-        OrderPad_Select_Webstore,
-        OrderPad_Cart,
-        OrderPad_Select_Cart,
-        OrderPad_Keyword_Search,
-        OrderPad_Enter_Keyword,
-        OrderPad_Product_Code,
-        OrderPad_Product_Name,
-        OrderPad_List_Price,
-        OrderPad_Unit_Price,
-        OrderPad_Add_To_Cart,
-        OrderPad_Result_Item_Count,
-        OrderPad_Result_Total_Page,
-        OrderPad_Previous,
-        OrderPad_Next,
-        OrderPad_No_Search_Result_Found,
-        OrderPad_No_Search_Result_Found_Description,
-        OrderPad_Not_Searched_Yet,
-        OrderPad_Not_Searched_Yet_Description,
-        OrderPad_Loading
+        OrderOps_Webstore,
+        OrderOps_Select_Webstore,
+        OrderOps_Cart,
+        OrderOps_Select_Cart,
+        OrderOps_Keyword_Search,
+        OrderOps_Enter_Keyword,
+        OrderOps_Product_Code,
+        OrderOps_Product_Name,
+        OrderOps_List_Price,
+        OrderOps_Unit_Price,
+        OrderOps_Add_To_Cart,
+        OrderOps_Result_Item_Count,
+        OrderOps_Result_Total_Page,
+        OrderOps_Previous,
+        OrderOps_Next,
+        OrderOps_No_Search_Result_Found,
+        OrderOps_No_Search_Result_Found_Description,
+        OrderOps_Not_Searched_Yet,
+        OrderOps_Not_Searched_Yet_Description,
+        OrderOps_Loading
     }
 
     @api recordId;
@@ -91,7 +91,7 @@ export default class OrderPadMain extends LightningElement {
             await this._retrieveWebstore()
         } else if (error) {
             console.error(error)
-            this._showToast(OrderPad_Retrieving_Data_Faild, JSON.stringify(error), "error")
+            this._showToast(OrderOps_Retrieving_Data_Faild, JSON.stringify(error), "error")
         }
     }
 
@@ -109,12 +109,12 @@ export default class OrderPadMain extends LightningElement {
             const quantity = result.quantity;
             const cartName = this.cartOptions.find(c => c.value === this.cartId).label
             const webstoreName = this.webstoreOptions.find(c => c.value === this.webstoreId).label
-            this._showToast(OrderPad_Adding_Item_Success,
-                this._printFormat(OrderPad_Adding_Item_Success_Description, quantity, productName, cartName, webstoreName)
+            this._showToast(OrderOps_Adding_Item_Success,
+                this._printFormat(OrderOps_Adding_Item_Success_Description, quantity, productName, cartName, webstoreName)
                 , "success")
         } catch (e) {
             console.error(e)
-            this._showToast(OrderPad_Adding_Item_Failed, e.message, "error")
+            this._showToast(OrderOps_Adding_Item_Failed, e.message, "error")
         } finally {
             this.isWaiting = false
         }
@@ -172,11 +172,11 @@ export default class OrderPadMain extends LightningElement {
     }
 
     get resultItemCount() {
-        return this._printFormat(OrderPad_Result_Item_Count, this.start, this.end, this.totalCount)
+        return this._printFormat(OrderOps_Result_Item_Count, this.start, this.end, this.totalCount)
     }
 
     get resultTotalPage() {
-        return this._printFormat(OrderPad_Result_Total_Page, this.totalPage);
+        return this._printFormat(OrderOps_Result_Total_Page, this.totalPage);
     }
 
     previousHandler() {
@@ -233,7 +233,7 @@ export default class OrderPadMain extends LightningElement {
     async _retrieveWebstore() {
         const webstores = await getWebStores({ accountId: this.accountId })
         if (!webstores || webstores.length <= 0) {
-            throw Error(OrderPad_No_Store_Found)
+            throw Error(OrderOps_No_Store_Found)
         }
         this._convertWebstoresToOption(webstores)
         this.webstoreId = webstores[0].WebStore.Id
@@ -253,7 +253,7 @@ export default class OrderPadMain extends LightningElement {
         } catch (e) {
             this.result = null;
             console.error(e)
-            this._showToast(OrderPad_Searching_Items_Failed, e.message, "error")
+            this._showToast(OrderOps_Searching_Items_Failed, e.message, "error")
         } finally {
             this.isSearching = false
         }
@@ -307,7 +307,7 @@ export default class OrderPadMain extends LightningElement {
 
     _convertCartsToOption(data) {
         this.cartOptions = data.map(d => {
-            return { label: d.IsSecondary ? d.Name : this._printFormat(OrderPad_Primary_Cart, d.Name), value: d.Id }
+            return { label: d.IsSecondary ? d.Name : this._printFormat(OrderOps_Primary_Cart, d.Name), value: d.Id }
         })
     }
 

@@ -1,27 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <name>Home_Redirect</name>
-        <label>Home Redirect</label>
-        <locationX>1270</locationX>
-        <locationY>654</locationY>
-        <actionName>c:DE_FLowCommunityPageRedirect</actionName>
-        <actionType>component</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>comPage</name>
-            <value>
-                <stringValue>Home</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>redirectType</name>
-            <value>
-                <stringValue>Named Page</stringValue>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
     <apiVersion>55.0</apiVersion>
     <assignments>
         <name>Assign_Single_to_List</name>
@@ -441,7 +419,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Home_Redirect</targetReference>
+            <targetReference>Redirect_To_Hpme</targetReference>
         </connector>
         <fields>
             <name>Quote_Request_Success</name>
@@ -466,6 +444,25 @@
         <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Redirect_To_Hpme</name>
+        <label>Redirect To Hpme</label>
+        <locationX>1271</locationX>
+        <locationY>649</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Redirect_To_Home</name>
+            <extensionName>c:redirectToHome</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
     </screens>
     <screens>
         <name>Request_for_quote</name>
