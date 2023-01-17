@@ -36,6 +36,89 @@
         <name>Quote_QuoteNoPermission</name>
         <label>見積へアクセスする権限がありません。</label>
     </customLabels>
+
+
+    <customLabels>
+        <name>Quote_VFPDFTitle</name>
+        <label>御見積</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFHonorific</name>
+        <label>{0} 御中</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFPostalCode</name>
+        <label>〒 </label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFAddress</name>
+        <label>住所：</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTel</name>
+        <label>電話番号：</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFFax</name>
+        <label>FAX：</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFGenaratedDate</name>
+        <label>見積日：</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFDescription</name>
+        <label>下記の通りお見積り申し上げます。</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnNo</name>
+        <label>No.</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnProductName</name>
+        <label>品名</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnQuantity</name>
+        <label>数量</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnListPrice</name>
+        <label>価格(リスト)</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnSalePrice</name>
+        <label>価格</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnAmount</name>
+        <label>金額</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTotalProductAmount</name>
+        <label>小計</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTotalChargeAmount</name>
+        <label>諸経費</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTotalTaxAmount</name>
+        <label>税額</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFGrandTotalAmount</name>
+        <label>合計</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFRemark</name>
+        <label>備考</label>
+    </customLabels>
+
+
+
+
+
     <flowDefinitions>
         <flows>
             <label>見積リクエスト</label>

@@ -43,18 +43,16 @@
             <div style="float: left">
               <h2><apex:outputText value="{!accountName}" /></h2>
               <span><apex:outputText value="{!$Label.Quote_VFPDFPostalCode}" /></span><span><apex:outputText value="{!account.ShippingPostalCode}" /></span><br />
-              <span><apex:outputText value="{!account.ShippingState}" /><apex:outputText value="{!account.ShippingCity}" /></span><br />
-              <span><apex:outputText value="{!account.ShippingStreet}" /></span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFAddress}" /><apex:outputText value="{!account.ShippingState}" /><apex:outputText value="{!account.ShippingCity}" /><apex:outputText value="{!account.ShippingStreet}" /></span><br />
               <span><apex:outputText value="{!$Label.Quote_VFPDFTel}" /></span><span><apex:outputText value="{!account.Phone}" /></span><br />
               <span><apex:outputText value="{!$Label.Quote_VFPDFFax}" /></span><span><apex:outputText value="{!account.Fax}" /></span>
             </div>
-    
+            
             <div style="text-align: right">
               <span><apex:outputText value="{!$Label.Quote_VFPDFGenaratedDate}" /></span><big><span></span><span><apex:outputText value="{!today}" /></span></big><br />
               <h3>〇〇株式会社</h3>
               <span><apex:outputText value="{!$Label.Quote_VFPDFPostalCode}" />100-0000</span><br />
-              <span>東京都千代田区9-9-9</span><br />
-              <span>〇〇タワー9999</span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFAddress}" />東京都千代田区9-9-9〇〇タワー9999</span><br />
               <span><apex:outputText value="{!$Label.Quote_VFPDFTel}" /> 03-9999-9999</span><br />
               <span><apex:outputText value="{!$Label.Quote_VFPDFFax}" /> 03-9999-9999</span><br />
             </div>

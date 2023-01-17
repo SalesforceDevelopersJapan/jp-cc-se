@@ -86,6 +86,13 @@
         <value>Postal Code : </value>
     </labels>
     <labels>
+        <fullName>Quote_VFPDFAddress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Address : </shortDescription>
+        <value>Address : </value>
+    </labels>
+    <labels>
         <fullName>Quote_VFPDFTel</fullName>
         <language>en_US</language>
         <protected>false</protected>
