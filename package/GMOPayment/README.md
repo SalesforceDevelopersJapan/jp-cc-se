@@ -1,7 +1,6 @@
 # Sample GMO Payment Adapter
 This sample package contain component to implement client side tokenization flow payment without 3DS.
-
-
+![](images/form.png)
 
 ## Setting instruction
 

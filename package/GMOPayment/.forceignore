@@ -11,15 +11,6 @@ package.xml
 # LWC Jest
 **/__tests__/**
 
-# "sfdx force:source:ignored:list" command to check ignore files.
-force-app/main/default/*/*
-!force-app/main/default/classes/*GMO*
-!force-app/main/default/lwc/gmoCardElement
-!force-app/main/default/cspTrustedSites/gmo*
-!force-app/main/default/customMetadata/GMO*
-!force-app/main/default/objects/GMO*
-!force-app/main/default/namedCredentials/GMO*
-!force-app/main/default/remoteSiteSettings/gmo*
 
 
 

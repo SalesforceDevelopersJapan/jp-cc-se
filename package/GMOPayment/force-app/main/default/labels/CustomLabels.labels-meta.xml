@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode100</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Card number is required</shortDescription>
+        <value>Card number is required</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode101</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Card number format error(Value contain non-number characters)</shortDescription>
+        <value>Card number format error(Value contain non-number characters)</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode102</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Card number format error(Out of value length range 10 - 16)</shortDescription>
+        <value>Card number format error(Out of value length range 10 - 16)</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode110</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Expiry is required</shortDescription>
+        <value>Expiry is required</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode111</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Expiry format error(Value contain non-number characters)</shortDescription>
+        <value>Expiry format error(Value contain non-number characters)</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode112</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Expiry format error(Out of value length 6 or 4)</shortDescription>
+        <value>Expiry format error(Out of value length 6 or 4)</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode113</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Expiry format error(Month over 12)</shortDescription>
+        <value>Expiry format error(Month over 12)</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode121</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Security Code format error(Value contain non-number characters)</shortDescription>
+        <value>Security Code format error(Value contain non-number characters)</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode122</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Security Code format error(Number of digits)</shortDescription>
+        <value>Security Code format error(Number of digits)</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode131</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Holder name format error(Value contain invalid characters)</shortDescription>
+        <value>Holder name format error(Value contain invalid characters)</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorCode132</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Holder name format error(Value length is over 51)</shortDescription>
+        <value>Holder name format error(Value length is over 51)</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_TokenErrorUnknown</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unknown Torknization Error:</shortDescription>
+        <value>Unknown Torknization Error:</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_FormCardNumberTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Card Number</shortDescription>
+        <value>Card Number</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_FormCardNumberPH</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>4111111111111111</shortDescription>
+        <value>4111111111111111</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_FormHolderNameTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Holder Name</shortDescription>
+        <value>Holder Name</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_FormHolderNamePH</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Taro Yamada</shortDescription>
+        <value>Taro Yamada</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_FormExpiryTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Expiry</shortDescription>
+        <value>Expiry</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_FormExpiryPH</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>2501</shortDescription>
+        <value>2501</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_FormSecurityCodeTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Security Code</shortDescription>
+        <value>Security Code</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_FormSecurityCodePH</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>123</shortDescription>
+        <value>123</value>
+    </labels>
+</CustomLabels>
