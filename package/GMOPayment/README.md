@@ -13,3 +13,9 @@ For scratch org:
     ```
 1. Select `GMOPaymentAdapter_Gateway` in Link Integration setting
     ![](images/link_integration.png)
+
+
+## Out of scope for now(2022/01)
+2 features below need `checkoutApi.paymentClientRequest` API.
+- List saved cards
+- Select and use saved card
