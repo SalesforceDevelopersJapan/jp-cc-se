@@ -11,8 +11,6 @@
     <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">
             <property name="effectiveAccountId" type="String" label="Effective Account Id" default="{!CurrentUser.effectiveAccountId}"/>
-            <property name="useForB2BCommerce" type="Boolean" label="Use for B2B commerce" default="true"/>
-            <property name="webstoreId" type="String" label="Webstore Id"></property>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

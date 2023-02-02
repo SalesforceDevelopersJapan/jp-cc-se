@@ -1,134 +1,157 @@
-import { LightningElement, api, wire, track } from 'lwc';
-import isGuest from '@salesforce/user/isGuest';
+import { LightningElement, api } from 'lwc';
 import userId from '@salesforce/user/Id';
+import isGuest from '@salesforce/user/isGuest';
 import getCarts from '@salesforce/apex/MultiCartController.getCarts';
 import createCart from '@salesforce/apex/MultiCartController.createCart';
 import deleteCart from '@salesforce/apex/MultiCartController.deleteCart';
 import setPrimaryCart from '@salesforce/apex/MultiCartController.setPrimaryCart';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import updateCartName from '@salesforce/apex/MultiCartController.updateCartName';
+import webstoreId from '@salesforce/webstore/Id'
+import MultiCarts_GuestMessage from '@salesforce/label/c.MultiCarts_GuestMessage';
+import MultiCarts_Title from '@salesforce/label/c.MultiCarts_Title';
+import MultiCarts_CartName from '@salesforce/label/c.MultiCarts_CartName';
+import MultiCarts_Create from '@salesforce/label/c.MultiCarts_Create';
+import MultiCarts_PrimarySecondary from '@salesforce/label/c.MultiCarts_PrimarySecondary';
+import MultiCarts_Actions from '@salesforce/label/c.MultiCarts_Actions';
+import MultiCarts_Primary from '@salesforce/label/c.MultiCarts_Primary';
+import MultiCarts_Secondary from '@salesforce/label/c.MultiCarts_Secondary';
+import MultiCarts_SetPrimary from '@salesforce/label/c.MultiCarts_SetPrimary';
+import MultiCarts_Delete from '@salesforce/label/c.MultiCarts_Delete';
+import MultiCarts_Edit from '@salesforce/label/c.MultiCarts_Edit';
+import MultiCarts_SampleMessage from '@salesforce/label/c.MultiCarts_SampleMessage';
+import MultiCarts_EditModalTitle from '@salesforce/label/c.MultiCarts_EditModalTitle';
+import MultiCarts_Cancel from '@salesforce/label/c.MultiCarts_Cancel';
+import MultiCarts_Save from '@salesforce/label/c.MultiCarts_Save';
+import MultiCarts_GeneralError from '@salesforce/label/c.MultiCarts_GeneralError';
 
 export default class ManageMultiCarts extends LightningElement {
-    @api webstoreId;
-    @api useForB2BCommerce;
+
     @api effectiveAccountId;
+    carts;
+    isGuestUser = isGuest
+    newCartName = '';
+    editCartName = '';
+    editCartId = '';
+    isCartNameEditModalOpen = false;
+    isProcessing = false;
 
-    communityUserIsGuest = isGuest;
-    communityUserId = userId;
+    label = {
+        MultiCarts_GuestMessage,
+        MultiCarts_Title,
+        MultiCarts_CartName,
+        MultiCarts_Create,
+        MultiCarts_PrimarySecondary,
+        MultiCarts_Actions,
+        MultiCarts_Primary,
+        MultiCarts_Secondary,
+        MultiCarts_SetPrimary,
+        MultiCarts_Delete,
+        MultiCarts_Edit,
+        MultiCarts_SampleMessage,
+        MultiCarts_EditModalTitle,
+        MultiCarts_Cancel,
+        MultiCarts_Save,
+        MultiCarts_GeneralError
+    }
 
-    @track carts;
+    async connectedCallback() {
+        this.carts = await getCarts({
+            webstoreId,
+            effectiveAccountId: this.effectiveAccountId,
+            ownerId: userId
+        })
+    }
 
-    newCartName = 'My New Cart';
-    selectedCartId;
+    handleNewCartNameChange(event) {
+        this.newCartName = event.target.value;
+    }
 
-    @wire(getCarts, { webstoreId: '$webstoreId', effectiveAccountId: '$effectiveAccountId', ownerId: '$communityUserId', useForB2BCommerce: '$useForB2BCommerce' })
-    wiredCarts({ data, error }) {
+    handleEditCartNameChange(event) {
+        this.editCartName = event.target.value;
+    }
 
-        //console.log('webstoreId: ' + this.webstoreId);
-        //console.log('effectiveAccountId: ' + this.effectiveAccountId);
-        //console.log('ownerId: ' + this.communityUserId);
-        //console.log('useForB2BCommerce: ' + this.useForB2BCommerce);
+    async _retrieveCarts() {
+        this.carts = await getCarts({
+            webstoreId,
+            effectiveAccountId: this.effectiveAccountId,
+            ownerId: userId
+        })
+    }
 
-        if (data) {
-            console.log('Carts loaded');
-            this.carts = data;
-        } else if (error) {
-            console.error(error);
+    handleEditCartEvent(event) {
+        event.preventDefault();
+        const formData = new FormData(event.submitter.form)
+        this.editCartId = formData.get("cartId");
+        this.editCartName = formData.get("cartName");
+        this.isCartNameEditModalOpen = true
+    }
+
+    closeEditCartModal(_event) {
+        this.editCartId = "";
+        this.editCartName = "";
+        this.isCartNameEditModalOpen = false
+    }
+
+    async saveEditCart(_event) {
+        this.isProcessing = true
+        try {
+            await updateCartName({ webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: this.editCartId, ownerId: userId, cartName: this.editCartName })
+            this.editCartId = "";
+            this.editCartName = "";
+            this.isCartNameEditModalOpen = false
+            await this._retrieveCarts()
+        } catch (error) {
+            alert(MultiCarts_GeneralError + error.body.message)
+        } finally {
+            this.isProcessing = false
         }
     }
 
-    handleKeyChange(event) {
-        this.newCartName = event.target.value;;
+    async handleCreateCartEvent(_event) {
+        this.isProcessing = true
+        try {
+            await createCart({ webstoreId, effectiveAccountId: this.effectiveAccountId, cartName: this.newCartName })
+            await this._retrieveCarts()
+            this.newCartName = "";
+        } catch (error) {
+            alert(MultiCarts_GeneralError + error.body.message)
+        } finally {
+            this.isProcessing = false
+        }
     }
 
-    handleCreateCartEvent(event) {
-        console.log('createCart: ' + this.newCartName);
-
-        createCart({ webstoreId: this.webstoreId, effectiveAccountId: this.effectiveAccountId, cartName: this.newCartName, useForB2BCommerce: this.useForB2BCommerce })
-        .then((result) => {
-            console.log('Cart created: ' + result);
-
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Success',
-                    message: 'Cart created',
-                    variant: 'success'
-                })
-            );
-
-            window.location.reload();
-        })
-        .catch((error) => {
-            console.error(error);
-
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Error happened',
-                    message: error.body.message,
-                    variant: 'error'
-                })
-            );
-        });
+    async handleDeleteCartEvent(event) {
+        this.isProcessing = true
+        event.preventDefault();
+        const formData = new FormData(event.submitter.form)
+        const selectedCartId = formData.get("cartId");
+        try {
+            await deleteCart({ webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: selectedCartId })
+            await this._retrieveCarts()
+        } catch (error) {
+            alert(MultiCarts_GeneralError + error.body.message)
+        } finally {
+            this.isProcessing = false
+        }
     }
 
-    handleDeleteCartEvent(event) {
-        this.selectedCartId = event.target.title;
-        console.log('deleteCart: ' + this.selectedCartId);
-
-        deleteCart({ webstoreId: this.webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: this.selectedCartId, useForB2BCommerce: this.useForB2BCommerce })
-        .then((result) => {
-            console.log('Cart deleted: ' + result);
-
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Success',
-                    message: 'Cart deleted',
-                    variant: 'success'
-                })
-            );
-
+    async handleSetPrimaryCartEvent(event) {
+        this.isProcessing = true
+        event.preventDefault();
+        const formData = new FormData(event.submitter.form)
+        const selectedCartId = formData.get("cartId");
+        try {
+            await setPrimaryCart({ webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: selectedCartId })
             window.location.reload();
-        })
-        .catch((error) => {
-            console.error(error);
+        } catch (error) {
+            alert(MultiCarts_GeneralError + error.body.message)
+        } finally {
+            this.isProcessing = false
+        }
 
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Error happened',
-                    message: error.body.message,
-                    variant: 'error'
-                })
-            );
-        });
     }
 
-    handleSetPrimaryCartEvent(event) {
-        this.selectedCartId = event.target.title;
-        console.log('setPrimaryCart: ' + this.selectedCartId);
-        
-        setPrimaryCart({ webstoreId: this.webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: this.selectedCartId, useForB2BCommerce: this.useForB2BCommerce })
-        .then((result) => {
-            console.log('Cart set as Primary: ' + result);
-
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Success',
-                    message: 'Cart set as Primary',
-                    variant: 'success'
-                })
-            );
-
-            window.location.reload();
-        })
-        .catch((error) => {
-            console.error(error);
-
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Error happened',
-                    message: error.body.message,
-                    variant: 'error'
-                })
-            );
-        });
+    get disableButton() {
+        return this.isProcessing
     }
 }

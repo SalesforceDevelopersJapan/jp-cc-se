@@ -1,8 +1,8 @@
 public with sharing class MultiCartController {
     
-    @AuraEnabled(cacheable=true)
-    public static List<Webcart> getCarts(String webstoreId, String effectiveAccountId, String ownerId, Boolean useForB2BCommerce){
-        if (useForB2BCommerce) {
+    @AuraEnabled(cacheable=false)
+    public static List<Webcart> getCarts(String webstoreId, String effectiveAccountId, String ownerId){
+        if (String.isNotBlank(effectiveAccountId)) {
             return [
                 SELECT Id, Name, Status, IsSecondary, UniqueProductCount, TotalProductCount 
                 FROM Webcart 
@@ -27,9 +27,12 @@ public with sharing class MultiCartController {
     }
     
     @AuraEnabled(cacheable=false)
-    public static ConnectApi.CartSummary createCart(String webstoreId, String effectiveAccountId, String cartName, Boolean useForB2BCommerce) {
+    public static ConnectApi.CartSummary createCart(String webstoreId, String effectiveAccountId, String cartName) {
+        if(String.isBlank(cartName)){
+            throw new AuraHandledException(System.Label.MultiCarts_Apex_NotCartNameEmpty);
+        }
         ConnectApi.CartInput cart = new ConnectApi.CartInput();
-        if (useForB2BCommerce) {
+        if (String.isNotBlank(effectiveAccountId)) {
             cart.effectiveAccountId = effectiveAccountId;
         }
         cart.isSecondary = true;
@@ -39,20 +42,43 @@ public with sharing class MultiCartController {
     } 
     
     @AuraEnabled(cacheable=false)
-    public static void deleteCart(String webstoreId, String effectiveAccountId, String cartId, Boolean useForB2BCommerce) {
-        if (!useForB2BCommerce) {
-            effectiveAccountId = null;
-        }
-        ConnectApi.CommerceCart.deleteCart(webstoreId, effectiveAccountId, cartId);
+    public static void deleteCart(String webstoreId, String effectiveAccountId, String cartId) {
+        ConnectApi.CommerceCart.deleteCart(webstoreId, String.isBlank(effectiveAccountId) ? null : effectiveAccountId, cartId);
     }
     
     @AuraEnabled(cacheable=false)
-    public static ConnectApi.CommerceActionResult setPrimaryCart(String webstoreId, String effectiveAccountId, String cartId, Boolean useForB2BCommerce) {
-        if (!useForB2BCommerce) {
-            effectiveAccountId = null;
-        }
-        ConnectApi.CommerceActionResult result = ConnectApi.CommerceCart.makeCartPrimary(webstoreId, cartId, effectiveAccountId);
+    public static ConnectApi.CommerceActionResult setPrimaryCart(String webstoreId, String effectiveAccountId, String cartId) {
+        ConnectApi.CommerceActionResult result = ConnectApi.CommerceCart.makeCartPrimary(webstoreId, cartId, String.isBlank(effectiveAccountId) ? null : effectiveAccountId);
         return result;
+    }
+
+    @AuraEnabled(cacheable=false)
+    public static Schema.Webcart updateCartName(String webstoreId, String effectiveAccountId, String cartId, String ownerId, String cartName) {
+        if(String.isBlank(cartName)){
+            throw new AuraHandledException(System.Label.MultiCarts_Apex_NotCartNameEmpty);
+        }
+        Webcart cart;
+        if (String.isBlank(effectiveAccountId)) {
+            cart = [SELECT Id, Name FROM Webcart 
+                                WHERE 
+                                    Id = :cartId
+                                    AND WebStoreId = :webstoreId
+                                    AND OwnerId = :ownerId
+                                LIMIT 1
+                            ];
+        }else{
+            cart = [SELECT Id, Name FROM Webcart 
+                            WHERE 
+                                Id = :cartId
+                                AND WebStoreId = :webstoreId
+                                AND AccountId = :effectiveAccountId
+                                AND OwnerId = :ownerId
+                            LIMIT 1
+                        ];
+        }
+        cart.Name = cartName;
+        update cart;
+        return cart;
     }
 
 }

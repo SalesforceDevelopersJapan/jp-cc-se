@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>MultiCarts_GuestMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sorry.. Its is not available for guest user.</shortDescription>
+        <value>Sorry.. Its is not available for guest user.</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manage Multi-Carts</shortDescription>
+        <value>Manage Multi-Carts</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_CartName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cart Name</shortDescription>
+        <value>Cart Name</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_Create</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create</shortDescription>
+        <value>Create</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_PrimarySecondary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Primary/Secondary</shortDescription>
+        <value>Primary/Secondary</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_Actions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Actions</shortDescription>
+        <value>Actions</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_Primary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Primary</shortDescription>
+        <value>Primary</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_Secondary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Secondary</shortDescription>
+        <value>Secondary</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_SetPrimary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Set Primary</shortDescription>
+        <value>Set Primary</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_SampleMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This is a sample component. Please use this as a reference.</shortDescription>
+        <value>This is a sample component. Please use this as a reference.</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_EditModalTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit Cart Name</shortDescription>
+        <value>Edit Cart Name</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_GeneralError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error happened: </shortDescription>
+        <value>Error happened: </value>
+    </labels>
+    <labels>
+        <fullName>MultiCarts_Apex_NotCartNameEmpty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cart name should not be empty.</shortDescription>
+        <value>Cart name should not be empty.</value>
+    </labels>
+</CustomLabels>
