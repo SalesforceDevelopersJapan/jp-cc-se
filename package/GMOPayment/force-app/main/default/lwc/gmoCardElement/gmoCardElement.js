@@ -16,6 +16,7 @@ import GMOPayment_TokenErrorUnknown from '@salesforce/label/c.GMOPayment_TokenEr
 import GMOPayment_ErrorPleaseSelect from '@salesforce/label/c.GMOPayment_ErrorPleaseSelect';
 import GMOPayment_ErrorInvalidCardForm from '@salesforce/label/c.GMOPayment_ErrorInvalidCardForm';
 import saveCard from '@salesforce/apex/GMOPaymentController.saveCard';
+import saveMember from '@salesforce/apex/GMOPaymentController.saveMember';
 
 export default class GmoCardElement extends LightningElement {
 
@@ -121,6 +122,14 @@ export default class GmoCardElement extends LightningElement {
     }
 
     async _saveCard(token) {
+        const member = await saveMember()
+        if ("ErrInfo" in member) {
+            if (!member['ErrInfo'].includes('E01390010')) {
+                this._throwGMOError(member)
+            }
+        }
+
+        E01390010
         const card = await saveCard({ token })
         if ("ErrInfo" in card) {
             this._throwGMOError(card)

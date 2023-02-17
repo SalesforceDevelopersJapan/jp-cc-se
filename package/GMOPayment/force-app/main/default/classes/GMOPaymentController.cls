@@ -1,17 +1,6 @@
 public with sharing class GMOPaymentController {
 
     @AuraEnabled(cacheable=false)
-    public static Map<String, Object> entryTransaction(String webstoreId) {
-        ConnectApi.CartSummary cart = ConnectApi.CommerceCart.getCartSummary(webstoreId, null, 'active');
-        GMOShopAPINCClient client = GMOShopAPINCClient.getInstance();
-        // Using cart id as order id for GMO.
-        HttpResponse entryResponse = client.doEntryTran(cart.cartId, Integer.valueOf(cart.totalChargeAmount));
-        String entryBody = entryResponse.getBody();
-        Map<String, Object> entryMap = GMOUtils.convertParamToMap(entryBody);
-        return GMOUtils.convertParamToMap(entryBody);
-    }
-
-    @AuraEnabled(cacheable=false)
     public static Map<String, Object> saveCard(String token) {
         String userId = UserInfo.getUserId();
         GMOSiteAPINCClient client = GMOSiteAPINCClient.getInstance();

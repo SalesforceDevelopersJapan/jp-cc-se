@@ -1,6 +1,7 @@
 # Sample GMO Payment Adapter
 This sample package contain component to implement client side tokenization flow payment without 3DS.
 ![](images/form.png)
+![](images/list.png)
 
 ## Setting instruction
 
@@ -19,7 +20,5 @@ For scratch org:
     ![](images/csp.png)
 
 
-## Out of scope for now(2022/01)
-2 features below need `checkoutApi.paymentClientRequest` API.
-- List saved cards
-- Select and use saved card
+## Out of scope for now(2022/02)
+- Refund

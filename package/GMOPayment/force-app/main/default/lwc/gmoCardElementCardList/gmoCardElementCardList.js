@@ -74,8 +74,10 @@ export default class GmoCardElementCardList extends LightningElement {
             if (found) {
                 card.checked = card.CardSeq === found.CardSeq
             } else {
-                this._select = null
-                card.checked = card.DefaultFlag === '1'
+                if(card.DefaultFlag === '1'){
+                    this._select = card.CardSeq
+                    card.checked = true
+                }
             }
         }
         return this._cardList
@@ -88,7 +90,7 @@ export default class GmoCardElementCardList extends LightningElement {
             if ('ErrInfo' in cards === false) {
                 this._cardList = this._makeCardList(cards)
                 this._cardList = this._cardList.map(this._formatList)
-            } else if (cards['ErrInfo'].includes('E01240002')) {
+            } else if (cards['ErrInfo'].includes('E01240002') || cards['ErrInfo'].includes('E01390002')) {
                 this._cardList = []
             }
             this._cardList = this._cardList.map(this._formatList)
