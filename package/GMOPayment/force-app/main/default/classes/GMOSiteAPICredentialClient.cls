@@ -24,6 +24,7 @@ public class GMOSiteAPICredentialClient extends AbstractGMOSiteAPIClient {
         }
         body += 'SiteID' + '=' + this.id;
         body += '&SitePass' + '=' + this.pass;
+        System.debug(body);
         return body;
     }
 

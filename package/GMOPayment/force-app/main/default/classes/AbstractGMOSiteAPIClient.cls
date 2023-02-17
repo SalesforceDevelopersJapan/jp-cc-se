@@ -41,6 +41,7 @@ public abstract class AbstractGMOSiteAPIClient {
     } else {
       params.put('MemberID', memberID);
       params.put('CardSeq', cardSeq);
+      params.put('SeqMode', 1);
     }
     return post('/ExecTran.idPass', params);
   }
@@ -61,16 +62,41 @@ public abstract class AbstractGMOSiteAPIClient {
 
   public HttpResponse doSaveCard(String memberID, String token) {
     // https://docs.mul-pay.jp/payment/credit/apimember#savecard
-    Map<String, String> params = new Map<String, String>();
+    Map<String, Object> params = new Map<String, Object>();
     params.put('MemberID', memberID);
     params.put('Token', token);
+    params.put('SeqMode', 1);
     return post('/SaveCard.idPass', params);
+  }
+
+  public HttpResponse doSetDefault(String memberID, Integer cardSeq, String expire, String holderName) {
+    // https://docs.mul-pay.jp/payment/credit/apimember#savecard
+    Map<String, Object> params = new Map<String, Object>();
+    params.put('MemberID', memberID);
+    params.put('CardSeq', cardSeq);
+    params.put('Expire', expire);
+    params.put('HolderName', holderName);
+    params.put('DefaultFlag', 1);
+    params.put('SeqMode', 1);
+    params.put('UpdateType', 2);
+    return post('/SaveCard.idPass', params);
+  }
+
+  public HttpResponse doDeleteCard(String memberID, Integer cardSeq) {
+    // https://docs.mul-pay.jp/payment/credit/apimember#savecard
+    Map<String, Object> params = new Map<String, Object>();
+    params.put('MemberID', memberID);
+    params.put('CardSeq', cardSeq);
+    params.put('SeqMode', 1);
+    return post('/DeleteCard.idPass', params);
   }
 
   public HttpResponse doSearchCard(String memberID) {
     // https://docs.mul-pay.jp/payment/credit/apimember#searchcard
-    Map<String, String> params = new Map<String, String>();
+    Map<String, Object> params = new Map<String, Object>();
     params.put('MemberID', memberID);
+    params.put('SeqMode', 1);
+    params.put('ValidFlag', 1);
     return post('/SearchCard.idPass', params);
   }
 
@@ -81,6 +107,7 @@ public abstract class AbstractGMOSiteAPIClient {
     }
     body += 'SiteID' + '=' + '{!$Credential.Username}';
     body += '&SitePass' + '=' + '{!$Credential.Password}';
+    System.debug(body);
     return body;
   }
 

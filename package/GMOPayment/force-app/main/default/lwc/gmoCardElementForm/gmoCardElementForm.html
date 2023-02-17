@@ -1,0 +1,47 @@
+<template>
+  <form class="card-form">
+    <div class="input">
+      <lightning-input
+        type="text"
+        placeholder={label.GMOPayment_FormCardNumberPH}
+        label={label.GMOPayment_FormCardNumberTitle}
+        maxlength="16"
+        autocomplete="cc-number"
+        required
+        onchange={handleCardNumberChange}
+      ></lightning-input>
+      <lightning-input
+        type="text"
+        placeholder={label.GMOPayment_FormHolderNamePH}
+        maxlength="50"
+        label={label.GMOPayment_FormHolderNameTitle}
+        autocomplete="cc-name"
+        required
+        onchange={handleHolderNameChange}
+      ></lightning-input>
+      <lightning-input
+        type="text"
+        placeholder={label.GMOPayment_FormExpiryPH}
+        maxlength="4"
+        label={label.GMOPayment_FormExpiryTitle}
+        autocomplete="cc-exp"
+        required
+        onchange={handleExpireChange}
+      ></lightning-input>
+      <lightning-input
+        type="text"
+        placeholder={label.GMOPayment_FormSecurityCodePH}
+        maxlength="4"
+        label={label.GMOPayment_FormSecurityCodeTitle}
+        autocomplete="cc-csc"
+        required
+        onchange={handleCVCChange}
+      ></lightning-input>
+      <lightning-input
+        type="checkbox"
+        label={label.GMOPayment_FormSaveThisCard}
+        onchange={handleSaveCardChange}
+      ></lightning-input>
+    </div>
+  </form>
+</template>

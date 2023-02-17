@@ -81,4 +81,38 @@
         <name>GMOPayment_FormSecurityCodePH</name>
         <label>123</label>
     </customLabels>
+
+
+    <customLabels>
+        <name>GMOPayment_FormSaveThisCard</name>
+        <label>このカードを保存する</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_ContainerNewCard</name>
+        <label>新しいカード</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_ContainerSavedCards</name>
+        <label>保存済みのカード</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_CardListSetAsDefault</name>
+        <label>デフォルトに設定する</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_CardListDelete</name>
+        <label>削除</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_CardListLoading</name>
+        <label>読み込み中</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_ErrorPleaseSelect</name>
+        <label>カードを選択してください。</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_ErrorInvalidCardForm</name>
+        <label>入力されたカード情報に誤りがあります。</label>
+    </customLabels>
 </Translations>

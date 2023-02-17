@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { LightningElement, api } from 'lwc';
 import userId from '@salesforce/user/Id';
 import isGuest from '@salesforce/user/isGuest';
@@ -86,13 +87,13 @@ export default class ManageMultiCarts extends LightningElement {
         this.isCartNameEditModalOpen = true
     }
 
-    closeEditCartModal(_event) {
+    closeEditCartModal() {
         this.editCartId = "";
         this.editCartName = "";
         this.isCartNameEditModalOpen = false
     }
 
-    async saveEditCart(_event) {
+    async saveEditCart() {
         this.isProcessing = true
         try {
             await updateCartName({ webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: this.editCartId, ownerId: userId, cartName: this.editCartName })
@@ -107,9 +108,9 @@ export default class ManageMultiCarts extends LightningElement {
         }
     }
 
-    async handleCreateCartEvent(_event) {
-        this.isProcessing = true
+    async handleCreateCartEvent() {
         try {
+            this.isProcessing = true
             await createCart({ webstoreId, effectiveAccountId: this.effectiveAccountId, cartName: this.newCartName })
             await this._retrieveCarts()
             this.newCartName = "";
@@ -121,11 +122,11 @@ export default class ManageMultiCarts extends LightningElement {
     }
 
     async handleDeleteCartEvent(event) {
-        this.isProcessing = true
         event.preventDefault();
         const formData = new FormData(event.submitter.form)
         const selectedCartId = formData.get("cartId");
         try {
+            this.isProcessing = true
             await deleteCart({ webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: selectedCartId })
             await this._retrieveCarts()
         } catch (error) {
@@ -136,11 +137,11 @@ export default class ManageMultiCarts extends LightningElement {
     }
 
     async handleSetPrimaryCartEvent(event) {
-        this.isProcessing = true
         event.preventDefault();
         const formData = new FormData(event.submitter.form)
         const selectedCartId = formData.get("cartId");
         try {
+            this.isProcessing = true
             await setPrimaryCart({ webstoreId, effectiveAccountId: this.effectiveAccountId, cartId: selectedCartId })
             window.location.reload();
         } catch (error) {

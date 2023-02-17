@@ -140,4 +140,63 @@
         <shortDescription>123</shortDescription>
         <value>123</value>
     </labels>
+
+
+    <labels>
+        <fullName>GMOPayment_FormSaveThisCard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save This Card</shortDescription>
+        <value>Save This Card</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_ContainerNewCard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New Card</shortDescription>
+        <value>New Card</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_ContainerSavedCards</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Saved Cards</shortDescription>
+        <value>Saved Cards</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_CardListSetAsDefault</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Set As Default</shortDescription>
+        <value>Set As Default</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_CardListDelete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_CardListLoading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading</shortDescription>
+        <value>Loading</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_ErrorPleaseSelect</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select a card.</shortDescription>
+        <value>Please select a card.</value>
+    </labels>
+    <labels>
+        <fullName>GMOPayment_ErrorInvalidCardForm</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Card info form is invalid.</shortDescription>
+        <value>Card info form is invalid.</value>
+    </labels>
+
 </CustomLabels>

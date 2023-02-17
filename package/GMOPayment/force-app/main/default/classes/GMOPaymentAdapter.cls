@@ -76,7 +76,9 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     String orderID,
     String token,
     String accessID,
-    String accessPass
+    String accessPass,
+    String memberID,
+    Integer cardSeq
   ) {
     GMOSiteAPICredentialClient client = GMOSiteAPICredentialClient.getInstance();
     HttpResponse response = client.doExecTran(
@@ -84,8 +86,8 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
       accessPass,
       orderID,
       token,
-      null,
-      null
+      memberID,
+      cardSeq
     );
     Map<String, Object> responseBody = GMOUtils.convertParamToMap(
       response.getBody()
@@ -100,25 +102,43 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     return responseBody;
   }
 
+  private boolean isCardSeq(String tokenOrCardSeq){
+    return tokenOrCardSeq.length() < 5 && tokenOrCardSeq.isNumeric();
+  }
+
   public commercepayments.GatewayResponse createPostAuthResponse(
     commercepayments.PostAuthorizationRequest postAuthRequest
   ) {
     commercepayments.PostAuthApiPaymentMethodRequest apiPaymentMethod = (commercepayments.PostAuthApiPaymentMethodRequest) postAuthRequest.paymentMethod;
     commercepayments.AlternativePaymentMethodRequest altPaymentMethod = (commercepayments.AlternativePaymentMethodRequest) apiPaymentMethod.alternativePaymentMethod;
-    String gatewayToken = (String) altPaymentMethod.gatewayToken;
+    String tokenOrCardSeq = (String) altPaymentMethod.gatewayToken;
     String currencyIsoCode = postAuthRequest.currencyIsoCode;
     Integer amount = Math.round(postAuthRequest.amount);
-    String userId = UserInfo.getUserId();
-    saveMember(userId);
+    String memberId = UserInfo.getUserId();
+    saveMember(memberId);
     //TODO Original id is used instead of order id. need to consider another way.
     String id = GMOUtils.generateId();
     Map<String, Object> entryMap = entryTransaction(id, amount);
-    Map<String, Object> execMap = executeTransaction(
-      id,
-      gatewayToken,
-      (String) entryMap.get('AccessID'),
-      (String) entryMap.get('AccessPass')
-    );
+    Map<String, Object> execMap = new Map<String, Object>();
+    if(isCardSeq(tokenOrCardSeq)){
+      execMap = executeTransaction(
+        id,
+        (String)null,
+        (String) entryMap.get('AccessID'),
+        (String) entryMap.get('AccessPass'),
+        memberId,
+        Integer.valueOf(tokenOrCardSeq)
+      );
+    }else{
+      execMap = executeTransaction(
+        id,
+        tokenOrCardSeq,
+        (String) entryMap.get('AccessID'),
+        (String) entryMap.get('AccessPass'),
+        (String)null,
+        (Integer)null
+      );
+    }
     commercepayments.PostAuthorizationResponse postAuthResponse = new commercepayments.PostAuthorizationResponse();
     postAuthResponse.setGatewayDate(system.now());
     postAuthResponse.setGatewayAuthCode((String) execMap.get('TranID'));
