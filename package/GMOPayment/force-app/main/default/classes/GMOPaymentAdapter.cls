@@ -17,141 +17,185 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     return new commercepayments.SalesforceResultCodeInfo(code);
   }
 
-  global GMOPaymentAdapter() {
-  }
-
   global commercepayments.GatewayResponse processRequest(
     commercepayments.paymentGatewayContext gatewayContext
   ) {
     commercepayments.RequestType requestType = gatewayContext.getPaymentRequestType();
-    commercepayments.PaymentGatewayRequest paymentRequest = gatewayContext.getPaymentRequest();
+    commercepayments.PaymentGatewayRequest request = gatewayContext.getPaymentRequest();
     commercepayments.GatewayResponse response;
     try {
       if (requestType == commercepayments.RequestType.PostAuth) {
         response = createPostAuthResponse(
-          (commercepayments.PostAuthorizationRequest) paymentRequest
+          (commercepayments.PostAuthorizationRequest) request
+        );
+      } else if (requestType == commercepayments.RequestType.Capture) {
+        response = createCaptureResponse(
+          (commercepayments.CaptureRequest) request
+        );
+      } else if (requestType == commercepayments.RequestType.Sale) {
+        response = createSaleResponse((commercepayments.SaleRequest) request);
+      } else if (requestType == commercepayments.RequestType.ReferencedRefund) {
+        response = createRefundResponse(
+          (commercepayments.ReferencedRefundRequest) request
+        );
+      } else if (
+        requestType == commercepayments.RequestType.AuthorizationReversal
+      ) {
+        response = createAuthReversalResponse(
+          (commercepayments.AuthorizationReversalRequest) request
         );
       }
       return response;
-    } catch (GMOValidationException e) {
+    } catch (GMOException e) {
       return new commercepayments.GatewayErrorResponse('400', e.getMessage());
     } catch (Exception e) {
       return new commercepayments.GatewayErrorResponse('500', e.getMessage());
     }
   }
 
-  private void saveMember(String userId) {
-    GMOSiteAPICredentialClient client = GMOSiteAPICredentialClient.getInstance();
-    HttpResponse response = client.doSaveMember(userId);
-    Map<String, Object> responseBody = GMOUtils.convertParamToMap(
-      response.getBody()
-    );
-    if (responseBody.containsKey('ErrCode')) {
-      String errorInfo = (String) responseBody.get('ErrInfo');
-      if (!errorInfo.contains('E01390010')) {
-        // If error other than member already exsiet error
-        // https://gmopg_docs:PF%cwa$GmCC@docs.mul-pay.jp/payment/credit/errorcode
-        throw new GMOValidationException('Cound not save member: ' + errorInfo);
-      }
-    }
-  }
-
-  private Map<String, Object> entryTransaction(String orderID, Integer amount) {
-    GMOShopAPICredentialClient client = GMOShopAPICredentialClient.getInstance();
-    HttpResponse response = client.doEntryTran(orderID, amount);
-    Map<String, Object> responseBody = GMOUtils.convertParamToMap(
-      response.getBody()
-    );
-    if (responseBody.containsKey('ErrCode')) {
-      //TODO Need more error handling
-      String errorInfo = (String) responseBody.get('ErrInfo');
-      throw new GMOValidationException(
-        'Cound not entry transaction: ' + errorInfo
-      );
-    }
-    return responseBody;
-  }
-
-  private Map<String, Object> executeTransaction(
-    String orderID,
-    String token,
-    String accessID,
-    String accessPass,
-    String memberID,
-    Integer cardSeq
-  ) {
-    GMOSiteAPICredentialClient client = GMOSiteAPICredentialClient.getInstance();
-    HttpResponse response = client.doExecTran(
-      accessID,
-      accessPass,
-      orderID,
-      token,
-      memberID,
-      cardSeq
-    );
-    Map<String, Object> responseBody = GMOUtils.convertParamToMap(
-      response.getBody()
-    );
-    if (responseBody.containsKey('ErrCode')) {
-      //TODO Need more error handling
-      String errorInfo = (String) responseBody.get('ErrInfo');
-      throw new GMOValidationException(
-        'Cound not execute transaction: ' + errorInfo
-      );
-    }
-    return responseBody;
-  }
-
-  private boolean isCardSeq(String tokenOrCardSeq){
-    return tokenOrCardSeq.length() < 5 && tokenOrCardSeq.isNumeric();
-  }
-
   public commercepayments.GatewayResponse createPostAuthResponse(
-    commercepayments.PostAuthorizationRequest postAuthRequest
+    commercepayments.PostAuthorizationRequest request
   ) {
-    commercepayments.PostAuthApiPaymentMethodRequest apiPaymentMethod = (commercepayments.PostAuthApiPaymentMethodRequest) postAuthRequest.paymentMethod;
+    commercepayments.PostAuthApiPaymentMethodRequest apiPaymentMethod = (commercepayments.PostAuthApiPaymentMethodRequest) request.paymentMethod;
     commercepayments.AlternativePaymentMethodRequest altPaymentMethod = (commercepayments.AlternativePaymentMethodRequest) apiPaymentMethod.alternativePaymentMethod;
     String tokenOrCardSeq = (String) altPaymentMethod.gatewayToken;
-    String currencyIsoCode = postAuthRequest.currencyIsoCode;
-    Integer amount = Math.round(postAuthRequest.amount);
+    String currencyIsoCode = request.currencyIsoCode;
+    Integer amount = Math.round(request.amount);
     String memberId = UserInfo.getUserId();
-    saveMember(memberId);
+    GMOPaymentService service = new GMOPaymentService();
+    service.saveMember(memberId);
     //TODO Original id is used instead of order id. need to consider another way.
     String id = GMOUtils.generateId();
-    Map<String, Object> entryMap = entryTransaction(id, amount);
+    Map<String, Object> entryMap = service.entryTransaction(id, amount);
     Map<String, Object> execMap = new Map<String, Object>();
-    if(isCardSeq(tokenOrCardSeq)){
-      execMap = executeTransaction(
+    if (GMOUtils.isCardSeq(tokenOrCardSeq)) {
+      execMap = service.executeTransaction(
         id,
-        (String)null,
+        (String) null,
         (String) entryMap.get('AccessID'),
         (String) entryMap.get('AccessPass'),
         memberId,
         Integer.valueOf(tokenOrCardSeq)
       );
-    }else{
-      execMap = executeTransaction(
+    } else {
+      execMap = service.executeTransaction(
         id,
         tokenOrCardSeq,
         (String) entryMap.get('AccessID'),
         (String) entryMap.get('AccessPass'),
-        (String)null,
-        (Integer)null
+        (String) null,
+        (Integer) null
       );
     }
-    commercepayments.PostAuthorizationResponse postAuthResponse = new commercepayments.PostAuthorizationResponse();
-    postAuthResponse.setGatewayDate(system.now());
-    postAuthResponse.setGatewayAuthCode((String) execMap.get('TranID'));
-    postAuthResponse.setGatewayResultCode((String) execMap.get('Approve'));
-    postAuthResponse.setSalesforceResultCodeInfo(RC_SUCCESS);
-    postAuthResponse.setAmount(Double.valueOf(amount));
-    postAuthResponse.setGatewayMessage((String) execMap.get('CheckString'));
+    commercepayments.PostAuthorizationResponse response = new commercepayments.PostAuthorizationResponse();
+    response.setGatewayDate(system.now());
+    response.setGatewayAuthCode((String) execMap.get('TranID'));
+    response.setGatewayResultCode((String) execMap.get('Approve'));
+    response.setSalesforceResultCodeInfo(RC_SUCCESS);
+    response.setAmount(Double.valueOf(amount));
+    response.setGatewayMessage((String) execMap.get('CheckString'));
     Map<String, Object> detail = new Map<String, Object>();
     detail.put('accessId', (String) entryMap.get('AccessID'));
     detail.put('accessPass', (String) entryMap.get('AccessPass'));
     String detailString = JSON.Serialize(detail);
-    postAuthResponse.setGatewayReferenceDetails(detailString);
-    return postAuthResponse;
+    response.setGatewayReferenceDetails(detailString);
+    return response;
+  }
+
+  public commercepayments.GatewayResponse createCaptureResponse(
+    commercepayments.CaptureRequest request
+  ) {
+    sObject s = [
+      SELECT Id, GatewayRefDetails
+      FROM PaymentAuthorization
+      WHERE Id = :request.paymentAuthorizationId
+      LIMIT 1
+    ];
+    PaymentAuthorization paymentAuthorization = (PaymentAuthorization) s;
+    Map<String, Object> access = (Map<String, Object>) JSON.deserializeUntyped(
+      paymentAuthorization.GatewayRefDetails
+    );
+    String accessId = (String) access.get('accessId');
+    String accessPass = (String) access.get('accessPass');
+    GMOPaymentService service = new GMOPaymentService();
+    Map<String, Object> execMap = service.captureTransaction(
+      accessId,
+      accessPass,
+      Math.round(request.amount)
+    );
+    commercepayments.CaptureResponse response = new commercepayments.CaptureResponse();
+    response.setGatewayResultCode((String) execMap.get('Approve'));
+    response.setGatewayReferenceDetails(paymentAuthorization.GatewayRefDetails);
+    response.setAmount(request.amount);
+    response.setGatewayDate(system.now());
+    response.setSalesforceResultCodeInfo(RC_SUCCESS);
+    return response;
+  }
+
+  public commercepayments.GatewayResponse createRefundResponse(
+    commercepayments.ReferencedRefundRequest request
+  ) {
+    sObject s = [
+      SELECT Id, GatewayRefDetails
+      FROM Payment
+      WHERE Id = :request.paymentId
+      LIMIT 1
+    ];
+    Payment payment = (Payment) s;
+    Map<String, Object> access = (Map<String, Object>) JSON.deserializeUntyped(
+      payment.GatewayRefDetails
+    );
+    String accessId = (String) access.get('accessId');
+    String accessPass = (String) access.get('accessPass');
+    GMOPaymentService service = new GMOPaymentService();
+    Map<String, Object> execMap = service.cancelTransaction(
+      accessId,
+      accessPass,
+      Math.round(request.amount)
+    );
+    commercepayments.ReferencedRefundResponse response = new commercepayments.ReferencedRefundResponse();
+    response.setGatewayResultCode((String) execMap.get('Approve'));
+    response.setGatewayReferenceDetails(payment.GatewayRefDetails);
+    response.setAmount(request.amount);
+    response.setAmount(request.amount);
+    response.setGatewayDate(system.now());
+    response.setSalesforceResultCodeInfo(RC_SUCCESS);
+    return response;
+  }
+
+  public commercepayments.GatewayResponse createAuthReversalResponse(
+    commercepayments.AuthorizationReversalRequest request
+  ) {
+    sObject s = [
+      SELECT Id, GatewayRefDetails
+      FROM PaymentAuthorization
+      WHERE Id = :request.PaymentAuthorizationId
+      LIMIT 1
+    ];
+    PaymentAuthorization paymentAuthorization = (PaymentAuthorization) s;
+    Map<String, Object> access = (Map<String, Object>) JSON.deserializeUntyped(
+      paymentAuthorization.GatewayRefDetails
+    );
+    String accessId = (String) access.get('accessId');
+    String accessPass = (String) access.get('accessPass');
+    GMOPaymentService service = new GMOPaymentService();
+    Map<String, Object> execMap = service.cancelTransaction(
+      accessId,
+      accessPass,
+      Math.round(request.amount)
+    );
+    commercepayments.AuthorizationReversalResponse response = new commercepayments.AuthorizationReversalResponse();
+    response.setGatewayResultCode((String) execMap.get('Approve'));
+    response.setGatewayReferenceDetails(paymentAuthorization.GatewayRefDetails);
+    response.setGatewayDate(system.now());
+    response.setSalesforceResultCodeInfo(RC_SUCCESS);
+    return response;
+  }
+
+  public commercepayments.GatewayResponse createSaleResponse(
+    commercepayments.SaleRequest request
+  ) {
+    throw new GMOException('TODO: createSaleResponse');
   }
 
   /**
@@ -173,7 +217,6 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     commercepayments.ClientRequestContext context,
     Map<String, Object> paymentsData
   ) {
-    // https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_cardpaymentmethod.htm
     Map<String, Object> error = new Map<String, Object>();
     error.put('error', 'Not Implemented.');
     return new commercepayments.ClientResponse('', error);
