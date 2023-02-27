@@ -157,7 +157,6 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     response.setGatewayResultCode((String) execMap.get('Approve'));
     response.setGatewayReferenceDetails(payment.GatewayRefDetails);
     response.setAmount(request.amount);
-    response.setAmount(request.amount);
     response.setGatewayDate(system.now());
     response.setSalesforceResultCodeInfo(RC_SUCCESS);
     return response;
