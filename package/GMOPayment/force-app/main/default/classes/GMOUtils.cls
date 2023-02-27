@@ -49,10 +49,8 @@ public class GMOUtils {
   }
 
   public static String generateId() {
-    String seed = String.valueOf(Crypto.getRandomInteger());
-    if (seed.length() > 7) {
-      seed = seed.SubString(0, 7);
-    }
+    Double d = Math.random() * 10000000;
+    String seed = String.valueOf(d.intValue());
     return seed +
       '-' +
       String.valueOf(Datetime.now().formatGMT('yyyyMMddHHmmssSSS'));
