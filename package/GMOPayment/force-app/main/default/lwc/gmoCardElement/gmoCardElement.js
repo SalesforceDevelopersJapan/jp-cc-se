@@ -128,8 +128,6 @@ export default class GmoCardElement extends LightningElement {
                 this._throwGMOError(member)
             }
         }
-
-        E01390010
         const card = await saveCard({ token })
         if ("ErrInfo" in card) {
             this._throwGMOError(card)

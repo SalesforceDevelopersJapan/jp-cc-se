@@ -21,6 +21,7 @@ For scratch org:
     ![](images/link_integration.png)
 1. Set up Trusted Sites in Experience Builder for `https://stg.static.mul-pay.jp` and `https://pt01.mul-pay.jp`.
     ![](images/csp.png)
+1. Assign access to Apex `GMOPaymentController` to shopper profile. (Setup > Apex Classes > Security in `GMOPaymentController`)
 
 
 ## Out of scope for now(2022/02)
