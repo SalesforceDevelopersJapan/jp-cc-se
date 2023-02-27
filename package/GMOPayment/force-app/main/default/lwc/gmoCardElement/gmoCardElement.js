@@ -123,10 +123,8 @@ export default class GmoCardElement extends LightningElement {
 
     async _saveCard(token) {
         const member = await saveMember()
-        if ("ErrInfo" in member) {
-            if (!member['ErrInfo'].includes('E01390010')) {
-                this._throwGMOError(member)
-            }
+        if ("ErrInfo" in member && !member['ErrInfo'].includes('E01390010')) {
+            this._throwGMOError(member)
         }
         const card = await saveCard({ token })
         if ("ErrInfo" in card) {
