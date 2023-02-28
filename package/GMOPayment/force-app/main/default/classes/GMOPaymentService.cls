@@ -57,10 +57,11 @@ public with sharing class GMOPaymentService {
     return responseBody;
   }
 
-  public Map<String, Object> captureTransaction(
+  private Map<String, Object> alterTransaction(
     String accessID,
     String accessPass,
-    Integer amount
+    Integer amount,
+    String jobCd
   ) {
     // https://gmopg_docs:PF%cwa$GmCC@docs.mul-pay.jp/payment/credit/overview
     GMOShopAPICredentialClient client = GMOShopAPICredentialClient.getInstance();
@@ -68,7 +69,7 @@ public with sharing class GMOPaymentService {
       accessID,
       accessPass,
       amount,
-      'SALES'
+      jobCd
     );
     Map<String, Object> responseBody = GMOUtils.convertParamToMap(
       response.getBody()
@@ -81,26 +82,27 @@ public with sharing class GMOPaymentService {
     return responseBody;
   }
 
+  public Map<String, Object> captureOrChangeSalesTransaction(
+    String accessID,
+    String accessPass,
+    Integer amount
+  ) {
+    return alterTransaction(accessID, accessPass, amount, 'SALES');
+  }
+
   public Map<String, Object> cancelTransaction(
     String accessID,
     String accessPass,
     Integer amount
   ) {
-    GMOShopAPICredentialClient client = GMOShopAPICredentialClient.getInstance();
-    HttpResponse response = client.doAlterTran(
-      accessID,
-      accessPass,
-      amount,
-      'CANCEL'
-    );
-    Map<String, Object> responseBody = GMOUtils.convertParamToMap(
-      response.getBody()
-    );
-    if (responseBody.containsKey('ErrCode')) {
-      //TODO Need more error handling
-      String errorInfo = (String) responseBody.get('ErrInfo');
-      throw new GMOException('Cound not alter transaction: ' + errorInfo);
-    }
-    return responseBody;
+    return alterTransaction(accessID, accessPass, amount, 'CANCEL');
+  }
+
+  public Map<String, Object> changeAuthTransaction(
+    String accessID,
+    String accessPass,
+    Integer amount
+  ) {
+    return alterTransaction(accessID, accessPass, amount, 'AUTH');
   }
 }

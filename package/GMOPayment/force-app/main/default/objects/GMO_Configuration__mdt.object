@@ -3,7 +3,6 @@
     <description>GMO Client-side payments configuration</description>
     <label>GMO Client Configuration</label>
     <pluralLabel>GMO Client Configuration</pluralLabel>
-    <visibility>Protected</visibility>
     <fields>
         <fullName>jsUrl__c</fullName>
         <description>JS URL</description>

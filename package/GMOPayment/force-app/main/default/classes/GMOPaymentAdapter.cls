@@ -23,8 +23,6 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     commercepayments.RequestType requestType = gatewayContext.getPaymentRequestType();
     commercepayments.PaymentGatewayRequest request = gatewayContext.getPaymentRequest();
     commercepayments.GatewayResponse response;
-    System.debug('テスト');
-    System.debug(JSON.serializePretty(response));
     try {
       if (requestType == commercepayments.RequestType.PostAuth) {
         response = createPostAuthResponse(
@@ -45,6 +43,10 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
       ) {
         response = createAuthReversalResponse(
           (commercepayments.AuthorizationReversalRequest) request
+        );
+      } else if (requestType == commercepayments.RequestType.Authorize) {
+        response = createAuthResponse(
+          (commercepayments.AuthorizationRequest) request
         );
       }
       return response;
@@ -100,6 +102,7 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     Map<String, Object> detail = new Map<String, Object>();
     detail.put('accessId', (String) entryMap.get('AccessID'));
     detail.put('accessPass', (String) entryMap.get('AccessPass'));
+    detail.put('orderId', id);
     String detailString = JSON.Serialize(detail);
     response.setGatewayReferenceDetails(detailString);
     return response;
@@ -123,7 +126,7 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     Integer intAmount = Math.ceil(request.amount).intValue();
     Double doubleAmount = Double.valueOf(intAmount);
     GMOPaymentService service = new GMOPaymentService();
-    Map<String, Object> execMap = service.captureTransaction(
+    Map<String, Object> execMap = service.captureOrChangeSalesTransaction(
       accessId,
       accessPass,
       intAmount
@@ -160,6 +163,12 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
       accessPass,
       intAmount
     );
+    // It is possible to be just changing amount.
+    // Map<String, Object> execMap = service.captureOrChangeSalesTransaction(
+    //   accessId,
+    //   accessPass,
+    //   intAmount
+    // );
     commercepayments.ReferencedRefundResponse response = new commercepayments.ReferencedRefundResponse();
     response.setGatewayResultCode((String) execMap.get('Approve'));
     response.setGatewayReferenceDetails(payment.GatewayRefDetails);
@@ -191,6 +200,12 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
       accessPass,
       intAmount
     );
+    // It is possible to be just changing amount.
+    // Map<String, Object> execMap = service.changeAuthTransaction(
+    //   accessId,
+    //   accessPass,
+    //   intAmount
+    // );
     commercepayments.AuthorizationReversalResponse response = new commercepayments.AuthorizationReversalResponse();
     response.setGatewayResultCode((String) execMap.get('Approve'));
     response.setGatewayReferenceDetails(paymentAuthorization.GatewayRefDetails);
@@ -203,6 +218,12 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     commercepayments.SaleRequest request
   ) {
     throw new GMOException('TODO: createSaleResponse');
+  }
+
+  public commercepayments.GatewayResponse createAuthResponse(
+    commercepayments.AuthorizationRequest request
+  ) {
+    throw new GMOException('TODO: createAuthResponse');
   }
 
   /**

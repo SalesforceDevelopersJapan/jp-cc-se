@@ -7,15 +7,13 @@ You can choose a card from saved list.
 ![](images/list.png)
 
 ## Setting instruction
-
-For scratch org:
 1. Replace `{your shop id}`, `{your shop pass}`, `{your site id}`, `{your site pass}` in `force-app/main/default/customMetadata/GMO_Configuration.GMOClientConfiguration.md-meta.xml` with GMO credentials. 
 1. Replace `{your shop id}`, `{your shop pass}`, `{your site id}`, `{your site pass}` in `force-app/main/default/namedCredentials/GMOAdapterShop_NC.namedCredential-meta.xml` and `force-app/main/default/namedCredentials/GMOAdapterSite_NC.namedCredential-meta.xml` with GMO credentials. 
-1. Push source to your org.
+1. Push/Deploy source to your org.
 1. (You can also set up above through platform screen. Setup > Named Credentials. Setup > Custom Metadata Types)
-1. Create PaymentGateway record with command below. Replace `{your scratch org user}` with user alies or ID of an org you prefer to use.
+1. Create PaymentGateway record with command below. Replace `{your org user}` with user alies or ID of an org you prefer to use.
     ```
-    sh scripts/shell/payment.sh -u {your scratch org user} -a GMOPaymentAdapter -n GMOAdapterShop_NC
+    sh scripts/shell/payment.sh -u {your org user} -a GMOPaymentAdapter -n GMOAdapterShop_NC
     ```
 1. Select `GMOPaymentAdapter_Gateway` in Link Integration setting
     ![](images/link_integration.png)
