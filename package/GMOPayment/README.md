@@ -6,6 +6,9 @@ You can use new card and save it.
 You can choose a card from saved list.
 ![](images/list.png)
 
+## Structure
+![](images/GMOPayment.jpg)
+
 ## Setting instruction
 1. Push/Deploy sources to your org.
 1. Go to **Setup > Custom Metadata Types** and replace `{your shop id}`, `{your shop pass}`, `{your site id}`, `{your site pass}` in `GMOClientConfiguration` with GMO credentials. 
@@ -40,8 +43,7 @@ You can choose a card from saved list.
 `Ensure Refunds Async` -> `ReferencedRefund`  
 
 ## For prduction
-This package use urls(e.g. `https://stg.static.mul-pay.jp`) for GMO staging environment. Please change url and credentials accordingly to go production.
-
+This package use urls(e.g. `https://stg.static.mul-pay.jp`) for GMO staging environment. Please change url and credentials in metadata, named credentials and remote setting accordingly to go production.
 
 ## Out of scope (as of 2023/02)
 - Payment for 3DS
