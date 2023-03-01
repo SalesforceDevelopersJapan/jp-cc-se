@@ -42,8 +42,8 @@ You can choose a card from saved list.
 `Ensure Funds Async` -> `Capture`  
 `Ensure Refunds Async` -> `ReferencedRefund`  
 
-## For prduction
-This package use urls(e.g. `https://stg.static.mul-pay.jp`) for GMO staging environment. Please change url and credentials in metadata, named credentials and remote setting accordingly to go production.
+## For production
+This package use urlsfor GMO staging environment (e.g. `https://stg.static.mul-pay.jp`). Please change urls and credentials in metadata, named credentials and remote setting accordingly to go production.
 
 ## Out of scope (as of 2023/02)
 - Payment for 3DS
