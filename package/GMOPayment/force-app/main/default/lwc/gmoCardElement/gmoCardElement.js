@@ -15,6 +15,7 @@ import GMOPayment_TokenErrorCode132 from '@salesforce/label/c.GMOPayment_TokenEr
 import GMOPayment_TokenErrorUnknown from '@salesforce/label/c.GMOPayment_TokenErrorUnknown';
 import GMOPayment_ErrorPleaseSelect from '@salesforce/label/c.GMOPayment_ErrorPleaseSelect';
 import GMOPayment_ErrorInvalidCardForm from '@salesforce/label/c.GMOPayment_ErrorInvalidCardForm';
+import GMOPayment_ErrorInvalidSecurityCode from '@salesforce/label/c.GMOPayment_ErrorInvalidSecurityCode';
 import saveCard from '@salesforce/apex/GMOPaymentController.saveCard';
 import { paymentClientRequest } from 'commerce/checkoutApi';
 
@@ -50,13 +51,20 @@ export default class GmoCardElement extends LightningElement {
             this.errorMessage = ''
             let tokenOrCardSeq = ''
             let saveCardToken = '';
+            let securityCode = '';
 
             const section = this.template.querySelector('c-gmo-card-element-container').getSection()
             if (section !== 'new') {
-                tokenOrCardSeq = this.template.querySelector('c-gmo-card-element-card-list').getSelect()
-                if (!tokenOrCardSeq) {
+                const rowElement = this.template.querySelector('c-gmo-card-element-card-list').getSelectRow()
+                if (!rowElement) {
                     throw Error(GMOPayment_ErrorPleaseSelect)
                 }
+                const isValidSecurityCode = rowElement.isValidSecurityCode()
+                if (!isValidSecurityCode) {
+                    throw Error(GMOPayment_ErrorInvalidSecurityCode)
+                }
+                tokenOrCardSeq = rowElement.getCardSeq()
+                securityCode = rowElement.getSecurityCode()
             } else {
                 const isValidForm = this.template.querySelector('c-gmo-card-element-form').isValidForm();
                 if (!isValidForm) {
@@ -72,7 +80,7 @@ export default class GmoCardElement extends LightningElement {
                 }
             }
 
-            const result = await paymentClientRequest({ tokenOrCardSeq });
+            const result = await paymentClientRequest({ tokenOrCardSeq, securityCode });
 
             if (saveCardToken) {
                 try {

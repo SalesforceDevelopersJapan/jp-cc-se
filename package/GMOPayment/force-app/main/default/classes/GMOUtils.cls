@@ -62,6 +62,10 @@ public class GMOUtils {
     return tokenOrCardSeq.length() < 5 && tokenOrCardSeq.isNumeric();
   }
 
+  public static boolean isValidSecurityCode(String securityCode) {
+    return securityCode.length() < 5 && securityCode.isNumeric();
+  }
+
   public static Double convertProperAmount(Double amount) {
     return Math.ceil(amount);
   }

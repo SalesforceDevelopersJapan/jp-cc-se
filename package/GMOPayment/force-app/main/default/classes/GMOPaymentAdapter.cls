@@ -216,6 +216,14 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     commercepayments.ClientRequestContext context,
     Map<String, Object> paymentsData
   ) {
+    String securityCode = (String) paymentsData.get('securityCode');
+    if (
+      String.isNotBlank(securityCode) &&
+      !GMOUtils.isValidSecurityCode(securityCode)
+    ) {
+      throw new GMOException('Security code is invalid');
+    }
+
     Double amount = GMOUtils.convertProperAmount(
       context.getAmount().doubleValue()
     );
@@ -237,7 +245,10 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
         accessID,
         accessPass,
         memberId,
-        Integer.valueOf(tokenOrCardSeq)
+        Integer.valueOf(tokenOrCardSeq),
+        String.isNotBlank(securityCode)
+          ? Integer.valueOf(securityCode)
+          : (Integer) null
       );
     } else {
       execMap = service.executeTransaction(
@@ -246,6 +257,7 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
         accessID,
         accessPass,
         (String) null,
+        (Integer) null,
         (Integer) null
       );
     }

@@ -2,105 +2,94 @@ import { LightningElement, api } from 'lwc';
 import searchCard from '@salesforce/apex/GMOPaymentController.searchCard';
 import setDefaultCard from '@salesforce/apex/GMOPaymentController.setDefaultCard';
 import deleteCard from '@salesforce/apex/GMOPaymentController.deleteCard';
-import GMOPayment_CardListSetAsDefault from '@salesforce/label/c.GMOPayment_CardListSetAsDefault';
-import GMOPayment_CardListDelete from '@salesforce/label/c.GMOPayment_CardListDelete';
 import GMOPayment_CardListLoading from '@salesforce/label/c.GMOPayment_CardListLoading';
 
 export default class GmoCardElementCardList extends LightningElement {
 
     _cardList = []
-    _select = null
-    _disableButton = false
-    isRetrieving = false
+
+    selected
+    isProcessing = false
 
     label = {
-        GMOPayment_CardListSetAsDefault,
-        GMOPayment_CardListDelete,
         GMOPayment_CardListLoading
     }
 
     async connectedCallback() {
-        this._retrieveCardList()
+        try {
+            this.isProcessing = true
+            await this._retrieveCardList()
+        } catch (e) {
+            console.error(e)
+        } finally {
+            this.isProcessing = false
+        }
     }
 
     @api
-    getSelect() {
-        return this._select
+    getSelectRow() {
+        return this.template.querySelector('c-gmo-card-element-card-list-row.item-' + this.selected)
     }
 
-    handleSelect(e) {
-        this._select = e.target.value
+    handleSelect(event) {
+        this.selected = event.detail.select
     }
 
-    async handleDefault(e) {
-        e.preventDefault();
-        const formData = new FormData(e.submitter.form)
-        const cardSeq = formData.get("cardSeq");
-        const expire = formData.get("expire");
-        const holderName = formData.get("holderName");
+    async handleDefault(event) {
         try {
-            this._disableButton = true
-            await setDefaultCard({ cardSeq, expire, holderName })
+            this.isProcessing = true
+            await setDefaultCard(event.detail)
             await this._retrieveCardList()
         } catch (e) {
             console.error(e)
         } finally {
-            this._disableButton = false
+            this.isProcessing = false
         }
     }
 
-    async handleDelete(e) {
-        e.preventDefault();
-        const formData = new FormData(e.submitter.form)
-        const cardSeq = formData.get("cardSeq");
+    async handleDelete(event) {
         try {
-            this._disableButton = true
-            await deleteCard({ cardSeq })
+            this.isProcessing = true
+            await deleteCard(event.detail)
             await this._retrieveCardList()
         } catch (e) {
             console.error(e)
         } finally {
-            this._disableButton = false
+            this.isProcessing = false
         }
     }
 
-    get disableButton() {
-        return this._disableButton
-    }
 
     get list() {
-        const found = this._select ? this._cardList.find(c => c.CardSeq === this._select) : false
-        for (const card of this._cardList) {
-            if (found) {
-                card.checked = card.CardSeq === found.CardSeq
-            } else {
-                if (card.DefaultFlag === '1') {
-                    this._select = card.CardSeq
-                    card.checked = true
-                }
-            }
+        this._cardList = this._cardList.map(i => {
+            i.className = "item-" + i.CardSeq
+            return i
+        })
+        const selectedFound = this.selected ? this._cardList.find(c => c.CardSeq === this.selected) : false
+        if (selectedFound) {
+            this.selected = selectedFound.CardSeq
+            return this._cardList
         }
+        const defaultFound = this._cardList.find(c => c.DefaultFlag === '1')
+        if (defaultFound) {
+            this.selected = defaultFound.CardSeq
+            return this._cardList
+        }
+        this.selected = ""
         return this._cardList
     }
 
     async _retrieveCardList() {
-        try {
-            this.isRetrieving = true
-            const cards = await searchCard();
-            if ('ErrInfo' in cards === false) {
-                this._cardList = this._makeCardList(cards)
-                this._cardList = this._cardList.map(this._formatList)
-            } else if (cards['ErrInfo'].includes('E01240002') || cards['ErrInfo'].includes('E01390002')) {
-                this._cardList = []
-            }
+        const cards = await searchCard();
+        if ('ErrInfo' in cards === false) {
+            this._cardList = this._makeCardList(cards)
             this._cardList = this._cardList.map(this._formatList)
-            const e = new CustomEvent('retrieved', { detail: { isEmpty: this._cardList.length <= 0 } });
-            this.dispatchEvent(e);
-        } catch (e) {
-            console.error(e)
-        } finally {
-            this.isRetrieving = false
+        } else if (cards['ErrInfo'].includes('E01240002') || cards['ErrInfo'].includes('E01390002')) {
+            this._cardList = []
         }
+        this._cardList = this._cardList.map(this._formatList)
+        const e = new CustomEvent('retrieved', { detail: { isEmpty: this._cardList.length <= 0 } });
+        this.dispatchEvent(e);
     }
 
     _formatList(c) {

@@ -5,69 +5,22 @@
   >
     <tbody>
       <template for:each={list} for:item="item">
-        <tr key={item.CardSeq} class="slds-hint-parent">
-          <td class="slds-text-align_center" role="gridcell">
-            <span class="slds-radio">
-              <input
-                type="radio"
-                id={item.CardSeq}
-                value={item.CardSeq}
-                checked={item.checked}
-                aria-labelledby="radio-button-label-01 column-group-header"
-                onchange={handleSelect}
-              />
-              <label class="slds-radio__label" for={item.CardSeq}>
-                <span class="slds-radio_faux"></span>
-                <span
-                  class="slds-form-element__label slds-assistive-text"
-                ></span>
-              </label>
-            </span>
-          </td>
-          <td>
-            <div class="slds-truncate" title={item.CardNo}>{item.CardNo}</div>
-          </td>
-          <td>
-            <div class="slds-truncate" title={item.Expire}>{item.expire}</div>
-          </td>
-          <td>
-            <div class="slds-truncate" title={item.HolderName}>
-              {item.HolderName}
-            </div>
-          </td>
-
-          <td class="slds-text-align_right">
-            <form
-              style="display: inline-block"
-              onsubmit={handleDefault}
-              if:false={item.default}
-            >
-              <input type="hidden" value={item.CardSeq} name="cardSeq" />
-              <input type="hidden" value={item.Expire} name="expire" />
-              <input type="hidden" value={item.HolderName} name="holderName" />
-              <lightning-button
-                type="submit"
-                label={label.GMOPayment_CardListSetAsDefault}
-                class="slds-m-left_x-small"
-                disabled={disableButton}
-              ></lightning-button>
-            </form>
-            <form style="display: inline-block" onsubmit={handleDelete}>
-              <input type="hidden" value={item.CardSeq} name="cardSeq" />
-              <lightning-button
-                type="submit"
-                label={label.GMOPayment_CardListDelete}
-                class="slds-m-left_x-small"
-                disabled={disableButton}
-              ></lightning-button>
-            </form>
-          </td>
-        </tr>
+        <c-gmo-card-element-card-list-row
+          style="display: contents; vertical-align: middle"
+          class={item.className}
+          disable-button={isProcessing}
+          key={item.CardSeq}
+          item={item}
+          onsetdefault={handleDefault}
+          ondelete={handleDelete}
+          onselect={handleSelect}
+          selected={selected}
+        ></c-gmo-card-element-card-list-row>
       </template>
     </tbody>
   </table>
 
-  <div if:true={isRetrieving} class="slds-spinner_container">
+  <div if:true={isProcessing} class="slds-spinner_container">
     <div role="status" class="slds-spinner slds-spinner_medium">
       <span class="slds-assistive-text"
         >{label.GMOPayment_CardListLoading}</span

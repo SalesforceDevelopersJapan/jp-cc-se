@@ -140,8 +140,6 @@
         <shortDescription>123</shortDescription>
         <value>123</value>
     </labels>
-
-
     <labels>
         <fullName>GMOPayment_FormSaveThisCard</fullName>
         <language>en_US</language>
@@ -178,6 +176,13 @@
         <value>Delete</value>
     </labels>
     <labels>
+        <fullName>GMOPayment_CardListSecurityCodePH</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>123</shortDescription>
+        <value>123</value>
+    </labels>
+    <labels>
         <fullName>GMOPayment_CardListLoading</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -198,5 +203,11 @@
         <shortDescription>Card info form is invalid.</shortDescription>
         <value>Card info form is invalid.</value>
     </labels>
-
+    <labels>
+        <fullName>GMOPayment_ErrorInvalidSecurityCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Security Code is invalid.</shortDescription>
+        <value>Security Code is invalid.</value>
+    </labels>
 </CustomLabels>

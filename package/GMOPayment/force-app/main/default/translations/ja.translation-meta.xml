@@ -4,7 +4,6 @@
         <name>GMOPayment_TokenErrorCode100</name>
         <label>カード番号必須チェックエラー</label>
     </customLabels>
-
     <customLabels>
         <name>GMOPayment_TokenErrorCode101</name>
         <label>カード番号フォーマットエラー(数字以外を含む)</label>
@@ -81,8 +80,6 @@
         <name>GMOPayment_FormSecurityCodePH</name>
         <label>123</label>
     </customLabels>
-
-
     <customLabels>
         <name>GMOPayment_FormSaveThisCard</name>
         <label>このカードを保存する</label>
@@ -104,6 +101,10 @@
         <label>削除</label>
     </customLabels>
     <customLabels>
+        <name>GMOPayment_CardListSecurityCodePH</name>
+        <label>123</label>
+    </customLabels>
+    <customLabels>
         <name>GMOPayment_CardListLoading</name>
         <label>読み込み中</label>
     </customLabels>
@@ -114,5 +115,9 @@
     <customLabels>
         <name>GMOPayment_ErrorInvalidCardForm</name>
         <label>入力されたカード情報に誤りがあります。</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_ErrorInvalidSecurityCode</name>
+        <label>入力されたセキュリティコードに誤りがあります。</label>
     </customLabels>
 </Translations>

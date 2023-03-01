@@ -27,7 +27,8 @@ public abstract class AbstractGMOSiteAPIClient {
     String orderID,
     String token,
     String memberID,
-    Integer cardSeq
+    Integer cardSeq,
+    Integer securityCode
   ) {
     // https://docs.mul-pay.jp/payment/credit/api#exectran
     Map<String, Object> params = new Map<String, Object>();
@@ -42,6 +43,9 @@ public abstract class AbstractGMOSiteAPIClient {
       params.put('MemberID', memberID);
       params.put('CardSeq', cardSeq);
       params.put('SeqMode', 1);
+      if (securityCode != null) {
+        params.put('SecurityCode', securityCode);
+      }
     }
     return post('/ExecTran.idPass', params);
   }

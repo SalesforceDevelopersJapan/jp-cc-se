@@ -16,7 +16,8 @@ public abstract class AbstractGMOPaymentService {
     String accessID,
     String accessPass,
     String memberID,
-    Integer cardSeq
+    Integer cardSeq,
+    Integer securityCode
   ) {
     HttpResponse response = this.siteClient.doExecTran(
       accessID,
@@ -24,7 +25,8 @@ public abstract class AbstractGMOPaymentService {
       orderID,
       token,
       memberID,
-      cardSeq
+      cardSeq,
+      securityCode
     );
     Map<String, Object> responseBody = GMOUtils.convertParamToMap(
       response.getBody()

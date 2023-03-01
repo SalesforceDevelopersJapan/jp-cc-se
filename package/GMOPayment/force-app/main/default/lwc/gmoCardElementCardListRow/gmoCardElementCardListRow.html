@@ -1,0 +1,72 @@
+<template>
+  <tr class="slds-hint-parent">
+    <td class="slds-text-align_center" role="gridcell">
+      <span class="slds-radio">
+        <input
+          type="radio"
+          id={item.CardSeq}
+          value={item.CardSeq}
+          checked={isSelected}
+          aria-labelledby="radio-button-label-01 column-group-header"
+          onchange={handleSelect}
+        />
+        <label class="slds-radio__label" for={item.CardSeq}>
+          <span class="slds-radio_faux"></span>
+          <span class="slds-form-element__label slds-assistive-text"></span>
+        </label>
+      </span>
+    </td>
+    <td>
+      <div class="slds-truncate" title={item.CardNo}>{item.CardNo}</div>
+    </td>
+    <td>
+      <div class="slds-truncate" title={item.Expire}>{item.expire}</div>
+    </td>
+    <td>
+      <div class="slds-truncate" title={item.HolderName}>{item.HolderName}</div>
+    </td>
+    <td class="slds-text-align_right">
+      <div class="slds-truncate" title="">
+        <lightning-input
+          if:true={isSelected}
+          type="text"
+          variant="label-hidden"
+          placeholder={label.GMOPayment_CardListSecurityCodePH}
+          maxlength="4"
+          label="dummy"
+          autocomplete="cc-csc"
+          required
+          onchange={handleSecurityCodeChange}
+          style="margin-bottom: 0; max-width: 140px; display: inline-block"
+          message-when-value-missing=""
+        ></lightning-input>
+      </div>
+    </td>
+    <td class="slds-text-align_right">
+      <form
+        style="display: inline-block"
+        onsubmit={handleDefault}
+        if:false={item.default}
+      >
+        <input type="hidden" value={item.CardSeq} name="cardSeq" />
+        <input type="hidden" value={item.Expire} name="expire" />
+        <input type="hidden" value={item.HolderName} name="holderName" />
+        <lightning-button
+          type="submit"
+          label={label.GMOPayment_CardListSetAsDefault}
+          class="slds-m-left_x-small"
+          disabled={disableButton}
+        ></lightning-button>
+      </form>
+      <form style="display: inline-block" onsubmit={handleDelete}>
+        <input type="hidden" value={item.CardSeq} name="cardSeq" />
+        <lightning-button
+          type="submit"
+          label={label.GMOPayment_CardListDelete}
+          class="slds-m-left_x-small"
+          disabled={disableButton}
+        ></lightning-button>
+      </form>
+    </td>
+  </tr>
+</template>

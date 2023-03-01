@@ -46,4 +46,3 @@ This package use urls(e.g. `https://stg.static.mul-pay.jp`) for GMO staging envi
 ## Out of scope (as of 2023/02)
 - Payment for 3DS
 - Showing card brand logo
-- Validating security code  for card selection
