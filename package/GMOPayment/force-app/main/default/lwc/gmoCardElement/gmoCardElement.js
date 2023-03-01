@@ -16,7 +16,7 @@ import GMOPayment_TokenErrorUnknown from '@salesforce/label/c.GMOPayment_TokenEr
 import GMOPayment_ErrorPleaseSelect from '@salesforce/label/c.GMOPayment_ErrorPleaseSelect';
 import GMOPayment_ErrorInvalidCardForm from '@salesforce/label/c.GMOPayment_ErrorInvalidCardForm';
 import saveCard from '@salesforce/apex/GMOPaymentController.saveCard';
-import saveMember from '@salesforce/apex/GMOPaymentController.saveMember';
+import { paymentClientRequest } from 'commerce/checkoutApi';
 
 export default class GmoCardElement extends LightningElement {
 
@@ -49,6 +49,8 @@ export default class GmoCardElement extends LightningElement {
         try {
             this.errorMessage = ''
             let tokenOrCardSeq = ''
+            let saveCardToken = '';
+
             const section = this.template.querySelector('c-gmo-card-element-container').getSection()
             if (section !== 'new') {
                 tokenOrCardSeq = this.template.querySelector('c-gmo-card-element-card-list').getSelect()
@@ -60,17 +62,31 @@ export default class GmoCardElement extends LightningElement {
                 if (!isValidForm) {
                     throw Error(GMOPayment_ErrorInvalidCardForm)
                 }
-                const token = await this._getToken(1);
                 if (this.template.querySelector('c-gmo-card-element-form').saveCard) {
-                    const card = await this._saveCard(token.tokenObject.token[0]);
-                    tokenOrCardSeq = card['CardSeq']
+                    const token = await this._getToken(2);
+                    tokenOrCardSeq = token.tokenObject.token[0]
+                    saveCardToken = token.tokenObject.token[1]
                 } else {
+                    const token = await this._getToken(1);
                     tokenOrCardSeq = token.tokenObject.token[0]
                 }
             }
-            return {
-                responseCode: tokenOrCardSeq
+
+            const result = await paymentClientRequest({ tokenOrCardSeq });
+
+            if (saveCardToken) {
+                try {
+                    await this._saveCard(saveCardToken);
+                } catch (e) {
+                    // Do nothing. Even if saving card is failed, ignore it for not interrupt auth process.
+                    console.error(e);
+                }
             }
+
+            return {
+                responseCode: result.paymentData['OrderID']
+            }
+
         } catch (e) {
             this.errorMessage = e.message
             return {
@@ -122,10 +138,6 @@ export default class GmoCardElement extends LightningElement {
     }
 
     async _saveCard(token) {
-        const member = await saveMember()
-        if ("ErrInfo" in member && !member['ErrInfo'].includes('E01390010')) {
-            this._throwGMOError(member)
-        }
         const card = await saveCard({ token })
         if ("ErrInfo" in card) {
             this._throwGMOError(card)

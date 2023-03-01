@@ -51,9 +51,7 @@ public class GMOUtils {
   public static String generateId() {
     Double d = Math.random() * 10000000;
     String seed = String.valueOf(d.intValue());
-    return seed +
-      '-' +
-      String.valueOf(Datetime.now().formatGMT('yyyyMMddHHmmssSSS'));
+    return seed + String.valueOf(Datetime.now().formatGMT('yyyyMMddHHmmssSSS'));
   }
 
   public static String makeYYMM(Integer year, Integer month) {
@@ -62,5 +60,9 @@ public class GMOUtils {
 
   public static boolean isCardSeq(String tokenOrCardSeq) {
     return tokenOrCardSeq.length() < 5 && tokenOrCardSeq.isNumeric();
+  }
+
+  public static Double convertProperAmount(Double amount) {
+    return Math.ceil(amount);
   }
 }

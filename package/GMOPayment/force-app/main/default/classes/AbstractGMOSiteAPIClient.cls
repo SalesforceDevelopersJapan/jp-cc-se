@@ -69,7 +69,12 @@ public abstract class AbstractGMOSiteAPIClient {
     return post('/SaveCard.idPass', params);
   }
 
-  public HttpResponse doSetDefault(String memberID, Integer cardSeq, String expire, String holderName) {
+  public HttpResponse doSetDefault(
+    String memberID,
+    Integer cardSeq,
+    String expire,
+    String holderName
+  ) {
     // https://docs.mul-pay.jp/payment/credit/apimember#savecard
     Map<String, Object> params = new Map<String, Object>();
     params.put('MemberID', memberID);

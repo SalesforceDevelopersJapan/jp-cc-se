@@ -1,5 +1,9 @@
 public abstract class AbstractGMOShopAPIClient {
-  public HttpResponse doEntryTran(String orderID, Integer amount, String jobCd) {
+  public HttpResponse doEntryTran(
+    String orderID,
+    Integer amount,
+    String jobCd
+  ) {
     // https://docs.mul-pay.jp/payment/credit/api#entrytran
     Map<String, Object> params = new Map<String, Object>();
     params.put('OrderID', orderID);
@@ -29,6 +33,13 @@ public abstract class AbstractGMOShopAPIClient {
     params.put('JobCd', jobCd);
     params.put('Amount', amount);
     return post('/AlterTran.idPass', params);
+  }
+
+  public HttpResponse doSearchTrade(String orderId) {
+    // https://docs.mul-pay.jp/payment/credit/api#searchtrade
+    Map<String, Object> params = new Map<String, Object>();
+    params.put('OrderID', orderId);
+    return post('/SearchTrade.idPass', params);
   }
 
   protected virtual String buildRequestBody(Map<String, Object> params) {

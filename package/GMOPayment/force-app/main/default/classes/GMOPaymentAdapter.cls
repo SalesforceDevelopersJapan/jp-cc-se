@@ -62,47 +62,20 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
   ) {
     commercepayments.PostAuthApiPaymentMethodRequest apiPaymentMethod = (commercepayments.PostAuthApiPaymentMethodRequest) request.paymentMethod;
     commercepayments.AlternativePaymentMethodRequest altPaymentMethod = (commercepayments.AlternativePaymentMethodRequest) apiPaymentMethod.alternativePaymentMethod;
-    String tokenOrCardSeq = (String) altPaymentMethod.gatewayToken;
-    String currencyIsoCode = request.currencyIsoCode;
-    Integer intAmount = Math.ceil(request.amount).intValue();
-    Double doubleAmount = Double.valueOf(intAmount);
-    String memberId = UserInfo.getUserId();
+    String orderId = (String) altPaymentMethod.gatewayToken;
+    Double amount = GMOUtils.convertProperAmount(request.amount);
     GMOPaymentService service = new GMOPaymentService();
-    service.saveMember(memberId);
-    //TODO Original id is used instead of order id. need to consider another way.
-    String id = GMOUtils.generateId();
-    Map<String, Object> entryMap = service.entryTransaction(id, intAmount);
-    Map<String, Object> execMap = new Map<String, Object>();
-    if (GMOUtils.isCardSeq(tokenOrCardSeq)) {
-      execMap = service.executeTransaction(
-        id,
-        (String) null,
-        (String) entryMap.get('AccessID'),
-        (String) entryMap.get('AccessPass'),
-        memberId,
-        Integer.valueOf(tokenOrCardSeq)
-      );
-    } else {
-      execMap = service.executeTransaction(
-        id,
-        tokenOrCardSeq,
-        (String) entryMap.get('AccessID'),
-        (String) entryMap.get('AccessPass'),
-        (String) null,
-        (Integer) null
-      );
-    }
+    Map<String, Object> searchMap = service.searchTrade(orderId);
     commercepayments.PostAuthorizationResponse response = new commercepayments.PostAuthorizationResponse();
     response.setGatewayDate(system.now());
-    response.setGatewayAuthCode((String) execMap.get('TranID'));
-    response.setGatewayResultCode((String) execMap.get('Approve'));
+    response.setGatewayAuthCode((String) searchMap.get('TranID'));
+    response.setGatewayResultCode((String) searchMap.get('Approve'));
     response.setSalesforceResultCodeInfo(RC_SUCCESS);
-    response.setAmount(doubleAmount);
-    response.setGatewayMessage((String) execMap.get('CheckString'));
+    response.setAmount(amount);
     Map<String, Object> detail = new Map<String, Object>();
-    detail.put('accessId', (String) entryMap.get('AccessID'));
-    detail.put('accessPass', (String) entryMap.get('AccessPass'));
-    detail.put('orderId', id);
+    detail.put('accessId', searchMap.get('AccessID'));
+    detail.put('accessPass', searchMap.get('AccessPass'));
+    detail.put('orderId', searchMap.get('OrderID'));
     String detailString = JSON.Serialize(detail);
     response.setGatewayReferenceDetails(detailString);
     return response;
@@ -123,18 +96,17 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     );
     String accessId = (String) access.get('accessId');
     String accessPass = (String) access.get('accessPass');
-    Integer intAmount = Math.ceil(request.amount).intValue();
-    Double doubleAmount = Double.valueOf(intAmount);
+    Double amount = GMOUtils.convertProperAmount(request.amount);
     GMOPaymentService service = new GMOPaymentService();
     Map<String, Object> execMap = service.captureOrChangeSalesTransaction(
       accessId,
       accessPass,
-      intAmount
+      amount.intValue()
     );
     commercepayments.CaptureResponse response = new commercepayments.CaptureResponse();
     response.setGatewayResultCode((String) execMap.get('Approve'));
     response.setGatewayReferenceDetails(paymentAuthorization.GatewayRefDetails);
-    response.setAmount(doubleAmount);
+    response.setAmount(amount);
     response.setGatewayDate(system.now());
     response.setSalesforceResultCodeInfo(RC_SUCCESS);
     return response;
@@ -155,24 +127,23 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     );
     String accessId = (String) access.get('accessId');
     String accessPass = (String) access.get('accessPass');
-    Integer intAmount = Math.ceil(request.amount).intValue();
-    Double doubleAmount = Double.valueOf(intAmount);
+    Double amount = GMOUtils.convertProperAmount(request.amount);
     GMOPaymentService service = new GMOPaymentService();
     Map<String, Object> execMap = service.cancelTransaction(
       accessId,
       accessPass,
-      intAmount
+      amount.intValue()
     );
     // It is possible to be just changing amount.
     // Map<String, Object> execMap = service.captureOrChangeSalesTransaction(
     //   accessId,
     //   accessPass,
-    //   intAmount
+    //   amount.intValue()
     // );
     commercepayments.ReferencedRefundResponse response = new commercepayments.ReferencedRefundResponse();
     response.setGatewayResultCode((String) execMap.get('Approve'));
     response.setGatewayReferenceDetails(payment.GatewayRefDetails);
-    response.setAmount(doubleAmount);
+    response.setAmount(amount);
     response.setGatewayDate(system.now());
     response.setSalesforceResultCodeInfo(RC_SUCCESS);
     return response;
@@ -193,12 +164,12 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     );
     String accessId = (String) access.get('accessId');
     String accessPass = (String) access.get('accessPass');
-    Integer intAmount = Math.ceil(request.amount).intValue();
+    Double amount = GMOUtils.convertProperAmount(request.amount);
     GMOPaymentService service = new GMOPaymentService();
     Map<String, Object> execMap = service.cancelTransaction(
       accessId,
       accessPass,
-      intAmount
+      amount.intValue()
     );
     // It is possible to be just changing amount.
     // Map<String, Object> execMap = service.changeAuthTransaction(
@@ -245,8 +216,39 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     commercepayments.ClientRequestContext context,
     Map<String, Object> paymentsData
   ) {
-    Map<String, Object> error = new Map<String, Object>();
-    error.put('error', 'Not Implemented.');
-    return new commercepayments.ClientResponse('', error);
+    Double amount = GMOUtils.convertProperAmount(
+      context.getAmount().doubleValue()
+    );
+    String orderId = GMOUtils.generateId();
+    GMOPaymentNCService service = new GMOPaymentNCService();
+    Map<String, Object> entryMap = service.entryTransaction(
+      orderId,
+      amount.intValue()
+    );
+    String accessID = (String) entryMap.get('AccessID');
+    String accessPass = (String) entryMap.get('AccessPass');
+    String tokenOrCardSeq = (String) paymentsData.get('tokenOrCardSeq');
+    Map<String, Object> execMap = new Map<String, Object>();
+    if (GMOUtils.isCardSeq(tokenOrCardSeq)) {
+      String memberId = UserInfo.getUserId();
+      execMap = service.executeTransaction(
+        orderId,
+        (String) null,
+        accessID,
+        accessPass,
+        memberId,
+        Integer.valueOf(tokenOrCardSeq)
+      );
+    } else {
+      execMap = service.executeTransaction(
+        orderId,
+        tokenOrCardSeq,
+        accessID,
+        accessPass,
+        (String) null,
+        (Integer) null
+      );
+    }
+    return new commercepayments.ClientResponse(orderId, execMap);
   }
 }

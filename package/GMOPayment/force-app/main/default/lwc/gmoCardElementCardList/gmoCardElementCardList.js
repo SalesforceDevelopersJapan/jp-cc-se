@@ -74,7 +74,7 @@ export default class GmoCardElementCardList extends LightningElement {
             if (found) {
                 card.checked = card.CardSeq === found.CardSeq
             } else {
-                if(card.DefaultFlag === '1'){
+                if (card.DefaultFlag === '1') {
                     this._select = card.CardSeq
                     card.checked = true
                 }
