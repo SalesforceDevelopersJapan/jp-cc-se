@@ -1,0 +1,11 @@
+type,location,onHand,sku,effectiveDate,futures.expectedDate,futures.quantity,safetyStockCount
+NORMAL,inventory_m_oci_lg,6,P0150M,2022-02-03,2022-02-03,1,5
+FUTURE,inventory_m_oci_lg,,P0150M,,2022-02-03T19:00:00.000Z,30,
+NORMAL,inventory_m_oci_lg,5,P0150M,2022-12-03,2022-02-03T19:00:00.000Z,22,6
+FUTURE,inventory_m_oci_lg,,P0150M,,2022-12-03,13,
+NORMAL,inventory_m_oci_lg2,10,P0150M,2023-05-03T19:00:00.000Z,2022-02-03T19:00:00.000Z,30,86
+FUTURE,inventory_m_oci_lg2,,P0150M,,2024-02-12,45,
+NORMAL,inventory_m_oci_lg,11,P0150M,2022-02-03T19:00:00.000Z,2022-10-12,46,36
+NORMAL,inventory_m_oci_lg2,10,P0150M6,2022-10-12,2022-02-03T19:00:00.000Z,13,3
+NORMAL,inventory_m_oci_lg5,12,P0150M,2024-02-12,2022-02-03T19:00:00.000Z,22,7
+NORMAL,inventory_m_oci_lg7,23,P0150M,2022-02-03T19:00:00.000Z,2024-02-12,1,35
