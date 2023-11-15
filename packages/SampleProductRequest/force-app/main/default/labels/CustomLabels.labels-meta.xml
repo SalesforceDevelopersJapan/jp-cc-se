@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>SampleProductRequest_FormCompanyName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company Name</shortDescription>
+        <value>Company Name</value>
+    </labels>
+    <labels>
+        <fullName>SampleProductRequest_FormLastName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>SampleProductRequest_FormFirstName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First Name</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>SampleProductRequest_FormEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>SampleProductRequest_FormPhone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>SampleProductRequest_FormNote</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Note</shortDescription>
+        <value>Note</value>
+    </labels>
+    <labels>
+        <fullName>SampleProductRequest_CompleteLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sample Product Request Complete.</shortDescription>
+        <value>Sample Product Request Complete.</value>
+    </labels>
+    <labels>
+        <fullName>SampleProductRequest_CompleteDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sample product request was completed. We will contact you soon.</shortDescription>
+        <value>Sample product request was completed. We will contact you soon.</value>
+    </labels>
+</CustomLabels>

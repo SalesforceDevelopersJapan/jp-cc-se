@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>OrderOps_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Ops</shortDescription>
+        <value>Order Ops</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Webstore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Webstore</shortDescription>
+        <value>Webstore</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Select_Webstore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Select Webstore</shortDescription>
+        <value>Please Select Webstore</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Cart</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cart</shortDescription>
+        <value>Cart</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Select_Cart</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Select Cart</shortDescription>
+        <value>Please Select Cart</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Keyword_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Keyword Search</shortDescription>
+        <value>Keyword Search</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Enter_Keyword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter keyword (e.g. product name, product code)</shortDescription>
+        <value>Enter keyword (e.g. product name, product code)</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Product_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Code</shortDescription>
+        <value>Code</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Product_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_List_Price</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>List Price</shortDescription>
+        <value>List Price</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Unit_Price</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unit Price</shortDescription>
+        <value>Unit Price</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Add_To_Cart</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add To Cart</shortDescription>
+        <value>Add To Cart</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Result_Item_Count</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>{0} - {1} of {2} items.</shortDescription>
+        <value>{0} - {1} of {2} items.</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Result_Total_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total {0} pages.</shortDescription>
+        <value>Total {0} pages.</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Previous</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Prev</shortDescription>
+        <value>Prev</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_No_Search_Result_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Search Result Found</shortDescription>
+        <value>No Search Result Found</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_No_Search_Result_Found_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No search result found. Please search other keyword.</shortDescription>
+        <value>No search result found. Please search other keyword.</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Not_Searched_Yet</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Search Products</shortDescription>
+        <value>Please Search Products</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Not_Searched_Yet_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please search products with keyword(e.g. Product Code, Product Name).</shortDescription>
+        <value>Please search products with keyword(e.g. Product Code, Product Name).</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Loading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading</shortDescription>
+        <value>Loading</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Retrieving_Data_Faild</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Retrieving initial data was faild.</shortDescription>
+        <value>Retrieving initial data was faild.</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Adding_Item_Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adding item to cart was success.</shortDescription>
+        <value>Adding item to cart was success.</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Adding_Item_Success_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adding {0} "{1}" to "{2}" in "{3}" was success.</shortDescription>
+        <value>Adding {0} "{1}" to "{2}" in "{3}" was success.</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_No_Store_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No webstore found.</shortDescription>
+        <value>No webstore found.</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Adding_Item_Failed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adding item to cart was failed.</shortDescription>
+        <value>Adding item to cart was failed.</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Searching_Items_Failed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Searching items was failed.</shortDescription>
+        <value>Searching items was failed.</value>
+    </labels>
+    <labels>
+        <fullName>OrderOps_Primary_Cart</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>{0} (Primary)</shortDescription>
+        <value>{0} (Primary)</value>
+    </labels>
+</CustomLabels>

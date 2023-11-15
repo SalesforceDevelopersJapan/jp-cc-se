@@ -1,0 +1,6 @@
+type,location,onHand,sku,effectiveDate,safetyStockCount,futures.expectedDate,futures.quantity
+FUTURE,inventory_m_osaka,,TestProduct01,,,2024-02-17T00:00:00.000Z,11
+BASE,inventory_m_osaka,222,TestProduct01,2024-02-12T00:00:00.000Z,222,,
+FUTURE,inventory_m_tokyo,,TestProduct01,,,2024-02-03T19:00:00.000Z,30
+FUTURE,inventory_m_tokyo,,TestProduct01,,,2024-12-03T00:00:00.000Z,13
+BASE,inventory_m_tokyo,333,TestProduct01,2024-02-03T00:00:00.000Z,333,,

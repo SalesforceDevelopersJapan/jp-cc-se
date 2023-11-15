@@ -1,0 +1,50 @@
+<template>
+  <section
+    if:true={isOpen}
+    role="dialog"
+    tabindex="-1"
+    aria-modal="true"
+    aria-labelledby="modal-heading-01"
+    class="slds-modal slds-fade-in-open"
+  >
+  
+  <lightning-spinner
+              alternative-text={label.OCI_INV_REG_Waiting}
+              if:true={isLoading}
+            ></lightning-spinner>
+    <div class="slds-modal__container">
+      <div class="slds-modal__header">
+        <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+          {title}
+        </h1>
+      </div>
+      <div
+        class="slds-modal__content slds-p-around_medium"
+        id="modal-content-id-1"
+      >
+        <slot></slot>
+      </div>
+      <div class="slds-modal__footer">
+        <button
+          if:false={disableCloseBtn}
+          class="slds-button slds-button_neutral"
+          onclick={onClose}
+        >
+          {closeBtnText}
+        </button>
+        <button
+          if:false={disableExecuteBtn}
+          class="slds-button slds-button_brand"
+          onclick={execute}
+        >
+          {executeBtnText}
+        </button>
+      </div>
+    </div>
+  </section>
+  <div
+    if:true={isOpen}
+    class="slds-backdrop slds-backdrop_open"
+    role="presentation"
+  ></div>
+</template>

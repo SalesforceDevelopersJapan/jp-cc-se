@@ -1,0 +1,17 @@
+<template>
+  <template if:true={_cartId}>
+    <c-generic-cart-field
+      field-api-name={fieldApiName}
+      label={label}
+      place-holder={placeHolder}
+      cart-id={_cartId}
+      is-required={isRequired}
+      disabled={disabled}
+      editable={edit}
+      yes={yes}
+      no={no}
+    >
+    </c-generic-cart-field>
+    <label if:true={_error} class="slds-text-color_error"> {_error} </label>
+  </template>
+</template>

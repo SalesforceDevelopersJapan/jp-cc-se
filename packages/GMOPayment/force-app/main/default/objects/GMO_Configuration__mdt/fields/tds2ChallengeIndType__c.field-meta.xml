@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>tds2ChallengeIndType__c</fullName>
+    <description>3DS2.0認証チャレンジ要求タイプ
+リスク判定の結果によらず3Dセキュア認証チャレンジを要求する場合に指定します。
+
+1：認証必須
+　低リスク時もチャレンジ認証を要求いたします。
+※認証チャレンジとなるかは、カード発行会社の判断となり、認証チャレンジに進むことを保証するものではございません。　
+2：認証必須ではない
+　低リスク時はチャレンジ認証を要求しません。</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>tds2ChallengeIndType</label>
+    <required>true</required>
+    <securityClassification>Internal</securityClassification>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1</fullName>
+                <default>true</default>
+                <label>1</label>
+            </value>
+            <value>
+                <fullName>2</fullName>
+                <default>false</default>
+                <label>2</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,62 @@
+<template>
+  <div
+    if:true={errorMessage}
+    class="slds-notify slds-notify_alert slds-alert_error"
+    role="alert"
+  >
+    <span class="slds-assistive-text">error</span>
+    <span
+      class="slds-icon_container slds-icon-utility-error slds-m-right_x-small"
+      title="Description of icon when needed"
+    >
+      <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+        <use
+          xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"
+        ></use>
+      </svg>
+    </span>
+    <h2>{errorMessage}</h2>
+    <div class="slds-notify__close">
+      <button
+        class="slds-button slds-button_icon slds-button_icon-small slds-button_icon-inverse"
+        title="Close"
+      >
+        <svg class="slds-button__icon" aria-hidden="true">
+          <use
+            xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"
+          ></use>
+        </svg>
+        <span class="slds-assistive-text">Close</span>
+      </button>
+    </div>
+  </div>
+  <template if:true={processingCallback}>
+    <section
+      role="dialog"
+      tabindex="-1"
+      aria-modal="true"
+      class="slds-modal slds-fade-in-open"
+    >
+      <div
+        style="
+          height: 100%;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <div class="spinner" style="height: 6rem; position: relative">
+          <div role="status" class="slds-spinner slds-spinner_large">
+            <span class="slds-assistive-text">{label.GMOPayment_3DSCheckProcessing}</span>
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+          </div>
+        </div>
+        <div class="title" style="color: white"><p>{label.GMOPayment_3DSCheckProcessing}</p></div>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+  </template>
+</template>

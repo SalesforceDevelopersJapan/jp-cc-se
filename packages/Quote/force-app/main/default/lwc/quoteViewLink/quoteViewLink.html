@@ -1,0 +1,8 @@
+<template>
+  <div if:true={isQuoteAccessible}>
+    <a href={url} onclick={handleClick}>{label.Quote_QuoteListViewLink}</a>
+  </div>
+  <div if:false={isQuoteAccessible}>
+    {label.Quote_QuoteNoPermission}
+  </div>
+</template>

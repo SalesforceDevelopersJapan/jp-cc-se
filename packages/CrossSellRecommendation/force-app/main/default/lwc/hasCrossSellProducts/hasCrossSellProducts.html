@@ -1,0 +1,8 @@
+<template>
+  <div if:true={showCrossSellContent}>
+    <slot name="hasCrossProductContent"></slot>
+  </div>
+  <div if:true={showNotCrossSellContent}>
+    <slot name="hasNotCrossProductContent"></slot>
+  </div>
+</template>

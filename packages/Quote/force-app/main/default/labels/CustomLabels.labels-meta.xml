@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Quote_RequestDialogExpiry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote Needed By</shortDescription>
+        <value>Quote Needed By</value>
+    </labels>
+    <labels>
+        <fullName>Quote_RequestDialogReason</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reason for Quote</shortDescription>
+        <value>Reason for Quote</value>
+    </labels>
+    <labels>
+        <fullName>Quote_RequestSuccess</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Success</shortDescription>
+        <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>Quote_RequestSuccessDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote has been requested.</shortDescription>
+        <value>Quote has been requested. Our representative will get in touch with you
+            soon!!</value>
+    </labels>
+    <labels>
+        <fullName>Quote_RequestSuccessQuoteNumber</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote Number:</shortDescription>
+        <value>Quote Number:</value>
+    </labels>
+    <labels>
+        <fullName>Quote_RequestCartNotFound</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cart is not found.</shortDescription>
+        <value>Cart is not found.</value>
+    </labels>
+    <labels>
+        <fullName>Quote_GeneratePDFButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generate PDF</shortDescription>
+        <value>Generate PDF</value>
+    </labels>
+    <labels>
+        <fullName>Quote_GeneratePDFFailed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generating PDF was faild.</shortDescription>
+        <value>Generating PDF was faild.</value>
+    </labels>
+    <labels>
+        <fullName>Quote_QuoteListViewLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote List</shortDescription>
+        <value>Quote List</value>
+    </labels>
+    <labels>
+        <fullName>Quote_QuoteNoPermission</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You do not have permission to access to Quote.</shortDescription>
+        <value>You do not have permission to access to Quote.</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote</shortDescription>
+        <value>Quote</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFHonorific</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dear {0}</shortDescription>
+        <value>Dear {0}</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFPostalCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Postal Code : </shortDescription>
+        <value>Postal Code : </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFAddress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Address : </shortDescription>
+        <value>Address : </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TEL : </shortDescription>
+        <value>TEL : </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFFax</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAX : </shortDescription>
+        <value>FAX : </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFGenaratedDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote Date : </shortDescription>
+        <value>Quote Date : </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote as follows: </shortDescription>
+        <value>Quote as follows: </value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTableColumnNo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No. </shortDescription>
+        <value>No.</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTableColumnProductName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ProductName</shortDescription>
+        <value>ProductName</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTableColumnQuantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quantity</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTableColumnListPrice</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>List Price</shortDescription>
+        <value>List Price</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTableColumnSalePrice</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sale Price</shortDescription>
+        <value>Sale Price</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTableColumnAmount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount</shortDescription>
+        <value>Amount</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTotalProductAmount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Product Amount</shortDescription>
+        <value>Total Product Amount</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTotalChargeAmount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Charge Amount</shortDescription>
+        <value>Total Charge Amount</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFTotalTaxAmount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Tax Amount</shortDescription>
+        <value>Total Tax Amount</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFGrandTotalAmount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Grand Total Amount</shortDescription>
+        <value>Grand Total Amount</value>
+    </labels>
+    <labels>
+        <fullName>Quote_VFPDFRemark</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remark</shortDescription>
+        <value>Remark</value>
+    </labels>
+    <labels>
+        <fullName>Quote_Flow_RequestNotificationTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote Request</shortDescription>
+        <value>Quote Request</value>
+    </labels>
+    <labels>
+        <fullName>Quote_Flow_RequestNotificationDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote request from {account} at {site}</shortDescription>
+        <value>Quote request from {account} at {site}</value>
+    </labels>
+    <labels>
+        <fullName>Quote_Flow_RequestOpportunityName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity from {site}</shortDescription>
+        <value>Opportunity from {site}</value>
+    </labels>
+    <labels>
+        <fullName>Quote_Flow_RequestQuoteName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quote request from {site}</shortDescription>
+        <value>Quote request from {site}</value>
+    </labels>
+    <labels>
+        <fullName>Quote_Flow_Complete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Complete</shortDescription>
+        <value>Complete</value>
+    </labels>
+    <labels>
+        <fullName>Quote_Flow_CompleteDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Items were added to cart successfully.</shortDescription>
+        <value>Items were added to cart successfully.</value>
+    </labels>
+    <labels>
+        <fullName>Quote_Flow_ErrorOccured</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error occurred.</shortDescription>
+        <value>Error occurred.</value>
+    </labels>
+    <labels>
+        <fullName>Quote_Flow_ErrorContent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error content</shortDescription>
+        <value>Error content</value>
+    </labels>
+</CustomLabels>

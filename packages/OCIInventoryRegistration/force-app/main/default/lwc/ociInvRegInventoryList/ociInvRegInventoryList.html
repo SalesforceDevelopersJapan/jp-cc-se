@@ -1,0 +1,16 @@
+<template>
+  <lightning-card title={title}>
+    <div class="slds-p-horizontal_small">
+      <lightning-datatable
+        key-field="id"
+        data={inventories}
+        row-number-offset="0"
+        suppress-bottom-bar
+        hide-checkbox-column
+        columns={inventoryColumns}
+        onrowaction={handleRowAction}
+      >
+      </lightning-datatable>
+    </div>
+  </lightning-card>
+</template>

@@ -1,0 +1,2 @@
+type,location,onHand,sku,effectiveDate,safetyStockCount,futures.expectedDate,futures.quantity
+BASE,inventory_m_tokyo,11,TestProduct01,2024-02-03T00:00:00.000Z,11,,

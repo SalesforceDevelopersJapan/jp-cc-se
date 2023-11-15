@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Generic Cart Field for Checkout</masterLabel>
+    <description>Generic Cart Field for Checkout</description>
+    <apiVersion>58.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="fieldApiName" type="String" label="Custom Field"
+                datasource="apex://GenericCartFieldPickupList" />
+            <property name="isRequired" type="Boolean" label="Is this field required?"
+                default="false" required="true" />
+            <property name="label" type="String" label="Label" />
+            <property name="placeHolder" type="String" label="Place Holder" />
+            <property name="yes" type="String" label="Text for boolean is true" default="Yes" />
+            <property name="no" type="String" label="Text for boolean is false" default="No" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,179 @@
+<template>
+  <div class="container">
+    <div class="loading" if:false={ready}>{label.OCI_INV_REG_Loading}</div>
+
+    <div if:true={ready}>
+      <div class="no-location-group" if:false={hasOption}>
+        {label.OCI_INV_REG_LocationGroupNotFound}
+      </div>
+
+      <form class="search" onsubmit={onSubmit} if:true={hasOption}>
+        <div class="input">
+          <lightning-layout class="x-large" horizontal-align="end">
+            <lightning-layout-item flexibility="grow">
+              <lightning-combobox
+                name={name}
+                label=""
+                value={locationGroupId}
+                placeholder={label.OCI_INV_REG_SelectLocationGroup}
+                options={options}
+                onchange={handleLocationGroup}
+                disabled={disabled}
+                variant="label-hidden"
+                required
+              ></lightning-combobox>
+            </lightning-layout-item>
+
+            <lightning-layout-item flexibility="grow">
+              <lightning-input
+                type="text"
+                label={label.OCI_INV_REG_SKU}
+                required
+                variant="label-hidden"
+                placeholder={label.OCI_INV_REG_SKU}
+                onchange={handleSku}
+              ></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item>
+              <lightning-button
+                variant="brand"
+                label={label.OCI_INV_REG_Search}
+                type="submit"
+                if:false={isSearching}
+              ></lightning-button>
+              <lightning-spinner
+                alternative-text={label.OCI_INV_REG_Loading}
+                if:true={isSearching}
+              ></lightning-spinner>
+            </lightning-layout-item>
+          </lightning-layout>
+        </div>
+      </form>
+    </div>
+
+    <div class="result-not-searched" if:false={hasSearched}>
+      <lightning-layout
+        vertical-align="stretch"
+        multiple-rows="true"
+        class="x-large"
+      >
+        <lightning-layout-item flexibility="grow">
+          <div class="not-found-card">
+            <article class="slds-card" style="padding: 2rem">
+              <div class="slds-card__header slds-grid">
+                <header
+                  class="slds-media slds-media_center slds-has-flexi-truncate"
+                >
+                  <div class="slds-media__body">
+                    <h2
+                      class="slds-card__header-title"
+                      style="
+                        font-weight: 500;
+                        font-size: 1.5rem;
+                        text-align: center;
+                        width: 100%;
+                      "
+                    >
+                      <span style="width: 100%"
+                        >{label.OCI_INV_REG_PleaseSearchTitle}</span
+                      >
+                    </h2>
+                  </div>
+                </header>
+              </div>
+              <div
+                class="slds-card__body slds-card__body_inner"
+                style="text-align: center"
+              >
+                {label.OCI_INV_REG_PleaseSearchDescription}
+              </div>
+            </article>
+          </div>
+        </lightning-layout-item>
+      </lightning-layout>
+    </div>
+
+    <div class="result-searched" if:true={hasSearched}>
+      <lightning-layout
+        vertical-align="stretch"
+        multiple-rows="true"
+        class="x-large"
+        if:true={hasLocationGroup}
+      >
+        <lightning-layout-item>
+          <h2 style="font-size: 1.2rem; margin: 1rem 0">
+            {label.OCI_INV_REG_LocationGroup}
+          </h2>
+          <template for:each={locationGroups} for:item="item">
+            <c-oci-inv-reg-inventory-list
+              key={item.key}
+              location={item}
+              is-location-group
+              onfuture={handleFuture}
+            ></c-oci-inv-reg-inventory-list>
+          </template>
+        </lightning-layout-item>
+
+        <lightning-layout-item>
+          <h2 style="font-size: 1.2rem; margin: 1rem 0">
+            {label.OCI_INV_REG_Locations}
+          </h2>
+          <template for:each={locations} for:item="item">
+            <c-oci-inv-reg-inventory-list
+              key={item.key}
+              location={item}
+              onedit={handleLocationEdit}
+              onfuture={handleFuture}
+            ></c-oci-inv-reg-inventory-list>
+          </template>
+        </lightning-layout-item>
+      </lightning-layout>
+
+      <lightning-layout
+        vertical-align="stretch"
+        multiple-rows="true"
+        class="x-large"
+        if:false={hasLocationGroup}
+      >
+        <lightning-layout-item flexibility="grow">
+          <div class="not-found-card">
+            <lightning-card>
+              <h1 style="font-weight: 500; font-size: 1.5rem" slot="title">
+                {label.OCI_INV_REG_InventoryNotFound}
+              </h1>
+              <p style="padding: 1rem">
+                {label.OCI_INV_REG_InventoryNotFoundDescrption}
+              </p>
+            </lightning-card>
+          </div>
+        </lightning-layout-item>
+      </lightning-layout>
+    </div>
+  </div>
+
+  <c-oci-inv-reg-modal
+    disable-execute-btn
+    title={label.OCI_INV_REG_Futures}
+    class="futures"
+  >
+    <span if:false={hasSelectedFutures}>{label.OCI_INV_REG_NoFuture}</span>
+    <lightning-datatable
+      if:true={hasSelectedFutures}
+      key-field="index"
+      data={selectedFutures}
+      row-number-offset="0"
+      suppress-bottom-bar
+      hide-checkbox-column
+      columns={futureColumns}
+    >
+    </lightning-datatable>
+  </c-oci-inv-reg-modal>
+
+  <c-oci-inv-reg-location-update-form-modal
+    inventory={selectedInventory}
+    location-identifier={selectedLocationId}
+    onexecute={handleExecute}
+  >
+  </c-oci-inv-reg-location-update-form-modal>
+</template>

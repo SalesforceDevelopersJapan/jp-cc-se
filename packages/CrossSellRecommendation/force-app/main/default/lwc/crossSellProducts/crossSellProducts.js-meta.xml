@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Cross Sell Products</masterLabel>
+    <description>Cross Sell Products in PDP</description>
+    <apiVersion>57.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="effectiveAccountId" type="String" label="Effective Account Id"
+                default="{!CurrentUser.effectiveAccountId}" />
+            <property name="productId" type="String" label="Product Id"
+                default="{!recordId}" required="true" />
+
+            <!-- Text -->
+            <property name="tAddToCart" type="String" label="Text for Add to Cart"
+                default="Add To Cart" required="true" />
+            <property name="tAddAllToCart" type="String" label="Text for Add All to Cart"
+                default="Add All To Cart" required="true" />
+            <property name="tCode" type="String" label="Text for Code"
+                default="Code" required="true" />
+            <property name="tName" type="String" label="Text for Name"
+                default="Name" required="true" />
+            <property name="tQuantity" type="String" label="Text for Quantity"
+                default="Quantity" required="true" />
+            <property name="tPrice" type="String" label="Text for Price"
+                default="Price" required="true" />
+            <property name="tOtherCategory" type="String" label="Text for Other Category"
+                default="Other" required="true" />
+            <property name="tAddToCartSuccessTitle" type="String"
+                label="Text for success title for Add to Cart"
+                default="Added item to cart" required="true" />
+            <property name="tAddToCartSuccessDescription" type="String"
+                label="Text for success description for Add to Cart"
+                default="Item was added to cart successfully" required="true" />
+            <property name="tAddToCartErrorTitle" type="String"
+                label="Text for error title for Add to Cart"
+                default="Failed to add to cart" required="true" />
+            <property name="tAddAllToCartSuccessTitle" type="String"
+                label="Text for success title for Add All to Cart"
+                default="Added all items to cart" required="true" />
+            <property name="tAddAllToCartSuccessDescription" type="String"
+                label="Text for success description for Add All to Cart"
+                default="All items was added to cart successfully" required="true" />
+            <property name="tAddAllToCartErrorTitle" type="String"
+                label="Text for error title for Add All to Cart"
+                default="Failed to add all to cart" required="true" />
+            <property name="tAddAllToCartValidationErrorTitle" type="String"
+                label="Text for validation error title for Add All to Cart"
+                default="Validation Error" required="true" />
+            <property name="tAddAllToCartValidation1ErrorDescription" type="String"
+                label="Text for error 'Please select at least one item from each category' title for Add All to Cart"
+                default="Please select at least one item from each category" required="true" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

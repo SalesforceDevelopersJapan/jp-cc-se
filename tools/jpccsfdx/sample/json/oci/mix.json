@@ -1,0 +1,4 @@
+{"location":"inventory_m_osaka","mode":"UPDATE"}
+{"recordId":"92272579-13c6-4917-ad6f-63362f5d951c","sku":"TestProduct01","onHand":12,"effectiveDate":"2024-02-12T00:00:00.000Z","safetyStockCount":7,"futures":[{"expectedDate":"2024-02-17T00:00:00.000Z","quantity":11}]}
+{"location":"inventory_m_tokyo","mode":"UPDATE"}
+{"recordId":"37b99582-af85-44cd-996a-6c3568ffa0e7","sku":"TestProduct01","onHand":120,"effectiveDate":"2024-02-03T00:00:00.000Z","safetyStockCount":52,"futures":[{"expectedDate":"2024-02-03T19:00:00.000Z","quantity":30},{"expectedDate":"2024-12-03T00:00:00.000Z","quantity":13}]}

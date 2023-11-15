@@ -1,0 +1,19 @@
+<template>
+  <template if:true={_cartId}>
+    <c-generic-cart-field
+      field-api-name={fieldApiName}
+      label={label}
+      place-holder={placeHolder}
+      cart-id={_cartId}
+      is-required={isRequired}
+      editable="true"
+    >
+    </c-generic-cart-field>
+    <lightning-button
+      style="float: right"
+      variant="brand"
+      label={buttonLabel}
+      onclick={update}
+    ></lightning-button>
+  </template>
+</template>

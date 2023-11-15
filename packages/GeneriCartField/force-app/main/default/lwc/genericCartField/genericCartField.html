@@ -1,0 +1,166 @@
+<template>
+  <template if:true={editable}>
+    <template if:true={typeCheck.isPicklist}>
+      <lightning-combobox
+        label={label}
+        value={_value}
+        placeholder={placeHolder}
+        options={options}
+        onchange={handleChange}
+        variant={variant}
+        required={required}
+        disabled={disabled}
+      ></lightning-combobox>
+    </template>
+
+    <template if:true={typeCheck.isString}>
+      <lightning-input
+        type="text"
+        label={label}
+        placeholder={placeHolder}
+        onchange={handleChange}
+        variant={variant}
+        required={required}
+        maxlength={length}
+        value={_value}
+        disabled={disabled}
+      ></lightning-input>
+    </template>
+
+    <template if:true={typeCheck.isNumber}>
+      <lightning-input
+        type="number"
+        label={label}
+        placeholder={placeHolder}
+        max={max}
+        onchange={handleChange}
+        variant={variant}
+        formatter={formatter}
+        required={required}
+        step={step}
+        value={_value}
+        disabled={disabled}
+      ></lightning-input>
+    </template>
+
+    <template if:true={typeCheck.isDate}>
+      <lightning-input
+        type="date"
+        label={label}
+        placeholder={placeHolder}
+        onchange={handleChange}
+        variant={variant}
+        required={required}
+        value={_value}
+        disabled={disabled}
+      ></lightning-input>
+    </template>
+
+    <template if:true={typeCheck.isDateTime}>
+      <lightning-input
+        type="datetime"
+        label={label}
+        placeholder={placeHolder}
+        onchange={handleChange}
+        variant={variant}
+        value={_value}
+        required={required}
+        disabled={disabled}
+      ></lightning-input>
+    </template>
+
+    <template if:true={typeCheck.isBoolean}>
+      <lightning-input
+        type="checkbox"
+        label={label}
+        placeholder={placeHolder}
+        onchange={handleCheckboxChange}
+        variant={variant}
+        checked={_value}
+        required={required}
+        disabled={disabled}
+      ></lightning-input>
+    </template>
+
+    <template if:true={typeCheck.isPhone}>
+      <lightning-input
+        type="tel"
+        label={label}
+        onchange={handleChange}
+        variant={variant}
+        placeholder={placeHolder}
+        required={required}
+        value={_value}
+        disabled={disabled}
+      ></lightning-input>
+    </template>
+
+    <template if:true={typeCheck.isUrl}>
+      <lightning-input
+        type="url"
+        label={label}
+        onchange={handleChange}
+        variant={variant}
+        placeholder={placeHolder}
+        required={required}
+        value={_value}
+        disabled={disabled}
+      ></lightning-input>
+    </template>
+
+    <template if:true={typeCheck.isEmail}>
+      <lightning-input
+        type="email"
+        label={label}
+        onchange={handleChange}
+        variant={variant}
+        placeholder={placeHolder}
+        required={required}
+        value={_value}
+        disabled={disabled}
+      ></lightning-input>
+    </template>
+
+    <template if:true={typeCheck.isEncryptedText}>
+      <lightning-input
+        type="password"
+        label={label}
+        onchange={handleChange}
+        variant={variant}
+        placeholder={placeHolder}
+        required={required}
+        value={_value}
+        disabled={disabled}
+      ></lightning-input>
+    </template>
+
+    <template if:true={typeCheck.isMultiPicklist}>
+      <lightning-checkbox-group
+        label={label}
+        options={options}
+        onchange={handleCheckboxGroupChange}
+        variant={variant}
+        value={_multiValue}
+        placeholder={placeHolder}
+        required={required}
+        disabled={disabled}
+      ></lightning-checkbox-group>
+    </template>
+
+    <template if:true={typeCheck.isTextArea}>
+      <lightning-textarea
+        label={label}
+        onchange={handleChange}
+        variant={variant}
+        placeholder={placeHolder}
+        required={required}
+        value={_value}
+        disabled={disabled}
+      ></lightning-textarea>
+    </template>
+  </template>
+  <template if:false={editable}>
+    <template if:true={label}><label>{label} : </label></template>
+    <span>{valueLabel}</span>
+  </template>
+</template>

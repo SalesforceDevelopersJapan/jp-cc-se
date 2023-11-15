@@ -1,0 +1,10 @@
+<template>
+    <template if:true={productId}>
+          <lightning-flow
+            flow-api-name="Request_Sample_Product"
+            flow-input-variables={inputVariables}
+            onstatuschange={handleStatusChange}
+          >
+          </lightning-flow>
+      </template>
+</template>

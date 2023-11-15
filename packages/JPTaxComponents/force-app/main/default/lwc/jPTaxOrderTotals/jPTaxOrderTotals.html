@@ -1,0 +1,133 @@
+<template>
+    <section
+      aria-label={label.JPTax_TotalsTotal}
+      class="slds-card totals-card"
+    >
+      <header class="slds-card__header slds-m-bottom_x-small">
+        <h3 class="slds-text-title_bold">{label.JPTax_TotalsTotal}</h3>
+      </header>
+      <template if:false={isDataLoaded}>
+        <div
+          class="slds-align_absolute-center slds-is-relative spinner-container"
+        >
+          <lightning-spinner
+            alternative-text="Loading"
+            variant="brand"
+          ></lightning-spinner>
+        </div>
+      </template>
+  
+      <template if:true={isDataLoaded}>
+        <div
+          style="width: 500px"
+          class="slds-grid slds-grid_vertical slds-m-bottom_x-small slds-p-horizontal_medium"
+        >
+          <div
+            class="field-item slds-grid slds-m-bottom_xx-small slds-grid_align-spread"
+          >
+            <lightning-formatted-rich-text
+              value={label.JPTax_TotalsProductSubtotal}
+              class="slds-truncate_container_75"
+            ></lightning-formatted-rich-text>
+  
+            <c-formatted-price
+              value={data.summary.productSubtotal}
+              currency-code="JPY"
+              display-currency-as="symbol"
+            ></c-formatted-price>
+          </div>
+  
+          <div
+            class="field-item slds-grid slds-m-bottom_xx-small slds-grid_align-spread"
+          >
+            <lightning-formatted-rich-text
+              value={label.JPTax_TotalsShippingSubtotal}
+              class="slds-truncate_container_75"
+            ></lightning-formatted-rich-text>
+  
+            <c-formatted-price
+              value={data.summary.shippingSubtotal}
+              currency-code="JPY"
+              display-currency-as="symbol"
+            ></c-formatted-price>
+          </div>
+  
+          <div
+            class="field-item slds-grid slds-m-bottom_xx-small slds-grid_align-spread"
+          >
+            <lightning-formatted-rich-text
+              value={label.JPTax_Totals8PercentTaxTotal}
+              class="slds-truncate_container_75"
+            ></lightning-formatted-rich-text>
+  
+            <c-formatted-price
+              value={eightPercentTax}
+              currency-code="JPY"
+              display-currency-as="symbol"
+            ></c-formatted-price>
+          </div>
+  
+          <div
+            class="field-item slds-grid slds-m-bottom_xx-small slds-grid_align-spread"
+          >
+            <lightning-formatted-rich-text
+              value={label.JPTax_Totals10PercentTaxTotal}
+              class="slds-truncate_container_75"
+            ></lightning-formatted-rich-text>
+  
+            <c-formatted-price
+              value={tenPercentTax}
+              currency-code="JPY"
+              display-currency-as="symbol"
+            ></c-formatted-price>
+          </div>
+  
+          <div
+            class="field-item slds-grid slds-m-bottom_xx-small slds-grid_align-spread"
+          >
+            <lightning-formatted-rich-text
+              value={label.JPTax_TotalsOtherTaxAdjustment}
+              class="slds-truncate_container_75"
+            ></lightning-formatted-rich-text>
+  
+            <c-formatted-price
+              value={data.summary.otherTaxAdjustmentAmount}
+              currency-code="JPY"
+              display-currency-as="symbol"
+            ></c-formatted-price>
+          </div>
+  
+          <div
+            class="field-item slds-grid slds-m-bottom_xx-small slds-grid_align-spread"
+          >
+            <lightning-formatted-rich-text
+              value={label.JPTax_TotalsTaxTotal}
+              class="slds-truncate_container_75"
+            ></lightning-formatted-rich-text>
+  
+            <c-formatted-price
+              value={data.summary.tax}
+              currency-code="JPY"
+              display-currency-as="symbol"
+            ></c-formatted-price>
+          </div>
+  
+          <div
+            class="field-item slds-grid slds-m-bottom_xx-small slds-grid_align-spread slds-border_top slds-p-top_xx-small slds-text-title_bold"
+          >
+            <lightning-formatted-rich-text
+              value={label.JPTax_TotalsTotal}
+              class="slds-truncate_container_75"
+            ></lightning-formatted-rich-text>
+  
+            <c-formatted-price
+              value={data.summary.total}
+              currency-code="JPY"
+              display-currency-as="symbol"
+            ></c-formatted-price>
+          </div>
+        </div>
+      </template>
+    </section>
+  </template>
+  

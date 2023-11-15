@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>JPTax_TotalsTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Totals</shortDescription>
+        <value>Totals</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_TotalsProductSubtotal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Subtotal</shortDescription>
+        <value>Product Subtotal</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_TotalsShippingSubtotal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Shipping Subtotal</shortDescription>
+        <value>Shipping Subtotal</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_TotalsTotalAdjustment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Adjustment</shortDescription>
+        <value>Total Adjustment</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_Totals8PercentTaxTotal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>8% Tax Total</shortDescription>
+        <value>8% Tax Total</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_Totals8PercentTaxBasis</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>8% Tax Basis</shortDescription>
+        <value>8% Tax Basis</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_Totals10PercentTaxTotal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>10% Tax Total</shortDescription>
+        <value>10% Tax Total</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_Totals10PercentTaxBasis</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>10% Tax Basis</shortDescription>
+        <value>10% Tax Basis</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_TotalsOtherTaxAdjustment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Other Tax Adjustment</shortDescription>
+        <value>Other Tax Adjustment</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_TotalsTaxTotal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Tax Total</shortDescription>
+        <value>Tax Total</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_TotalsTotal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total</shortDescription>
+        <value>Total</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invoice</shortDescription>
+        <value>Invoice</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceCreateDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invoice Create Date</shortDescription>
+        <value>Invoice Create Date</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceOrderDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Date</shortDescription>
+        <value>Order Date</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceTaxRegistrationNumber</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Tax Registration Number</shortDescription>
+        <value>Tax Registration Number</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceOrderNumber</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Number</shortDescription>
+        <value>Order Number</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoicePostalcode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Postal Code</shortDescription>
+        <value>Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceAddress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoicePhone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceFax</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fax</shortDescription>
+        <value>Fax</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceContact</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact</shortDescription>
+        <value>Contact</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please be advised that your payment is listed below.</shortDescription>
+        <value>Please be advised that your payment is listed below.</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceColumnProductCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Code</shortDescription>
+        <value>Code</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceColumnProductName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceColumnQuantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quantity</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceColumnUnitPrice</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unit Price</shortDescription>
+        <value>Unit Price</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceColumnAdjustment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adjustment</shortDescription>
+        <value>Adjustment</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceColumnTaxBasis</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Tax Basis</shortDescription>
+        <value>Tax Basis</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceRemark</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remark</shortDescription>
+        <value>Remark</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceReducedTaxDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>※ indicate tha product have reduced tax.</shortDescription>
+        <value>※ indicate tha product have reduced tax.</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_PDFDownloadButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Download Invoice PDF</shortDescription>
+        <value>Download Invoice PDF</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_InvoiceHonorificTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>{0}</shortDescription>
+        <value>{0}</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_CheckoutSummarySubtotal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Subtotal</shortDescription>
+        <value>Subtotal</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_CheckoutSummaryPromotion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Promotion</shortDescription>
+        <value>Promotion</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_CheckoutSummaryShipping</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Shipping</shortDescription>
+        <value>Shipping</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_CheckoutSummaryTaxByRate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>% Tax Total</shortDescription>
+        <value>% Tax Total</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_CheckoutSummaryTaxTotal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Tax Total</shortDescription>
+        <value>Tax Total</value>
+    </labels>
+    <labels>
+        <fullName>JPTax_CheckoutSummaryTotal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total</shortDescription>
+        <value>Total</value>
+    </labels>
+</CustomLabels>

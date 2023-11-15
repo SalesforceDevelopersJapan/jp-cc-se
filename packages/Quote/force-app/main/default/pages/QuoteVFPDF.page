@@ -1,0 +1,159 @@
+<!-- https://developer.salesforce.com/docs/atlas.ja-jp.pages.meta/pages/pages_compref.htm -->
+<apex:page language='{!language}' applyHtmlTag="false" showHeader="false" applyBodyTag="false" controller="QuoteVFPDFController" renderAs="pdf">
+    <head>
+        <style>
+          @page {
+            size: 8.27in 11.69in;
+          }
+          body {
+            font-family: Arial Unicode MS;
+            font-size: 10px;
+          }
+          table,
+          td,
+          th {
+            border-bottom: 1px solid black;
+          }
+          table {
+            border-collapse: collapse;
+            text-align: right;
+          }
+          .title {
+            text-align: center;
+          }
+          .remark,
+          .table-container,
+          .table-header,
+          .table-container,
+          .summary-table-container {
+            width: 100%;
+            margin: 20px 0;
+          }
+          .summary-table-container table{
+            margin: 0 0 0 auto;
+          }
+        </style>
+      </head>
+    
+      <body>
+        <div class="container">
+          <h1 class="title"><apex:outputText value="{!$Label.Quote_VFPDFTitle}" /></h1>
+    
+          <div class="header">
+            <div style="float: left">
+              <h2>
+                <apex:outputText value="{!$Label.Quote_VFPDFHonorific}">
+                  <apex:param value="{!account.Name}"/>
+               </apex:outputText> 
+              </h2>
+              <span><apex:outputText value="{!$Label.Quote_VFPDFPostalCode}" /></span><span><apex:outputText value="{!account.ShippingPostalCode}" /></span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFAddress}" /><apex:outputText value="{!account.ShippingState}" /><apex:outputText value="{!account.ShippingCity}" /><apex:outputText value="{!account.ShippingStreet}" /></span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFTel}" /></span><span><apex:outputText value="{!account.Phone}" /></span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFFax}" /></span><span><apex:outputText value="{!account.Fax}" /></span>
+            </div>
+            
+            <div style="text-align: right">
+              <span><apex:outputText value="{!$Label.Quote_VFPDFGenaratedDate}" /></span><big><span></span><span><apex:outputText value="{!today}" /></span></big><br />
+              <h3>〇〇株式会社</h3>
+              <span><apex:outputText value="{!$Label.Quote_VFPDFPostalCode}" />100-0000</span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFAddress}" />東京都千代田区9-9-9〇〇タワー9999</span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFTel}" /> 03-9999-9999</span><br />
+              <span><apex:outputText value="{!$Label.Quote_VFPDFFax}" /> 03-9999-9999</span><br />
+            </div>
+          </div>
+    
+          <div class="table-header">
+            <div>
+              <big><apex:outputText value="{!$Label.Quote_VFPDFDescription}" /></big>
+            </div>
+          </div>
+    
+          <div class="table-container">
+            <table style="width: 100%">
+              <thead>
+                <tr>
+                  <th style="width: 6em; text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFTableColumnNo}" /></th>
+                  <th style="text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFTableColumnProductName}" /></th>
+                  <th style="width: 4em"><apex:outputText value="{!$Label.Quote_VFPDFTableColumnQuantity}" /></th>
+                  <th><apex:outputText value="{!$Label.Quote_VFPDFTableColumnListPrice}" /></th>
+                  <th><apex:outputText value="{!$Label.Quote_VFPDFTableColumnSalePrice}" /></th>
+                  <th><apex:outputText value="{!$Label.Quote_VFPDFTableColumnAmount}" /></th>
+                </tr>
+              </thead>
+              <tbody>
+
+              <apex:repeat value="{!items}" var="item">
+                <tr>
+                  <td style="text-align: left;"><apex:outputText value="{!item.productDetails.sku}" /></td>
+                  <td style="text-align: left;"><apex:outputText value="{!item.name}" /></td>
+                  <td><apex:outputText value="{!item.quantity}" /></td>
+                  <td>
+                    <apex:outputText value="{!currencyFormat}">
+                        <apex:param value="{!VALUE(item.listPrice)}"></apex:param>
+                    </apex:outputText>
+                  </td>
+                  <td>
+                    <apex:outputText value="{!currencyFormat}">
+                        <apex:param value="{!VALUE(item.salesPrice)}"></apex:param>
+                    </apex:outputText>
+                  </td>
+                  <td>
+                    <apex:outputText value="{!currencyFormat}">
+                        <apex:param value="{!VALUE(item.totalPrice)}"></apex:param>
+                    </apex:outputText>
+                  </td>
+                </tr>
+              </apex:repeat>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="summary-table-container">
+            <table>
+                <tbody>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFTotalProductAmount}" /></th>
+                        <td>
+                            <apex:outputText value="{!currencyFormat}">
+                                <apex:param value="{!VALUE(summary.totalProductAmount)}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFTotalChargeAmount}" /></th>
+                        <td>
+                            <apex:outputText value="{!currencyFormat}">
+                                <apex:param value="{!VALUE(summary.totalChargeAmount)}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFTotalTaxAmount}" /></th>
+                        <td>
+                            <apex:outputText value="{!currencyFormat}">
+                                <apex:param value="{!VALUE(summary.totalTaxAmount)}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.Quote_VFPDFGrandTotalAmount}" /></th>
+                        <td>
+                            <big><span>
+                                <apex:outputText value="{!currencyFormat}">
+                                    <apex:param value="{!VALUE(summary.grandTotalAmount)}"></apex:param>
+                                </apex:outputText>
+                            </span></big>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+    
+          <div class="remark">
+            <h4><apex:outputText value="{!$Label.Quote_VFPDFRemark}" /></h4>
+            見積内容の変更については、担当営業にご連絡ください。
+          </div>
+        </div>
+      </body>
+</apex:page>

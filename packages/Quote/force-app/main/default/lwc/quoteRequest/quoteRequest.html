@@ -1,0 +1,20 @@
+<template>
+  <template if:false={isLoading}>
+    <template if:true={hasCartId}>
+      <lightning-flow
+        flow-api-name="Request_a_Quote"
+        flow-input-variables={inputVariables}
+        onstatuschange={handleStatusChange}
+      >
+      </lightning-flow>
+    </template>
+
+    <template if:false={hasCartId}>
+      <div class="slds-text-align_center">
+        <div class="card slds-align_absolute-center slds-text-align_center">
+          <h3>{labels.Quote_RequestCartNotFound}</h3>
+        </div>
+      </div>
+    </template>
+  </template>
+</template>

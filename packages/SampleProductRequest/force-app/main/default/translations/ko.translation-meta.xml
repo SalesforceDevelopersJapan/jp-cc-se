@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flowDefinitions>
+        <flows>
+            <label>상품 샘플 요청</label>
+            <screens>
+                <name>Request_Sample_Product</name>
+                <nextOrFinishButtonLabel>요청</nextOrFinishButtonLabel>
+            </screens>
+        </flows>
+        <fullName>Request_Sample_Product</fullName>
+    </flowDefinitions>
+    <customLabels>
+        <name>SampleProductRequest_FormCompanyName</name>
+        <label>회사 이름</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_FormLastName</name>
+        <label>성</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_FormFirstName</name>
+        <label>이름</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_FormEmail</name>
+        <label>이메일</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_FormPhone</name>
+        <label>전화</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_FormNote</name>
+        <label>참고</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_CompleteLabel</name>
+        <label>샘플 제품 요청 완료.</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_CompleteDescription</name>
+        <label>샘플 제품 요청이 완료되었습니다. 곧 연락드리겠습니다.</label>
+    </customLabels>
+</Translations>

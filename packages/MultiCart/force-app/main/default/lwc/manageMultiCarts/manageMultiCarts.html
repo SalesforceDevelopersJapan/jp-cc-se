@@ -1,0 +1,167 @@
+<template>
+  <template if:true={isGuestUser}>
+    <p>{label.MultiCarts_GuestMessage}</p>
+  </template>
+
+  <template if:false={isGuestUser}>
+    <lightning-card title={label.MultiCarts_Title} icon-name="standard:webcart">
+      <div class="slds-m-around_medium">
+        <lightning-input
+          type="text"
+          label={label.MultiCarts_CartName}
+          value={newCartName}
+          onchange={handleNewCartNameChange}
+          placeholder={label.MultiCarts_CartName}
+          required
+        ></lightning-input>
+        <lightning-button
+          label={label.MultiCarts_Create}
+          onclick={handleCreateCartEvent}
+          disabled={disableButton}
+        ></lightning-button>
+      </div>
+
+      <div class="slds-m-around_medium">
+        <template if:true={carts}>
+          <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+              <tr>
+                <th style="width: 40%; text-align: left">
+                  <div class="slds-truncate" title={label.MultiCarts_CartName}>
+                    {label.MultiCarts_CartName}
+                  </div>
+                </th>
+                <th style="width: 10%; text-align: right">
+                  <div
+                    class="slds-truncate"
+                    title={label.MultiCarts_PrimarySecondary}
+                  >
+                    {label.MultiCarts_PrimarySecondary}
+                  </div>
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <template for:each={carts} for:item="cart">
+                <tr key={cart.id} class="slds-hint-parent">
+                  <td style="text-align: left">{cart.Name}</td>
+                  <td style="text-align: right">
+                    <template if:false={cart.IsSecondary}>
+                      <span class="slds-badge slds-theme_success"
+                        >{label.MultiCarts_Primary}</span
+                      >
+                    </template>
+                    <template if:true={cart.IsSecondary}>
+                      <span class="slds-badge"
+                        >{label.MultiCarts_Secondary}</span
+                      >
+                    </template>
+                  </td>
+                  <td
+                    style="
+                      --dxp-s-button-font-size: 0.75rem;
+                      width: 100%;
+                      text-align: right;
+                    "
+                  >
+                    <template if:true={cart.IsSecondary}>
+                      <form
+                        style="display: inline-block"
+                        onsubmit={handleSetPrimaryCartEvent}
+                      >
+                        <input type="hidden" value={cart.Id} name="cartId" />
+                        <lightning-button
+                          type="submit"
+                          label={label.MultiCarts_SetPrimary}
+                          class="slds-m-left_x-small"
+                          disabled={disableButton}
+                        ></lightning-button>
+                      </form>
+                      <form
+                        style="display: inline-block"
+                        onsubmit={handleDeleteCartEvent}
+                      >
+                        <input type="hidden" value={cart.Id} name="cartId" />
+                        <lightning-button
+                          type="submit"
+                          label={label.MultiCarts_Delete}
+                          class="slds-m-left_x-small"
+                          disabled={disableButton}
+                        ></lightning-button>
+                      </form>
+                    </template>
+                    <form
+                      style="display: inline-block"
+                      onsubmit={handleEditCartEvent}
+                    >
+                      <input type="hidden" value={cart.Id} name="cartId" />
+                      <input type="hidden" value={cart.Name} name="cartName" />
+                      <lightning-button
+                        type="submit"
+                        label={label.MultiCarts_Edit}
+                        class="slds-m-left_x-small"
+                        disabled={disableButton}
+                      ></lightning-button>
+                    </form>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </template>
+      </div>
+      <p slot="footer">{label.MultiCarts_SampleMessage}</p>
+    </lightning-card>
+
+    <template if:true={isCartNameEditModalOpen}>
+      <section
+        role="dialog"
+        tabindex="-1"
+        aria-modal="true"
+        aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open"
+      >
+        <div class="slds-modal__container">
+          <div class="slds-modal__header">
+            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+              {label.MultiCarts_EditModalTitle}
+            </h1>
+          </div>
+          <div
+            class="slds-modal__content slds-p-around_medium"
+            id="modal-content-id-1"
+          >
+            <lightning-input
+              type="text"
+              label={label.MultiCarts_CartName}
+              class="slds-m-bottom_small"
+              variant="label-hidden"
+              onchange={handleEditCartNameChange}
+              value={editCartName}
+              required
+            ></lightning-input>
+          </div>
+          <div class="slds-modal__footer">
+            <button
+              class="slds-button slds-button_neutral"
+              aria-label={label.MultiCarts_Cancel}
+              onclick={closeEditCartModal}
+              disabled={disableButton}
+            >
+              {label.MultiCarts_Cancel}
+            </button>
+            <button
+              class="slds-button slds-button_brand"
+              disabled={disableButton}
+              onclick={saveEditCart}
+            >
+              {label.MultiCarts_Save}
+            </button>
+          </div>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+  </template>
+</template>

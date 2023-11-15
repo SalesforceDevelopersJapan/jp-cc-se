@@ -1,0 +1,11 @@
+.slds-card {
+  padding: 0.5rem;
+}
+
+.card-content-is-open .card-content {
+  display: block;
+}
+
+.card-content {
+  display: none;
+}

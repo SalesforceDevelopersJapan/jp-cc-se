@@ -1,0 +1,2 @@
+{"location":"inventory_m_tokyo","mode":"UPDATE"}
+{"recordId":"591c8155-8096-4da1-884b-c12faefad383","sku":"TestProduct01","futures":[{"expectedDate":"2024-02-03T19:00:00.000Z","quantity":30},{"expectedDate":"2024-12-03T00:00:00.000Z","quantity":13}]}

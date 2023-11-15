@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <name>JPTax_TotalsTitle</name>
+        <label>합계</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_TotalsProductSubtotal</name>
+        <label>제품 소계</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_TotalsShippingSubtotal</name>
+        <label>배송 소계</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_TotalsTotalAdjustment</name>
+        <label>총 조정</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_Totals8PercentTaxTotal</name>
+        <label>8% 세금 합계</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_Totals8PercentTaxBasis</name>
+        <label>8% 과세 기준</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_Totals10PercentTaxTotal</name>
+        <label>10% 세금 합계</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_Totals10PercentTaxBasis</name>
+        <label>10% 과세 기준</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_TotalsOtherTaxAdjustment</name>
+        <label>기타 세금 조정</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_TotalsTaxTotal</name>
+        <label>세금 합계</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_TotalsTotal</name>
+        <label>합계</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceTitle</name>
+        <label>송장</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceCreateDate</name>
+        <label>송장 생성 날짜</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceOrderDate</name>
+        <label>주문 날짜</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceTaxRegistrationNumber</name>
+        <label>세금 등록 번호</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceOrderNumber</name>
+        <label>주문 번호</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoicePostalcode</name>
+        <label>우편 번호</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceAddress</name>
+        <label>주소</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoicePhone</name>
+        <label>전화</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceFax</name>
+        <label>팩스</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceContact</name>
+        <label>연락처</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceDescription</name>
+        <label>결제 금액은 아래와 같습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceColumnProductCode</name>
+        <label>코드</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceColumnProductName</name>
+        <label>이름</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceColumnQuantity</name>
+        <label>수량</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceColumnUnitPrice</name>
+        <label>단가</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceColumnAdjustment</name>
+        <label>조정</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceColumnTaxBasis</name>
+        <label>과세 기준</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceRemark</name>
+        <label>발언</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceReducedTaxDescription</name>
+        <label>세금 감면이 적용된 제품임을 표시합니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_PDFDownloadButton</name>
+        <label>송장 PDF 다운로드</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_InvoiceHonorificTitle</name>
+        <label>{0}</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_CheckoutSummarySubtotal</name>
+        <label>소계</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_CheckoutSummaryPromotion</name>
+        <label>프로모션</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_CheckoutSummaryShipping</name>
+        <label>배송</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_CheckoutSummaryTaxByRate</name>
+        <label>세금 총액</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_CheckoutSummaryTaxTotal</name>
+        <label>세금 합계</label>
+    </customLabels>
+    <customLabels>
+        <name>JPTax_CheckoutSummaryTotal</name>
+        <label>합계</label>
+    </customLabels>
+</Translations>

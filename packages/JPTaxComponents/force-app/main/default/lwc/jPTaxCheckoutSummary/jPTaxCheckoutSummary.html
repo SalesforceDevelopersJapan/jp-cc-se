@@ -1,0 +1,98 @@
+<template lwc:render-mode="light">
+  <div if:true={cartTotals} class="slds-p-horizontal_medium">
+    <div
+      if:true={cartTotals.totalProductAmount}
+      class="item subtotal-price slds-p-bottom_small"
+      data-subtotal
+    >
+      {labels.JPTax_CheckoutSummarySubtotal}
+      <c-formatted-price
+        value={cartTotals.totalProductAmount}
+        currency-code={currencyCode}
+        display-currency-as="symbol"
+      ></c-formatted-price>
+    </div>
+
+    <!-- Original Price Info -->
+    <c-formatted-price
+      if:true={cartTotals.totalListPrice}
+      class="original-price slds-p-bottom_small"
+      value={cartTotals.totalListPrice}
+      currency-code={currencyCode}
+      display-currency-as="symbol"
+    ></c-formatted-price>
+
+    <!-- Discount Amount Info ( Promotions ) -->
+    <div
+      if:true={cartTotals.totalPromotionalAdjustmentAmount}
+      class="item discount-amount slds-p-bottom_small"
+      data-discount
+    >
+      {labels.JPTax_CheckoutSummaryPromotion}
+      <c-formatted-price
+        value={cartTotals.totalPromotionalAdjustmentAmount}
+        currency-code={currencyCode}
+        display-currency-as="symbol"
+      ></c-formatted-price>
+    </div>
+
+    <!-- Shipping Price Info -->
+    <div
+      if:true={cartTotals.totalChargeAmount}
+      class="item shipping-price slds-p-bottom_small"
+      data-shipping
+    >
+      {labels.JPTax_CheckoutSummaryShipping}
+      <c-formatted-price
+        value={cartTotals.totalChargeAmount}
+        currency-code={currencyCode}
+        display-currency-as="symbol"
+      ></c-formatted-price>
+    </div>
+
+    <!-- Tax Price Info -->
+    <template for:each={taxRateList} for:item="taxRate">
+      <div
+        key={taxRate.key}
+        class="item tax-price slds-p-bottom_medium"
+        data-tax
+      >
+        {taxRate.key} {labels.JPTax_CheckoutSummaryTaxByRate}
+        <c-formatted-price
+          value={taxRate.value}
+          currency-code={currencyCode}
+          display-currency-as="symbol"
+        ></c-formatted-price>
+      </div>
+    </template>
+
+    <!-- Tax Price Info -->
+    <div
+      if:true={cartTotals.totalTaxAmount}
+      class="item tax-price slds-p-bottom_medium"
+      data-tax
+    >
+      {labels.JPTax_CheckoutSummaryTaxTotal}
+      <c-formatted-price
+        value={cartTotals.totalTaxAmount}
+        currency-code={currencyCode}
+        display-currency-as="symbol"
+      ></c-formatted-price>
+    </div>
+
+    <!-- Total Price Info -->
+    <div
+      if:true={cartTotals.grandTotalAmount}
+      class="item total-price"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      {labels.JPTax_CheckoutSummaryTotal}
+      <c-formatted-price
+        value={cartTotals.grandTotalAmount}
+        currency-code={currencyCode}
+        display-currency-as="symbol"
+      ></c-formatted-price>
+    </div>
+  </div>
+</template>

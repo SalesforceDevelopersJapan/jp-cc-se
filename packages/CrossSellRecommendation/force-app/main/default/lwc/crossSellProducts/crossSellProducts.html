@@ -1,0 +1,98 @@
+<template>
+  <template if:true={visible}>
+    <form onsubmit={addAllToCart}>
+      <lightning-layout
+        class="slds-grid_align-end slds-grid_vertical-align-center"
+      >
+        <lightning-layout-item padding="around-small" flexibility="auto">
+          <c-quantity-input
+            default-quantity={quantity}
+            product-id={product.id}
+            onquantitychange={onMainQuantityChange}
+          ></c-quantity-input>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" flexibility="auto">
+          <lightning-button
+            class="add-cart-btn add-all-cart-btn"
+            type="submit"
+            label={tAddAllToCart}
+            variant="brand"
+          ></lightning-button>
+        </lightning-layout-item>
+      </lightning-layout>
+
+      <template for:each={categories} for:item="category" for:index="index">
+        <div class="category-container" key={category.category}>
+          <h3>{category.categoryLabel}</h3>
+          <table
+            class="slds-table slds-table_cell-buffer slds-table_bordered result-items slds-no-row-hover"
+          >
+            <thead>
+              <tr>
+                <!-- <th class="width20"></th> -->
+                <th class="width20">{tCode}</th>
+                <th class="width20">{tName}</th>
+                <th class="width20">{tQuantity}</th>
+                <th class="width20">{tPrice}</th>
+                <th class="width20"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <template for:each={category.products} for:item="product">
+                <tr key={product.id} class="slds-hint-parent">
+                  <!-- <td>
+                    <img class="product-images" src={product.imageUrl} />
+                  </td> -->
+                  <td>
+                    <a onclick={goPDP} data-id={product.id}>{product.code}</a>
+                  </td>
+                  <td>
+                    <a onclick={goPDP} data-id={product.id}>{product.name}</a>
+                  </td>
+
+                  <td>
+                    <c-quantity-input
+                      index={index}
+                      default-quantity={product.quantity}
+                      product-id={product.id}
+                      onquantitychange={onQuantityChange}
+                    ></c-quantity-input>
+                  </td>
+                  <td>
+                    <!-- <span style="text-decoration-line: line-through"
+                      >{product.listPrice}</span
+                    ><br /> -->
+                    <span>
+                      <lightning-formatted-number
+                        value={product.unitPrice}
+                        format-style="decimal"
+                        maximum-fraction-digits="0"
+                      ></lightning-formatted-number>
+                    </span>
+                  </td>
+                  <td>
+                    <form onsubmit={addToCart}>
+                      <input
+                        type="hidden"
+                        value={product.id}
+                        name="productId"
+                      />
+                      <input type="hidden" value={index} name="index" />
+                      <lightning-button
+                        class="add-cart-btn"
+                        stretch
+                        type="submit"
+                        label={tAddToCart}
+                        variant="brand"
+                      ></lightning-button>
+                    </form>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </template>
+    </form>
+  </template>
+</template>

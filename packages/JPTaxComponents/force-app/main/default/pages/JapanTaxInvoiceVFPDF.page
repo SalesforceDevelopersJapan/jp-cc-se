@@ -1,0 +1,237 @@
+<!-- https://developer.salesforce.com/docs/atlas.ja-jp.pages.meta/pages/pages_compref.htm -->
+<apex:page language='{!language}' applyHtmlTag="false" showHeader="false" applyBodyTag="false" controller="JapanTaxInvoiceVFPDFController" renderAs="pdf">
+    <head>
+        <style>
+          @page {
+            size: 8.27in 11.69in;
+          }
+          body {
+            font-family: Arial Unicode MS;
+            font-size: 10px;
+          }
+          table,
+          td,
+          th {
+            border-bottom: 1px solid black;
+          }
+          table {
+            border-collapse: collapse;
+            text-align: right;
+          }
+          .title {
+            text-align: center;
+          }
+          .remark,
+          .table-container,
+          .table-header,
+          .table-container,
+          .summary-table-container {
+            width: 100%;
+            margin: 20px 0;
+          }
+          .summary-table-container table{
+            margin: 0 0 0 auto;
+          }
+          .item-list .item {
+            margin: 0;
+          }
+          .item-list .item .title {
+            display: inline-block;
+            width: 38px;
+            vertical-align: top;
+            text-align: left;
+          }
+          .item-list .item .value {
+            display: inline-block;
+            width: 100px;
+            margin-left: 10px;
+            text-align: right;
+          }
+        </style>
+      </head>
+    
+      <body>
+        <div class="container">
+          <h1 class="title"><apex:outputText value="{!$Label.JPTax_InvoiceTitle}" /></h1>
+
+          <div style="height:100px;" class="metadata">
+            <p style="text-align: right; float: right;">
+              <span><apex:outputText value="{!$Label.JPTax_InvoiceCreateDate}" /></span><big><span style="margin-left: 10px;"><apex:outputText value="{!today}" /></span></big><br />
+              <span><apex:outputText value="{!$Label.JPTax_InvoiceOrderDate}" /></span><big><span style="margin-left: 10px;"><apex:outputText value="{!orderDate}" /></span></big><br />
+              <span><apex:outputText value="{!$Label.JPTax_InvoiceTaxRegistrationNumber}" /></span><big><span style="margin-left: 10px;"><apex:outputText value="T1234567890123" /></span></big><br />
+              <span><apex:outputText value="{!$Label.JPTax_InvoiceOrderNumber}" /></span><big><span style="margin-left: 10px;"><apex:outputText value="{!orderSummaryTotals.summary['orderNumber']}" /></span></big><br />
+            </p>
+        </div>
+
+          <div style="height:160px;" class="header">
+            <div style="vertical-align: bottom;text-align:left;float:left">
+              <h2>
+                <apex:outputText value="{!$Label.JPTax_InvoiceHonorificTitle}">
+                  <apex:param value="{!orderSummaryTotals.account['name']}"/>
+               </apex:outputText> 
+              </h2>
+              <div class="item-list">
+                <p class="item"><span class="title"><apex:outputText value="{!$Label.JPTax_InvoicePostalcode}" /></span><span class="value" ><apex:outputText value="{!orderSummaryTotals.account['postalCode']}" /></span></p>
+                <p class="item"><span class="title"><apex:outputText value="{!$Label.JPTax_InvoiceAddress}" /></span><span class="value" ><apex:outputText value="{!orderSummaryTotals.account['state']}" /><apex:outputText value="{!orderSummaryTotals.account['city']}" /><apex:outputText value="{!orderSummaryTotals.account['street']}" /></span></p>
+                <p class="item"><span class="title"><apex:outputText value="{!$Label.JPTax_InvoicePhone}" /></span><span class="value" ><apex:outputText value="{!orderSummaryTotals.account['phone']}" /></span></p>
+                <p class="item"><span class="title"><apex:outputText value="{!$Label.JPTax_InvoiceFax}" /></span><span class="value" ><apex:outputText value="{!orderSummaryTotals.account['fax']}" /></span></p>
+              </div>
+            </div>
+            <div style="text-align:right;float:right;">
+              <h3>〇〇株式会社</h3>
+              <div class="item-list">
+                <p class="item"><span class="title"><apex:outputText value="{!$Label.JPTax_InvoicePostalcode}" /></span><span class="value" >100-0000</span></p>
+                <p class="item"><span class="title"><apex:outputText value="{!$Label.JPTax_InvoiceAddress}" /></span><span class="value" >東京都 千代田区 9-9-9 タワー9999</span></p>
+                <p class="item"><span class="title"><apex:outputText value="{!$Label.JPTax_InvoicePhone}" /></span><span class="value" >03-9999-9999</span></p>
+                <p class="item"><span class="title"><apex:outputText value="{!$Label.JPTax_InvoiceFax}" /></span><span class="value" >03-9999-9999</span></p>
+              </div>
+            </div>
+          </div>
+    
+          
+          <div class="table-header">
+            <div>
+              <big><apex:outputText value="{!$Label.JPTax_InvoiceDescription}" /></big>
+            </div>
+          </div>
+    
+          <div class="table-container">
+            <table style="width: 100%">
+              <thead>
+                <tr>
+                  <th style="width: 6em; text-align: left;"><apex:outputText value="{!$Label.JPTax_InvoiceColumnProductCode}" /></th>
+                  <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_InvoiceColumnProductName}" /></th>
+                  <th style="width: 4em"><apex:outputText value="{!$Label.JPTax_InvoiceColumnQuantity}" /></th>
+                  <th><apex:outputText value="{!$Label.JPTax_InvoiceColumnUnitPrice}" /></th>
+                  <th><apex:outputText value="{!$Label.JPTax_InvoiceColumnAdjustment}" /></th>
+                  <th><apex:outputText value="{!$Label.JPTax_InvoiceColumnTaxBasis}" /></th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <apex:repeat value="{!orderSummaryTotals['products']}" var="product">
+                  <tr>
+                    <td style="text-align: left;"><apex:outputText value="{!product['code']}" /></td>
+                    <td style="text-align: left;"><apex:outputText value="{!product['name']}" /><apex:outputText rendered="{!product['isReducedTaxRate']}" value=" ※" /></td>
+                    <td><apex:outputText value="{!product['quantity']}" /></td>
+                    <td>
+                      <apex:outputText value="{!currencyFormat}">
+                          <apex:param value="{!product['unitPrice']}"></apex:param>
+                      </apex:outputText>
+                    </td>
+                    <td >
+                      <apex:outputText value="{!currencyFormat}">
+                          <apex:param value="{!product['totalAdjustmentAmount']}"></apex:param>
+                      </apex:outputText>
+                    </td>
+                    <td>
+                      <apex:outputText value="{!currencyFormat}">
+                        <apex:param value="{!product['totalAdjustedAmount']}"></apex:param>
+                    </apex:outputText>
+                    </td>
+                  </tr>
+                </apex:repeat>
+
+
+              </tbody>
+            </table>
+            <p style="widrh:100%;text-align:right;"><small><apex:outputText value="{!$Label.JPTax_InvoiceReducedTaxDescription}" /></small></p>
+          </div>
+
+
+          <div class="summary-table-container">
+            <table>
+                <tbody>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_TotalsProductSubtotal}" /></th>
+                        <td>
+                            <apex:outputText value="{!currencyFormat}">
+                                <apex:param value="{!orderSummaryTotals.summary['productSubtotal']}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_TotalsShippingSubtotal}" /></th>
+                        <td>
+                            <apex:outputText value="{!currencyFormat}">
+                                <apex:param value="{!orderSummaryTotals.summary['shippingSubtotal']}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                      <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_TotalsTotalAdjustment}" /></th>
+                      <td>
+                          <apex:outputText value="{!currencyFormat}">
+                              <apex:param value="{!orderSummaryTotals.summary['totalAdjustment']}"></apex:param>
+                          </apex:outputText>
+                      </td>
+                  </tr>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_Totals8PercentTaxBasis}" /></th>
+                        <td>
+                            <apex:outputText value="{!currencyFormat}">
+                                <apex:param value="{!eightTax['taxBasisAmount']}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_Totals10PercentTaxBasis}" /></th>
+                        <td>
+                            <apex:outputText value="{!currencyFormat}">
+                                <apex:param value="{!tenTax['taxBasisAmount']}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                      <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_Totals8PercentTaxTotal}" /></th>
+                      <td>
+                          <apex:outputText value="{!currencyFormat}">
+                              <apex:param value="{!eightTax['taxAmount']}"></apex:param>
+                          </apex:outputText>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_Totals10PercentTaxTotal}" /></th>
+                      <td>
+                          <apex:outputText value="{!currencyFormat}">
+                              <apex:param value="{!tenTax['taxAmount']}"></apex:param>
+                          </apex:outputText>
+                      </td>
+                  </tr>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_TotalsOtherTaxAdjustment}" /></th>
+                        <td>
+                            <apex:outputText value="{!currencyFormat}">
+                                <apex:param value="{!orderSummaryTotals.summary['otherTaxAdjustmentAmount']}"></apex:param>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_TotalsTaxTotal}" /></th>
+                        <td>
+                                <apex:outputText value="{!currencyFormat}">
+                                    <apex:param value="{!orderSummaryTotals.summary['tax']}"></apex:param>
+                                </apex:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: left;"><apex:outputText value="{!$Label.JPTax_TotalsTotal}" /></th>
+                        <td>
+                            <big><span>
+                                <apex:outputText value="{!currencyFormat}">
+                                    <apex:param value="{!orderSummaryTotals.summary['total']}"></apex:param>
+                                </apex:outputText>
+                            </span></big>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+    
+          <div class="remark">
+            <h4><apex:outputText value="{!$Label.JPTax_InvoiceRemark}" /></h4>
+            請求については、担当営業にご連絡ください。
+          </div>
+        </div>
+      </body>
+</apex:page>

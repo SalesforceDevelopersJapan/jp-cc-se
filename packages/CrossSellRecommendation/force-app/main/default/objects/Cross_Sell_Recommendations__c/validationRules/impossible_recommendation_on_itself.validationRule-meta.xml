@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>impossible_recommendation_on_itself</fullName>
+    <active>true</active>
+    <errorConditionFormula>Recommended_Product__c  =  Recommended_Product_Parent__c</errorConditionFormula>
+    <errorMessage>Cannot have the product as part of its own recommendation</errorMessage>
+</ValidationRule>

@@ -1,0 +1,54 @@
+<template>
+  <article class="new-card slds-card card-content-is-open">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          <lightning-input
+            type="checkbox"
+            label="dummy"
+            variant="label-hidden"
+            onchange={handleNewCardCheckbox}
+            checked={isNewChecked}
+            if:false={hideExist}
+            style="margin: 0; line-height: 1rem"
+          ></lightning-input>
+        </div>
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">
+            <span>{label.GMOPayment_ContainerNewCard}</span>
+          </h2>
+        </div>
+      </header>
+    </div>
+    <div class="slds-card__body card-content">
+      <slot name="card-form"> </slot>
+    </div>
+    <footer class="slds-card__footer"></footer>
+  </article>
+
+  <article if:false={hideExist} class="exist-card slds-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          <lightning-input
+            type="checkbox"
+            label="dummy"
+            variant="label-hidden"
+            onchange={handleExistingCardCheckbox}
+            checked={isExistChecked}
+            style="margin: 0; line-height: 1rem"
+          ></lightning-input>
+        </div>
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">
+            <span>{label.GMOPayment_ContainerSavedCards}</span>
+          </h2>
+        </div>
+      </header>
+    </div>
+    <div class="slds-card__body card-content">
+      <slot name="card-list"> </slot>
+    </div>
+    <footer class="slds-card__footer"></footer>
+  </article>
+</template>

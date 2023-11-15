@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <name>Quote_RequestDialogExpiry</name>
+        <label>견적 필요 대상</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_RequestDialogReason</name>
+        <label>견적 요청 이유</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_RequestSuccess</name>
+        <label>성공</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_RequestSuccessDescription</name>
+        <label>견적을 요청했습니다. 담당자가 곧 연락 드리겠습니다!!</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_RequestSuccessQuoteNumber</name>
+        <label>견적 번호:</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_RequestCartNotFound</name>
+        <label>장바구니를 찾을 수 없습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_GeneratePDFButton</name>
+        <label>PDF 생성</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_GeneratePDFFailed</name>
+        <label>PDF를 생성하지 못했습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_QuoteListViewLink</name>
+        <label>견적 목록</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_QuoteNoPermission</name>
+        <label>견적에 액세스할 수 있는 권한이 없습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTitle</name>
+        <label>견적</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFHonorific</name>
+        <label>Dear {0}</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFPostalCode</name>
+        <label>우편 번호 :</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFAddress</name>
+        <label>주소 :</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTel</name>
+        <label>TEL :</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFFax</name>
+        <label>팩스 :</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFGenaratedDate</name>
+        <label>견적 날짜 :</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFDescription</name>
+        <label>다음과 같이 인용합니다:</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnNo</name>
+        <label>아니요.</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnProductName</name>
+        <label>제품 이름</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnQuantity</name>
+        <label>수량</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnListPrice</name>
+        <label>정가</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnSalePrice</name>
+        <label>판매 가격</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTableColumnAmount</name>
+        <label>금액</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTotalProductAmount</name>
+        <label>총 제품 금액</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTotalChargeAmount</name>
+        <label>총 충전 금액</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFTotalTaxAmount</name>
+        <label>총 세금 금액</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFGrandTotalAmount</name>
+        <label>총 총액</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_VFPDFRemark</name>
+        <label>발언</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_Flow_RequestNotificationTitle</name>
+        <label>견적 요청</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_Flow_RequestNotificationDescription</name>
+        <label>사이트}의 {계정}에서 견적 요청하기</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_Flow_RequestOpportunityName</name>
+        <label>사이트}의 기회</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_Flow_RequestQuoteName</name>
+        <label>사이트}에서 견적 요청</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_Flow_Complete</name>
+        <label>완료</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_Flow_CompleteDescription</name>
+        <label>품목이 카트에 성공적으로 추가되었습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_Flow_ErrorOccured</name>
+        <label>오류가 발생했습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>Quote_Flow_ErrorContent</name>
+        <label>오류 내용</label>
+    </customLabels>
+</Translations>
