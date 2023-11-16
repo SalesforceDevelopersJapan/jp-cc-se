@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode100</name>
+        <label>카드 번호가 필요합니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode101</name>
+        <label>카드 번호 형식 오류(숫자가 아닌 문자가 포함된 값)</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode102</name>
+        <label>카드 번호 형식 오류(값 길이 범위 10 - 16을 벗어남)</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode110</name>
+        <label>만료가 필요합니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode111</name>
+        <label>만료 형식 오류(숫자가 아닌 문자가 포함된 값)</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode112</name>
+        <label>만료 형식 오류(값 길이 6 또는 4를 벗어남)</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode113</name>
+        <label>만료 형식 오류(월이 12를 초과함)</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode121</name>
+        <label>보안 코드 형식 오류(숫자가 아닌 문자가 포함된 값)</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode122</name>
+        <label>보안 코드 형식 오류(자릿수)</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode131</name>
+        <label>홀더 이름 형식 오류(값에 잘못된 문자가 포함되어 있음)</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorCode132</name>
+        <label>홀더 이름 형식 오류(값 길이가 51을 초과함)</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_TokenErrorUnknown</name>
+        <label>알 수 없는 토크나이제이션 오류:</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_FormCardNumberTitle</name>
+        <label>카드 번호</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_FormCardNumberPH</name>
+        <label>4111111111111111</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_FormHolderNameTitle</name>
+        <label>소유자 이름</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_FormHolderNamePH</name>
+        <label>야마다 타로</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_FormExpiryTitle</name>
+        <label>만료</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_FormExpiryPH</name>
+        <label>2501</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_FormSecurityCodeTitle</name>
+        <label>보안 코드</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_FormSecurityCodePH</name>
+        <label>123</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_FormSaveThisCard</name>
+        <label>이 카드 저장</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_ContainerNewCard</name>
+        <label>새 카드</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_ContainerSavedCards</name>
+        <label>저장된 카드</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_CardListSetAsDefault</name>
+        <label>기본값으로 설정</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_CardListDelete</name>
+        <label>삭제</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_CardListSecurityCodePH</name>
+        <label>123</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_CardListLoading</name>
+        <label>로드 중</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_ErrorPleaseSelect</name>
+        <label>카드를 선택해 주세요.</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_ErrorInvalidCardForm</name>
+        <label>카드 정보 양식이 유효하지 않습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_ErrorInvalidSecurityCode</name>
+        <label>보안 코드가 유효하지 않습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_Error3DSCheck</name>
+        <label>결제 절차에 문제가 있습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>GMOPayment_3DSCheckProcessing</name>
+        <label>결제 처리 중...</label>
+    </customLabels>
+</Translations>

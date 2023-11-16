@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
-     <flowDefinitions>
+    <flowDefinitions>
         <flows>
             <label>商品サンプルリクエスト</label>
             <screens>
@@ -41,5 +41,17 @@
     <customLabels>
         <name>SampleProductRequest_CompleteDescription</name>
         <label>サンプル商品リクエストを受け付けました。担当より連絡が入りますので、しばらくお待ちください。</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_NotificationTitle</name>
+        <label>サンプル商品リクエスト</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_NotificationBody</name>
+        <label>{company} {username} 様からのサンプル商品リクエストがありました。</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_NotificationSubject</name>
+        <label>{site} からのサンプル商品リクエスト</label>
     </customLabels>
 </Translations>

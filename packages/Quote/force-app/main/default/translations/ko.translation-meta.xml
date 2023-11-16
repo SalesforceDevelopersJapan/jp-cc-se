@@ -2,7 +2,7 @@
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
         <name>Quote_RequestDialogExpiry</name>
-        <label>견적 필요 대상</label>
+        <label>견적 희망일</label>
     </customLabels>
     <customLabels>
         <name>Quote_RequestDialogReason</name>
@@ -14,7 +14,7 @@
     </customLabels>
     <customLabels>
         <name>Quote_RequestSuccessDescription</name>
-        <label>견적을 요청했습니다. 담당자가 곧 연락 드리겠습니다!!</label>
+        <label>견적을 요청했습니다. 담당자가 곧 연락 드리겠습니다.</label>
     </customLabels>
     <customLabels>
         <name>Quote_RequestSuccessQuoteNumber</name>
@@ -122,15 +122,15 @@
     </customLabels>
     <customLabels>
         <name>Quote_Flow_RequestNotificationDescription</name>
-        <label>사이트}의 {계정}에서 견적 요청하기</label>
+        <label>{site}의 {account}에서 견적 요청하기</label>
     </customLabels>
     <customLabels>
         <name>Quote_Flow_RequestOpportunityName</name>
-        <label>사이트}의 기회</label>
+        <label>{site}의 기회</label>
     </customLabels>
     <customLabels>
         <name>Quote_Flow_RequestQuoteName</name>
-        <label>사이트}에서 견적 요청</label>
+        <label>{site}에서 견적 요청</label>
     </customLabels>
     <customLabels>
         <name>Quote_Flow_Complete</name>

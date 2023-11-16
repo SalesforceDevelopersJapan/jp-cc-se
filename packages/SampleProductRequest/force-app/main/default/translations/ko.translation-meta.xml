@@ -32,7 +32,7 @@
     </customLabels>
     <customLabels>
         <name>SampleProductRequest_FormNote</name>
-        <label>참고</label>
+        <label>필요 시 아래의 비고란에 입력해주세요.</label>
     </customLabels>
     <customLabels>
         <name>SampleProductRequest_CompleteLabel</name>
@@ -41,5 +41,17 @@
     <customLabels>
         <name>SampleProductRequest_CompleteDescription</name>
         <label>샘플 제품 요청이 완료되었습니다. 곧 연락드리겠습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_NotificationTitle</name>
+        <label>샘플 상품 요청</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_NotificationBody</name>
+        <label>{company} {username}님의 샘플 상품 요청이있었습니다.</label>
+    </customLabels>
+    <customLabels>
+        <name>SampleProductRequest_NotificationSubject</name>
+        <label>{site} 로 부터의 상품 샘플 의뢰</label>
     </customLabels>
 </Translations>

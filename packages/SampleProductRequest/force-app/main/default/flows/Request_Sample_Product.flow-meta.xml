@@ -23,7 +23,7 @@
         <inputParameters>
             <name>title</name>
             <value>
-                <stringValue>サンプル依頼</stringValue>
+                <elementReference>$Label.SampleProductRequest_NotificationTitle</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -221,12 +221,16 @@
     <formulas>
         <name>notificationBody</name>
         <dataType>String</dataType>
-        <expression>IF ({!Yes},{!Search_Contact.Account.Name} +&apos; &apos;+ {!Search_Contact.Name}, {!lead.Company} + &apos; &apos; + {!lead.LastName} + {!lead.FirstName}) + &apos; 様から商品サンプル依頼がありました。&apos;</expression>
+        <expression>IF (
+{!Yes},
+SUBSTITUTE(SUBSTITUTE({!$Label.SampleProductRequest_NotificationBody},&apos;{username}&apos;, {!Search_Contact.Name}),&apos;{company}&apos;,{!Search_Contact.Account.Name}),
+SUBSTITUTE(SUBSTITUTE({!$Label.SampleProductRequest_NotificationBody},&apos;{username}&apos;, {!lead.LastName} + {!lead.FirstName}),&apos;{company}&apos;,{!lead.Company} )
+)</expression>
     </formulas>
     <formulas>
         <name>todoSubject</name>
         <dataType>String</dataType>
-        <expression>{!Get_Webstore.Name} &amp; &quot;からの商品サンプル依頼 &quot;</expression>
+        <expression>SUBSTITUTE({!$Label.SampleProductRequest_NotificationSubject},&apos;{site}&apos;, {!Get_Webstore.Name})</expression>
     </formulas>
     <interviewLabel>[Sample Product] Request Sample Product {!$Flow.CurrentDateTime}</interviewLabel>
     <isAdditionalPermissionRequiredToRun>true</isAdditionalPermissionRequiredToRun>

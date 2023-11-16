@@ -1,0 +1,67 @@
+<template>
+  <div class="file-uploader">
+    <div>
+      <lightning-input
+        type="file"
+        onchange={handleFileChange}
+        label={inputLabel}
+        multiple
+        variant={variant}
+      ></lightning-input>
+    </div>
+    <template if:true={haveFiles}>
+      <div style="margin-top: 0.5rem">
+        <div>
+          <lightning-pill-container
+            items={items}
+            onitemremove={handleItemRemove}
+          ></lightning-pill-container>
+        </div>
+        <div style="text-align: right; margin-top: 0.1rem">
+          <lightning-button
+            variant="brand"
+            label="Upload"
+            icon-name="utility:upload"
+            onclick={upload}
+          ></lightning-button>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <div style="margin-top: 0.5rem">
+    <table
+      class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_header-hidden"
+    >
+      <thead class="slds-assistive-text">
+        <tr class="slds-line-height_reset">
+          <th class="" scope="col">
+            <div class="slds-truncate" title="File Name">File Name</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-truncate" title="Actions"></div>
+          </th>
+        </tr>
+        
+      </thead>
+      <tbody>
+        <tr class="slds-hint-parent">
+          <th data-label="Opportunity Name" scope="row">
+            <div class="slds-truncate" title="Cloudhub">
+              <a href="#" tabindex="-1">Cloudhub</a>
+            </div>
+          </th>
+          <td></td>
+        </tr>
+        <tr class="slds-hint-parent">
+          <th data-label="Opportunity Name" scope="row">
+            <div class="slds-truncate" title="Cloudhub">
+              <a href="#" tabindex="-1">Cloudhub</a>
+            </div>
+          </th>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>

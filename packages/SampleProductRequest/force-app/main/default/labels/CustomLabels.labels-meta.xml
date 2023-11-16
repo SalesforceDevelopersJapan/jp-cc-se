@@ -56,4 +56,25 @@
         <shortDescription>Sample product request was completed. We will contact you soon.</shortDescription>
         <value>Sample product request was completed. We will contact you soon.</value>
     </labels>
+    <labels>
+        <fullName>SampleProductRequest_NotificationTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sample Product Request</shortDescription>
+        <value>Sample Product Request</value>
+    </labels>
+    <labels>
+        <fullName>SampleProductRequest_NotificationBody</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sample product has been requested from {username} in {company}.</shortDescription>
+        <value>Sample product has been requested from {username} in {company}.</value>
+    </labels>
+    <labels>
+        <fullName>SampleProductRequest_NotificationSubject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sample product request from {site}</shortDescription>
+        <value>Sample product request from {site}</value>
+    </labels>
 </CustomLabels>
