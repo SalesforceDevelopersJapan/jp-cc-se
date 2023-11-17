@@ -3,9 +3,9 @@
     <fullName>SampleProdust__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>サンプル商品</label>
+    <label>Sample Product</label>
     <referenceTo>Product2</referenceTo>
-    <relationshipLabel>活動</relationshipLabel>
+    <relationshipLabel>Activity</relationshipLabel>
     <relationshipName>SampleProdust</relationshipName>
     <required>false</required>
     <type>Lookup</type>

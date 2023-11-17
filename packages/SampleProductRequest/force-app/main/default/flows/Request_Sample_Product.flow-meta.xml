@@ -337,7 +337,7 @@ SUBSTITUTE(SUBSTITUTE({!$Label.SampleProductRequest_NotificationBody},&apos;{use
             <field>DeveloperName</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>ToDo_Assign_Queue</stringValue>
+                <stringValue>Sample_Product_Request_Queue</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
