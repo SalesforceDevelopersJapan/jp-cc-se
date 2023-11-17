@@ -28,6 +28,8 @@ export default class FileUploader extends LightningElement {
             return {
                 label: file.name,
                 name: file.name,
+                type: 'icon',
+                iconName: 'utility:arrowup',
             }
         })
     }
@@ -37,9 +39,22 @@ export default class FileUploader extends LightningElement {
         this.dispatchFiles()
     }
 
+    handleItemRemove(event) {
+        const index = event.detail.index;
+        this.files.splice(index, 1);
+        this.dispatchFiles()
+    }
+
+
+    @api
+    async upload() {
+        await uploadFile()
+        this.dispatchUploaded()
+    }
+
     dispatchFiles() {
         const selectEvent = new CustomEvent(
-            'files',
+            'filechanged',
             {
                 detail: {
                     files: this.files
@@ -49,15 +64,14 @@ export default class FileUploader extends LightningElement {
         this.dispatchEvent(selectEvent);
     }
 
-    handleItemRemove(event) {
-        const index = event.detail.index;
-        this.files.splice(index, 1);
-        this.dispatchFiles()
-    }
-
-    @api
-    async upload(){
-        await uploadFile()
+    dispatchUploaded() {
+        const selectEvent = new CustomEvent(
+            'uploaded',
+            {
+                detail: {}
+            }
+        );
+        this.dispatchEvent(selectEvent);
     }
 
 }

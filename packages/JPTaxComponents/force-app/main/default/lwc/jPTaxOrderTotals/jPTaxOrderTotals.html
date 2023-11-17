@@ -32,7 +32,7 @@
   
             <c-formatted-price
               value={data.summary.productSubtotal}
-              currency-code="JPY"
+              currency-code={data.summary.currency}
               display-currency-as="symbol"
             ></c-formatted-price>
           </div>
@@ -47,7 +47,7 @@
   
             <c-formatted-price
               value={data.summary.shippingSubtotal}
-              currency-code="JPY"
+              currency-code={data.summary.currency}
               display-currency-as="symbol"
             ></c-formatted-price>
           </div>
@@ -62,7 +62,7 @@
   
             <c-formatted-price
               value={eightPercentTax}
-              currency-code="JPY"
+              currency-code={data.summary.currency}
               display-currency-as="symbol"
             ></c-formatted-price>
           </div>
@@ -77,7 +77,7 @@
   
             <c-formatted-price
               value={tenPercentTax}
-              currency-code="JPY"
+              currency-code={data.summary.currency}
               display-currency-as="symbol"
             ></c-formatted-price>
           </div>
@@ -92,7 +92,7 @@
   
             <c-formatted-price
               value={data.summary.otherTaxAdjustmentAmount}
-              currency-code="JPY"
+              currency-code={data.summary.currency}
               display-currency-as="symbol"
             ></c-formatted-price>
           </div>
@@ -107,7 +107,7 @@
   
             <c-formatted-price
               value={data.summary.tax}
-              currency-code="JPY"
+              currency-code={data.summary.currency}
               display-currency-as="symbol"
             ></c-formatted-price>
           </div>
@@ -122,7 +122,7 @@
   
             <c-formatted-price
               value={data.summary.total}
-              currency-code="JPY"
+              currency-code={data.summary.currency}
               display-currency-as="symbol"
             ></c-formatted-price>
           </div>

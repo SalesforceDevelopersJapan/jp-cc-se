@@ -1,0 +1,19 @@
+.custom_pill_container {
+  --slds-c-icon-color-foreground-default: #e74c3c;
+  --slds-c-icon-color-foreground: #e74c3c;
+  --slds-c-icon-color-background-default: #e74c3c;
+  --slds-c-icon-color-background: #e74c3c;
+  /* animation: bg-color 10s infinite; */
+}
+
+/* @keyframes bg-color {
+  0% {
+    --slds-c-icon-color-foreground: #e74c3c;
+  }
+  60% {
+    --slds-c-icon-color-foreground: #3498db;
+  }
+  100% {
+    --slds-c-icon-color-foreground: #e74c3c;
+  }
+} */
