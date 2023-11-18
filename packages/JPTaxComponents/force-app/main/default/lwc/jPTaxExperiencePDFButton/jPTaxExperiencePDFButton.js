@@ -10,12 +10,6 @@ export default class JPTaxExperiencePDFButton extends LightningElement {
         JPTax_PDFDownloadButton
     }
 
-    connectedCallback() {
-        console.log(this.recordId)
-        console.log(this.orderSummaryId)
-    }
-
-
     async showPDF() {
         try {
             this.isGenerating = true

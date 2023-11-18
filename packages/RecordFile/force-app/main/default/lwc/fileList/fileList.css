@@ -1,0 +1,6 @@
+.icon-delete {
+  --dxp-g-neutral-3: var(--dxp-g-destructive-1);
+}
+.icon-error {
+  --dxp-g-neutral-3: var(--dxp-g-destructive);
+}

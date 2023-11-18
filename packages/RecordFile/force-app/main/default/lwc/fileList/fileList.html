@@ -1,3 +1,84 @@
 <template>
-    
+  <table
+    if:true={showList}
+    class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_header-hidden"
+  >
+    <thead class="slds-assistive-text">
+      <tr class="slds-line-height_reset">
+        <th class="" scope="col">
+          <div class="slds-truncate" title="File Name"></div>
+        </th>
+        <th class="" scope="col">
+          <div class="slds-truncate" title="Uploaded"></div>
+        </th>
+        <th class="" scope="col">
+          <div class="slds-truncate" title="Actions"></div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <template for:each={items} for:item="item" for:index="index">
+        <tr key={item.rowId} class="slds-hint-parent">
+          <th data-label="Opportunity Name" scope="row">
+            <div class="slds-truncate" title="Cloudhub">
+              <a if:true={item.preview} target="_blank" href={item.preview}
+                >{item.name}</a
+              >
+              <span if:false={item.preview}>{item.name}</span>
+            </div>
+          </th>
+          <td style="width: 2rem">
+            <div if:false={item.waiting}>
+              <div if:true={item.error}>
+                <lightning-helptext
+                  icon-name="utility:error"
+                  content={item.errorMessage}
+                  variant="error"
+                  class="icon-error"
+                ></lightning-helptext>
+              </div>
+              <div if:true={item.download}>
+                <lightning-button-icon
+                  if:true={showDownloadButton}
+                  icon-name="utility:download"
+                  variant="bare"
+                  alternative-text="Download"
+                  title="Download"
+                  onclick={dispatchDownloadEvent}
+                  data-url={item.download}
+                  class="icon-download"
+                ></lightning-button-icon>
+              </div>
+            </div>
+            <div if:true={item.waiting}>
+              <div class="demo-only">
+                <div class="slds-spinner_container">
+                  <div role="status" class="slds-spinner slds-spinner_x-small">
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td style="width: 2rem">
+            <div if:false={item.waiting}>
+              <lightning-button-icon
+                if:true={showDeleteButton}
+                icon-name="utility:delete"
+                variant="bare"
+                title="Delete"
+                data-recordid={item.recordId}
+                data-type={item.type}
+                data-file={item.file}
+                onclick={dispatchDeleteEvent}
+                class="icon-delete"
+              ></lightning-button-icon>
+            </div>
+          </td>
+        </tr>
+      </template>
+    </tbody>
+  </table>
 </template>
