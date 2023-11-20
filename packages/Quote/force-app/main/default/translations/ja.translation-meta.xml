@@ -148,6 +148,10 @@
         <name>Quote_Flow_ErrorContent</name>
         <label>エラー内容</label>
     </customLabels>
+    <customLabels>
+        <name>Quote_Flow_QuoteCartName</name>
+        <label>見積（{quoteNumber}）から作成されたカート</label>
+    </customLabels>
     <flowDefinitions>
         <flows>
             <label>見積リクエスト</label>

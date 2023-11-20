@@ -224,7 +224,7 @@
     <formulas>
         <name>cartName</name>
         <dataType>String</dataType>
-        <expression>&apos;見積から作成 (見積ID:&apos;+{!Get_Quote.QuoteNumber}+&apos;)&apos;</expression>
+        <expression>SUBSTITUTE({!$Label.Quote_Flow_QuoteCartName},&apos;{quoteNumber}&apos;, {!Get_Quote.QuoteNumber})</expression>
     </formulas>
     <formulas>
         <name>loopAdjustedSaleTotal</name>

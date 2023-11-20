@@ -260,4 +260,11 @@
         <shortDescription>Error content</shortDescription>
         <value>Error content</value>
     </labels>
+    <labels>
+        <fullName>Quote_Flow_QuoteCartName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cart from quote ({quoteNumber})</shortDescription>
+        <value>Cart from quote ({quoteNumber})</value>
+    </labels>
 </CustomLabels>

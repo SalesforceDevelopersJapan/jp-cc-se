@@ -148,4 +148,18 @@
         <name>Quote_Flow_ErrorContent</name>
         <label>오류 내용</label>
     </customLabels>
+    <customLabels>
+        <name>Quote_Flow_QuoteCartName</name>
+        <label>견적({quoteNumber})에서 만든 장바구니</label>
+    </customLabels>
+    <flowDefinitions>
+        <flows>
+            <label>견적 요청</label>
+            <screens>
+                <name>Request_for_quote</name>
+                <nextOrFinishButtonLabel>요청</nextOrFinishButtonLabel>
+            </screens>
+        </flows>
+        <fullName>Request_a_Quote</fullName>
+    </flowDefinitions>
 </Translations>
