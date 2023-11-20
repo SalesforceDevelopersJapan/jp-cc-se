@@ -12,6 +12,9 @@
         <targetConfig targets="lightningCommunity__Default">
             <property name="recordId" type="String" label="Record Id"
                 default="{!recordId}" required="true" />
+            <property name="showDeleteButton" type="Boolean"
+                label="Check if delete button is to be shown"
+                default="false" required="true" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

@@ -1,18 +1,34 @@
-# Salesforce DX Project: Next Steps
+# Sample field record components
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+This package contain 2 components to opearte [Salesforce Files](https://help.salesforce.com/s/articleView?id=sf.collab_files_overview.htm&type=5)
 
-## How Do You Plan to Deploy Your Changes?
+1. Uploader to view and upload files attached to a record.
+1. Viewer to view files attached to a record.
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+## Components
 
-## Configure Your Salesforce DX Project
+### Uploader
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+In Experience Builder, you can drag and drop `Record File Uploader` component to record page (e.g. order history detail page).
+You can uploade multiple files to share them with platform user (e.g. sales representative) and view, download and delete them.
+![](images/uploader.png)
 
-## Read All About It
+### Viewer
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+In Experience Builder, you can drag and drop `Record File Viewer` component to record page (e.g. order history detail page).
+You can view, download files platform user (e.g. sales representative) share with you.
+![](images/viewer.png)
+
+#### To share file with buyer from platform user
+
+You need to toggle `Customer Access` in file share setting.
+![](images/customer-access.png)
+
+## Setting instruction
+
+1. Deploy this resource
+1. Grant permissions to the APEX class
+   1. Go to Setup -> Custom Code -> APEX Classes.
+   1. On the `RecordFileController` class, click "Security".
+   1. Assign buyer profile(s).
+   1. Click Save.

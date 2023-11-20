@@ -99,7 +99,7 @@ export default class FileUploader extends LightningElement {
                 await deleteFile({ recordId })
             } catch (e) {
                 file.error = true
-                file.errorMessage = e.body.message
+                file.errorMessage = JSON.stringify(e.body)
             } finally {
                 file.waiting = false
             }
