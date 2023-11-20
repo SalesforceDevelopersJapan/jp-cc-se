@@ -297,7 +297,7 @@
         <locationX>402</locationX>
         <locationY>1406</locationY>
         <connector>
-            <targetReference>Success_Screen</targetReference>
+            <targetReference>Update_Cart_To_Set_Quote_ID</targetReference>
         </connector>
         <inputReference>cartItemList</inputReference>
     </recordCreates>
@@ -386,6 +386,30 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <name>Update_Cart_To_Set_Quote_ID</name>
+        <label>Update Cart To Set Quote ID</label>
+        <locationX>402</locationX>
+        <locationY>1514</locationY>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Create_Cart.cartSummary.cartId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Quote__c</field>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>WebCart</object>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Webstore_To_Set_Owner</name>
         <label>Update Webstore To Set Owner</label>
         <locationX>402</locationX>
@@ -448,7 +472,7 @@
         <name>Success_Screen</name>
         <label>Success Screen</label>
         <locationX>402</locationX>
-        <locationY>1514</locationY>
+        <locationY>1622</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
