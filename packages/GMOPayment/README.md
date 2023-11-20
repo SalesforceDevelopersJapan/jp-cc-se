@@ -12,7 +12,7 @@ You can choose a card from saved list.
 
 ## Setting instruction
 1. Push/Deploy sources to your org.
-1. Go to **Setup > Custom Metadata Types** and fill out input fields in `GMOClientConfiguration`. Please check [detail about `GMOClientConfiguration`](#gmoclientconfigurationcustom-metadata).
+1. Go to **Setup > Custom Metadata Types** and input `{your site}/{root path}/payment-processing` (e.g. `https://sample.develop.my.site.com/yoursite/payment-processing`) ito `retUrl` field in `GMOClientConfiguration`. About other fields, please check [detail about `GMOClientConfiguration`](#gmoclientconfigurationcustom-metadata).
 1. Go to **Setup > Named Credentials** and replace `{your shop id}`, `{your shop pass}`, `{your site id}`, `{your site pass}` in `GMOAdapterShop_NC` and `GMOAdapterSite_NC` with GMO credentials. 
 1. Create PaymentGateway record with command below. Replace `{your org user}` with user alies or ID of an org you prefer to use.
     ```
@@ -23,6 +23,8 @@ You can choose a card from saved list.
 1. Set up Trusted Sites in Experience Builder for `https://stg.static.mul-pay.jp` and `https://pt01.mul-pay.jp`.
     ![](images/csp.png)
 1. Assign access to Apex `GMOPaymentController` to shopper profile. (**Setup > Apex Classes > Security** in `GMOPaymentController`)
+1. Go to Experience Builder and drag and drop `GMO 3DS Payment Cacllback` to Payment Processing page.
+    ![](images/payment-process.png)
 
 
 ## GMOClientConfiguration(Custom Metadata)
@@ -43,13 +45,6 @@ You can choose a card from saved list.
 |siteId|GMO site ID|
 |siteNC|Named Credentials to access GMO site API|
 |sitePass|GMO site password|
-
-
-## Alternative way to process callback from GMO
-Checkout page is used to process callback from GMO after 3DS auh as default. This is an alternative way to process extra page (For exapmle, a page having `/callback` url.)
-1. Create new page in experience builder.
-1. Drag and drop `GMO 3DS Payment Cacllback` to the page.
-1. Set url of the page to `retUrl` in `GMOClientConfiguration`.
 
 
 ## Request type mapping 

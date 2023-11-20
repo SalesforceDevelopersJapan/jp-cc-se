@@ -14,7 +14,13 @@ export default class Gmo3dsPaymentCallback extends NavigationMixin(LightningElem
         GMOPayment_3DSCheckProcessing
     }
 
+    constructor() {
+        super()
+        console.log('Gmo3dsPaymentCallback - constructor')
+    }
+
     async connectedCallback() {
+        console.log('Gmo3dsPaymentCallback - connectedCallback')
         const params = new URLSearchParams(window.location.search)
         if (params.has("AccessID")) {
             await this._callback(params.get("AccessID"))
