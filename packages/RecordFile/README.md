@@ -1,4 +1,4 @@
-# Sample field record components
+# Sample record files component
 
 This package contain 2 components to opearte [Salesforce Files](https://help.salesforce.com/s/articleView?id=sf.collab_files_overview.htm&type=5)
 
