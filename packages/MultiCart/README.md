@@ -1,6 +1,6 @@
 # Sample multi cart management component
 You can manage multi cart (create, delete, set as promary) with this component
-
+![](images/multicart.png)
 
 ## Setting Instruction
 1. Give profile assigned to login user an access to Apex class `MultiCartController`.

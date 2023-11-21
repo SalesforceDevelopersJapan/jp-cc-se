@@ -12,8 +12,8 @@ You can choose a card from saved list.
 
 ## Setting instruction
 1. Push/Deploy sources to your org.
-1. Go to **Setup > Custom Metadata Types** and input `{your site}/{root path}/payment-processing` (e.g. `https://sample.develop.my.site.com/yoursite/payment-processing`) ito `retUrl` field in `GMOClientConfiguration`. About other fields, please check [detail about `GMOClientConfiguration`](#gmoclientconfigurationcustom-metadata).
-1. Go to **Setup > Named Credentials** and replace `{your shop id}`, `{your shop pass}`, `{your site id}`, `{your site pass}` in `GMOAdapterShop_NC` and `GMOAdapterSite_NC` with GMO credentials. 
+1. Go to **Setup > Custom Metadata Types** and input `{your site}/{root path}/payment-processing` (e.g. `https://sample.develop.my.site.com/yoursite/payment-processing`) to `retUrl` field in GMOClientConfiguration record. About other fields, please check [detail about `GMOClientConfiguration`](#gmoclientconfigurationcustom-metadata).
+1. Go to **Setup > Named Credentials** and replace `{your shop id}`, `{your shop pass}`, `{your site id}`, `{your site pass}` in GMOAdapterShop_NC and GMOAdapterSite_NC with GMO credentials. 
 1. Create PaymentGateway record with command below. Replace `{your org user}` with user alies or ID of an org you prefer to use.
     ```
     sh scripts/shell/payment.sh -u {your org user} -a GMOPaymentAdapter -n GMOAdapterShop_NC
