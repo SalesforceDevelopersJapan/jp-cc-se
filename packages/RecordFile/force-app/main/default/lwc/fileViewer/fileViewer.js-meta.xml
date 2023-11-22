@@ -10,6 +10,9 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">
+            <property name="recordType" type="String" default="Other" required="true"
+                label="Record Type"
+                datasource="Other,Account,Contact" />
             <property name="recordId" type="String" label="Record Id"
                 default="{!recordId}" required="true" />
             <property name="showDeleteButton" type="Boolean"

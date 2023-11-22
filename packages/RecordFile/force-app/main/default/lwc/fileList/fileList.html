@@ -9,9 +9,6 @@
           <div class="slds-truncate" title="File Name"></div>
         </th>
         <th class="" scope="col">
-          <div class="slds-truncate" title="Uploaded"></div>
-        </th>
-        <th class="" scope="col">
           <div class="slds-truncate" title="Actions"></div>
         </th>
       </tr>
@@ -27,25 +24,21 @@
               <span if:false={item.preview}>{item.name}</span>
             </div>
           </th>
-          <td style="width: 4rem">
+          <td style="width: 5rem; line-height: normal; text-align: center">
             <div if:false={item.waiting}>
-              <div
-                if:true={item.error}
-                style="display: inline; margin: 0 0.1rem"
-              >
+              <div if:true={item.error} style="display: inline">
                 <lightning-helptext
+                  style="margin: 0 0.2rem"
                   icon-name="utility:error"
                   content={item.errorMessage}
                   variant="error"
                   class="icon-error"
                 ></lightning-helptext>
               </div>
-              <div
-                if:true={item.download}
-                style="display: inline; margin: 0 0.1rem"
-              >
+              <div if:true={showDownloadButton} style="display: inline">
                 <lightning-button-icon
-                  if:true={showDownloadButton}
+                  if:true={item.download}
+                  style="margin: 0 0.2rem"
                   icon-name="utility:download"
                   variant="bare"
                   alternative-text="Download"
@@ -55,13 +48,27 @@
                   class="icon-download"
                 ></lightning-button-icon>
               </div>
+              <div if:true={showDeleteButton} style="display: inline">
+                <lightning-button-icon
+                  style="margin: 0 0.2rem"
+                  if:true={item.deletable}
+                  icon-name="utility:delete"
+                  variant="bare"
+                  title="Delete"
+                  data-recordid={item.recordId}
+                  data-type={item.type}
+                  data-file={item.file}
+                  onclick={dispatchDeleteEvent}
+                  class="icon-delete"
+                ></lightning-button-icon>
+              </div>
             </div>
-            <div
-              if:true={item.waiting}
-              style="display: inline; margin: 0 0.1rem"
-            >
-              <div class="demo-only">
-                <div class="slds-spinner_container">
+            <div if:true={item.waiting}>
+              <div style="display: inline">
+                <div
+                  class="slds-spinner_container"
+                  style="margin: 0 0.2rem; position: relative"
+                >
                   <div role="status" class="slds-spinner slds-spinner_x-small">
                     <span class="slds-assistive-text">Loading</span>
                     <div class="slds-spinner__dot-a"></div>
@@ -69,21 +76,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </td>
-          <td style="width: 2rem">
-            <div if:false={item.waiting}>
-              <lightning-button-icon
-                if:true={showDeleteButton}
-                icon-name="utility:delete"
-                variant="bare"
-                title="Delete"
-                data-recordid={item.recordId}
-                data-type={item.type}
-                data-file={item.file}
-                onclick={dispatchDeleteEvent}
-                class="icon-delete"
-              ></lightning-button-icon>
             </div>
           </td>
         </tr>

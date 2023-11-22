@@ -1,18 +1,25 @@
 import { LightningElement, api, track } from 'lwc';
+import { getSessionContext } from 'commerce/contextApi';
 import uploadFile from '@salesforce/apex/RecordFileController.uploadFile';
 import getFileList from '@salesforce/apex/RecordFileController.getFileList';
 import deleteFile from '@salesforce/apex/RecordFileController.deleteFile';
+import getContactId from '@salesforce/apex/RecordFileController.getContactId';
 import RecordFile_Upload from '@salesforce/label/c.RecordFile_Upload';
+import userId from '@salesforce/user/Id';
+
+
 
 export default class FileUploader extends LightningElement {
 
     @api label;
     @api recordId;
+    @api recordType;
     @track files = [];
     @track uploadedFiles = [];
     @track newFiles = [];
     isWaiting = false;
     isLoaded = false;
+    _recordId;
 
     labels = {
         RecordFile_Upload
@@ -50,17 +57,35 @@ export default class FileUploader extends LightningElement {
         return `/sfc/servlet.shepherd/version/download/${id}`
     }
 
+
+    async getRecordId() {
+        let data
+        switch (this.recordType) {
+            case "Account":
+                data = await getSessionContext();
+                return data.effectiveAccountId;
+            case "Contact":
+                data = await getContactId();
+                return data;
+            default:
+                return this.recordId
+        }
+    }
+
     async connectedCallback() {
         this.isLoading = true
-        const contentList = await getFileList({ recordId: this.recordId })
+        this._recordId = await this.getRecordId()
+        const contentList = await getFileList({ recordId: this._recordId })
         this.uploadedFiles = contentList.map((content, index) => {
             return {
                 rowId: `uploaded-${index}`,
                 recordId: content.Id,
+                owner: content.OwnerId,
                 name: content.PathOnClient,
                 type: "uploaded",
                 waiting: false,
                 error: false,
+                deletable: content.OwnerId === userId,
                 download: this.generateUrl(content.Id),
             }
         })
@@ -77,6 +102,7 @@ export default class FileUploader extends LightningElement {
                 type: "new",
                 waiting: false,
                 error: false,
+                deletable: true,
                 preview: URL.createObjectURL(file),
                 file
             }
@@ -97,11 +123,12 @@ export default class FileUploader extends LightningElement {
                 file.error = false
                 file.errorMessage = null
                 await deleteFile({ recordId })
+                file.waiting = false
             } catch (e) {
                 file.error = true
                 file.errorMessage = JSON.stringify(e.body)
-            } finally {
                 file.waiting = false
+                return
             }
         }
         let index
@@ -144,11 +171,13 @@ export default class FileUploader extends LightningElement {
             const base64 = await this.convertToBase64(file.file)
             const content = await uploadFile({
                 base64,
-                recordId: this.recordId,
+                recordId: this._recordId,
                 fileName: file.name
             })
             file.download = this.generateUrl(content.Id)
             file.recordId = content.Id
+            file.owner = content.OwnerId
+            file.deletable = true
         } catch (e) {
             file.error = true
             file.errorMessage = e.body.message

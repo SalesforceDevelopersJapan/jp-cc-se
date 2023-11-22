@@ -45,11 +45,22 @@ public with sharing class RecordFileController {
       cdlIdList.add(cdl.ContentDocumentId);
     }
     List<ContentVersion> cvList = [
-      SELECT Id, Title, PathOnClient, FileExtension
+      SELECT Id, Title, PathOnClient, FileExtension, OwnerId
       FROM ContentVersion
       WHERE ContentDocumentId IN :cdlIdList
     ];
     return cvList;
+  }
+
+  @AuraEnabled(cacheable=false)
+  public static String getContactId() {
+    return [
+      SELECT ContactId
+      FROM User
+      WHERE Id = :UserInfo.getUserId()
+      LIMIT 1
+    ]
+    .ContactId;
   }
 
   private static Boolean isOverMaxFileCount(String recordId) {

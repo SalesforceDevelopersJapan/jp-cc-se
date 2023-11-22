@@ -10,9 +10,13 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">
-            <property name="recordId" type="String" label="Record Id"
-                default="{!recordId}" required="true" />
-            <property name="label" type="String" label="File Upload Input Label" required="false" />
+            <property name="recordType" type="String" default="Other" required="true"
+                label="Record Type"
+                datasource="Other,Account,Contact" />
+            <property name="label" type="String" label="Label" required="false" />
+            <property name="recordId" type="String"
+                label="Enter record id if you choose 'Other' record type"
+                default="{!recordId}" required="false" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
