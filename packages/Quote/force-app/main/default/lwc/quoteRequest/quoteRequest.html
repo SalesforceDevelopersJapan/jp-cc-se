@@ -1,5 +1,5 @@
 <template>
-  <template if:false={isLoading}>
+  <template if:true={visible}>
     <template if:true={hasCartId}>
       <lightning-flow
         flow-api-name="Request_a_Quote"

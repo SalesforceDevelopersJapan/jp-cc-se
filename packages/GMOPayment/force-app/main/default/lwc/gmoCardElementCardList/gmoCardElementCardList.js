@@ -3,13 +3,10 @@ import searchCard from '@salesforce/apex/GMOPaymentController.searchCard';
 import setDefaultCard from '@salesforce/apex/GMOPaymentController.setDefaultCard';
 import deleteCard from '@salesforce/apex/GMOPaymentController.deleteCard';
 import GMOPayment_CardListLoading from '@salesforce/label/c.GMOPayment_CardListLoading';
-import { getSessionContext } from 'commerce/contextApi';
 
 export default class GmoCardElementCardList extends LightningElement {
 
-    _context
     _cardList = []
-
     selected
     isProcessing = false
 
@@ -20,7 +17,6 @@ export default class GmoCardElementCardList extends LightningElement {
     async connectedCallback() {
         try {
             this.isProcessing = true
-            this._context = await getSessionContext()
             await this._retrieveCardList()
         } catch (e) {
             console.error(e)
@@ -41,7 +37,7 @@ export default class GmoCardElementCardList extends LightningElement {
     async handleDefault(event) {
         try {
             this.isProcessing = true
-            await setDefaultCard({ ...event.detail, effectiveAccountId: this._context.effectiveAccountId })
+            await setDefaultCard({ ...event.detail })
             await this._retrieveCardList()
         } catch (e) {
             console.error(e)
@@ -53,7 +49,7 @@ export default class GmoCardElementCardList extends LightningElement {
     async handleDelete(event) {
         try {
             this.isProcessing = true
-            await deleteCard({ ...event.detail, effectiveAccountId: this._context.effectiveAccountId })
+            await deleteCard({ ...event.detail })
             await this._retrieveCardList()
         } catch (e) {
             console.error(e)
@@ -83,7 +79,7 @@ export default class GmoCardElementCardList extends LightningElement {
     }
 
     async _retrieveCardList() {
-        const cards = await searchCard({ effectiveAccountId: this._context.effectiveAccountId });
+        const cards = await searchCard();
         if ('ErrInfo' in cards === false) {
             this._cardList = this._makeCardList(cards)
             this._cardList = this._cardList.map(this._formatList)

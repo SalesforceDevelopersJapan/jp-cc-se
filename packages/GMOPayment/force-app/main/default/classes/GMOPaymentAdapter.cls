@@ -68,6 +68,14 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     Double amount = GMOUtils.convertProperAmount(request.amount);
     GMOPaymentService service = new GMOPaymentService();
     Map<String, Object> searchMap = service.searchTrade(orderId);
+    if ((String) searchMap.get('Status') == 'AUTHENTICATED') {
+      // Check if 3DSecure is required
+      // https://mp-faq.gmo-pg.com/s/article/D00007
+      service.doSecureTran2(
+        (String) searchMap.get('AccessID'),
+        (String) searchMap.get('AccessPass')
+      );
+    }
     commercepayments.PostAuthorizationResponse response = new commercepayments.PostAuthorizationResponse();
     response.setGatewayDate(system.now());
     response.setGatewayAuthCode((String) searchMap.get('TranID'));
@@ -80,8 +88,7 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     detail.put('accessId', accessId);
     detail.put('accessPass', accessPass);
     detail.put('orderId', orderId);
-    String detailString = JSON.Serialize(detail);
-    response.setGatewayReferenceDetails(detailString);
+    response.setGatewayReferenceDetails(JSON.Serialize(detail));
     return response;
   }
 
@@ -221,6 +228,7 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     Map<String, Object> paymentsData
   ) {
     String securityCode = (String) paymentsData.get('securityCode');
+    // String billingAddress = (String) paymentsData.get('billingAddress');
     if (
       String.isNotBlank(securityCode) &&
       !GMOUtils.isValidSecurityCode(securityCode)
@@ -243,9 +251,7 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
 
     Map<String, Object> execMap = new Map<String, Object>();
     if (GMOUtils.isCardSeq(tokenOrCardSeq)) {
-      String memberId = GMOUtils.getGMOMemberId(
-        (String) paymentsData.get('effectiveAccountId')
-      );
+      String memberId = GMOUtils.getGMOMemberId();
       execMap = service.executeTransaction(
         orderId,
         (String) null,

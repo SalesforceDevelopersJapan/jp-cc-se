@@ -66,7 +66,7 @@ public class GMOUtils {
   }
 
   public static String generateId() {
-    Double d = Math.random() * 10000000;
+    Double d = Math.random() * 1000000;
     String seed = String.valueOf(d.intValue());
     return seed + String.valueOf(Datetime.now().formatGMT('yyyyMMddHHmmssSSS'));
   }
@@ -87,7 +87,7 @@ public class GMOUtils {
     return Math.ceil(amount);
   }
 
-  public static String getGMOMemberId(String effectiveAccountId) {
+  public static String getGMOMemberId() {
     GMO_Configuration__mdt config = GMOUtils.getMetadata();
     if (config.useUserId__c) {
       return UserInfo.getUserId();
@@ -99,52 +99,5 @@ public class GMOUtils {
       ];
       return user.AccountId;
     }
-  }
-
-  public static GMOSession__c saveGMOSession(
-    String orderID,
-    String accessID,
-    String accessPass,
-    String billingAddressJsonStr
-  ) {
-    GMOSession__c gmoSession = new GMOSession__c();
-    gmoSession.AccessId__c = accessID;
-    gmoSession.AccessPass__c = accessPass;
-    gmoSession.OrderId__c = orderID;
-    gmoSession.AddressJson__c = billingAddressJsonStr;
-    insert gmoSession;
-    return gmoSession;
-  }
-
-  public static GMOSession__c saveGMOSessionPass(
-    String orderID,
-    String accessID,
-    String accessPass
-  ) {
-    GMOSession__c gmoSession = [
-      SELECT AccessPass__c
-      FROM GMOSession__c
-      WHERE AccessId__c = :accessID OR OrderId__c = :orderID
-      LIMIT 1
-    ];
-    gmoSession.AccessPass__c = accessPass;
-    update gmoSession;
-    return gmoSession;
-  }
-
-  public static GMOSession__c getGMOSessionByAccessId(String accessID) {
-    return [
-      SELECT AccessId__c, AccessPass__c, OrderId__c, AddressJson__c
-      FROM GMOSession__c
-      WHERE AccessId__c = :accessID
-    ];
-  }
-
-  public static GMOSession__c getGMOSessionByOrderId(String orderID) {
-    return [
-      SELECT AccessId__c, AccessPass__c, OrderId__c, AddressJson__c
-      FROM GMOSession__c
-      WHERE OrderId__c = :orderID
-    ];
   }
 }

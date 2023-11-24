@@ -26,7 +26,6 @@ You can choose a card from saved list.
 1. Go to Experience Builder and drag and drop `GMO 3DS Payment Cacllback` to Payment Processing page.
     ![](images/payment-process.png)
 
-
 ## GMOClientConfiguration(Custom Metadata)
 
 |Name|Description|

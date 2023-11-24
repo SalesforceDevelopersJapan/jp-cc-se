@@ -1,10 +1,11 @@
 import { LightningElement, api } from 'lwc';
 import GMOPayment_ContainerNewCard from '@salesforce/label/c.GMOPayment_ContainerNewCard';
 import GMOPayment_ContainerSavedCards from '@salesforce/label/c.GMOPayment_ContainerSavedCards';
+import isGuest from '@salesforce/user/isGuest';
 
 export default class GmoCardElementContainer extends LightningElement {
 
-    hideExist = false
+    hideExist = isGuest
     isExistChecked = false
     isNewChecked = true
     _isInitialized = false

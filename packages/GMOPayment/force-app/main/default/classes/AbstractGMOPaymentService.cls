@@ -153,17 +153,16 @@ public abstract class AbstractGMOPaymentService {
     return alterTransaction(accessID, accessPass, amount, 'AUTH');
   }
 
-  public Map<String, Object> check3DResult(String accessID) {
-    GMOSession__c gmoSession = GMOUtils.getGMOSessionByAccessId(accessID);
-    Map<String, Object> searchMap = searchTrade(gmoSession.OrderID__c);
-    String accessPass = (String) searchMap.get('AccessPass');
+  public Map<String, Object> doSecureTran2(String accessID, String accessPass) {
     HttpResponse response = this.siteClient.doSecureTran2(accessID, accessPass);
-    Map<String, Object> resultMap = GMOUtils.convertParamToMap(
+    Map<String, Object> responseBody = GMOUtils.convertParamToMap(
       response.getBody()
     );
-    // Save pass to GMOSession__c record
-    GMOUtils.saveGMOSessionPass(null, accessId, accessPass);
-    resultMap.put('BillingAddressJsonStr', gmoSession.AddressJson__c);
-    return resultMap;
+    if (responseBody.containsKey('ErrCode')) {
+      //TODO Need more error handling
+      String errorInfo = (String) responseBody.get('ErrInfo');
+      throw new GMOException('Cound not execute transaction: ' + errorInfo);
+    }
+    return responseBody;
   }
 }

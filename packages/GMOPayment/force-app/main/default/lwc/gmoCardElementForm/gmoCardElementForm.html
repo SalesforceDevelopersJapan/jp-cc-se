@@ -38,6 +38,7 @@
         onchange={handleCVCChange}
       ></lightning-input>
       <lightning-input
+        if:false={isGuest}
         type="checkbox"
         label={label.GMOPayment_FormSaveThisCard}
         onchange={handleSaveCardChange}

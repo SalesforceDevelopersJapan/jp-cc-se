@@ -3,6 +3,7 @@ import { NavigationMixin } from "lightning/navigation";
 import webstoreId from '@salesforce/webstore/Id'
 import isQuoteAccesible from '@salesforce/apex/QuoteRequestController.isQuoteAccesible';
 import QuoteRequestSuccessModal from "c/quoteRequestSuccessModal";
+import isGuest from '@salesforce/user/isGuest';
 import { CartSummaryAdapter } from 'commerce/cartApi';
 import Quote_RequestCartNotFound from '@salesforce/label/c.Quote_RequestCartNotFound';
 
@@ -59,6 +60,10 @@ export default class QuoteRequest extends NavigationMixin(LightningElement) {
 
     get hasCartId() {
         return !!this.cartId;
+    }
+
+    get visible() {
+        return !this.isLoading && !isGuest
     }
 
     async handleStatusChange(event) {

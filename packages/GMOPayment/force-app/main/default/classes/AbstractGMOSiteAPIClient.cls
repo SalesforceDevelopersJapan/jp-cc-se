@@ -11,7 +11,7 @@ public abstract class AbstractGMOSiteAPIClient {
     // https://docs.mul-pay.jp/payment/credit/api#exectran
     Map<String, Object> params = new Map<String, Object>();
     addBasicParamForExecTran(params, accessID, accessPass, orderID);
-    add3ds2ParamsForExecTran(params);
+    add3ds2ParamsForExecTran(params, orderID);
     params.put('CardNo', cardNo);
     params.put('Expire', expire);
     params.put('HolderName', holderName);
@@ -31,7 +31,7 @@ public abstract class AbstractGMOSiteAPIClient {
     // https://docs.mul-pay.jp/payment/credit/api#exectran
     Map<String, Object> params = new Map<String, Object>();
     addBasicParamForExecTran(params, accessID, accessPass, orderID);
-    add3ds2ParamsForExecTran(params);
+    add3ds2ParamsForExecTran(params, orderID);
     if (!String.isEmpty(token)) {
       params.put('TokenType', 1);
       params.put('Token', token);
@@ -58,9 +58,12 @@ public abstract class AbstractGMOSiteAPIClient {
     params.put('Method', 1);
   }
 
-  private void add3ds2ParamsForExecTran(Map<String, Object> params) {
+  private void add3ds2ParamsForExecTran(
+    Map<String, Object> params,
+    String orderId
+  ) {
     GMO_Configuration__mdt metadata = GMOUtils.getMetadata();
-    params.put('RetUrl', metadata.retUrl__c);
+    params.put('RetUrl', metadata.retUrl__c + '?OrderID=' + orderId);
     params.put(
       'Tds2ChallengeIndType',
       Integer.valueOf(metadata.tds2ChallengeIndType__c)

@@ -8,6 +8,7 @@ import GMOPayment_FormExpiryPH from '@salesforce/label/c.GMOPayment_FormExpiryPH
 import GMOPayment_FormSecurityCodeTitle from '@salesforce/label/c.GMOPayment_FormSecurityCodeTitle';
 import GMOPayment_FormSecurityCodePH from '@salesforce/label/c.GMOPayment_FormSecurityCodePH';
 import GMOPayment_FormSaveThisCard from '@salesforce/label/c.GMOPayment_FormSaveThisCard';
+import isguest from '@salesforce/user/isGuest';
 
 export default class GmoCardElementForm extends LightningElement {
 
@@ -21,6 +22,7 @@ export default class GmoCardElementForm extends LightningElement {
 
     @api
     saveCard = false
+    isGuest = isguest
 
     label = {
         GMOPayment_FormCardNumberTitle,

@@ -1,7 +1,6 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { postAuthorizePayment, placeOrder } from 'commerce/checkoutApi';
-import check3DResult from '@salesforce/apex/GMOPaymentController.check3DResult';
 import GMOPayment_Error3DSCheck from '@salesforce/label/c.GMOPayment_Error3DSCheck';
 import GMOPayment_3DSCheckProcessing from '@salesforce/label/c.GMOPayment_3DSCheckProcessing';
 
@@ -14,25 +13,18 @@ export default class Gmo3dsPaymentCallback extends NavigationMixin(LightningElem
         GMOPayment_3DSCheckProcessing
     }
 
-    constructor() {
-        super()
-        console.log('Gmo3dsPaymentCallback - constructor')
-    }
-
     async connectedCallback() {
-        console.log('Gmo3dsPaymentCallback - connectedCallback')
         const params = new URLSearchParams(window.location.search)
-        if (params.has("AccessID")) {
-            await this._callback(params.get("AccessID"))
+        if (params.has("OrderID")) {
+            await this._callback(params.get("OrderID"))
         }
     }
 
-    async _callback(accessID) {
+    async _callback(orderId) {
         try {
             this.processingCallback = true
             this.errorMessage = ''
-            const result = await check3DResult({ accessID })
-            await postAuthorizePayment('active', result["OrderID"], JSON.parse(result["BillingAddressJsonStr"]));
+            await postAuthorizePayment('active', orderId);
             const order = await placeOrder();
             await this[NavigationMixin.Navigate]({
                 type: 'comm__namedPage',

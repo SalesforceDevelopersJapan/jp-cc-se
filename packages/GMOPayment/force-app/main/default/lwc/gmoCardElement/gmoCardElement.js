@@ -17,9 +17,7 @@ import GMOPayment_ErrorPleaseSelect from '@salesforce/label/c.GMOPayment_ErrorPl
 import GMOPayment_ErrorInvalidCardForm from '@salesforce/label/c.GMOPayment_ErrorInvalidCardForm';
 import GMOPayment_ErrorInvalidSecurityCode from '@salesforce/label/c.GMOPayment_ErrorInvalidSecurityCode';
 import saveCard from '@salesforce/apex/GMOPaymentController.saveCard';
-import saveGMOSession from '@salesforce/apex/GMOPaymentController.saveGMOSession';
 import { paymentClientRequest } from 'commerce/checkoutApi';
-import { getSessionContext } from 'commerce/contextApi';
 import { NavigationMixin } from 'lightning/navigation';
 
 
@@ -27,7 +25,6 @@ export default class GmoCardElement extends NavigationMixin(LightningElement) {
 
     _webstoreId
     _clientConfiguration
-    _context
     processingCallback = false
     errorMessage = ""
     errorMap = {
@@ -49,7 +46,6 @@ export default class GmoCardElement extends NavigationMixin(LightningElement) {
         this._webstoreId = webstoreId;
         this._clientConfiguration = clientConfiguration;
         await loadScript(this, this._clientConfiguration.gmoJsUrl);
-        this._context = await getSessionContext()
     }
 
 
@@ -88,8 +84,7 @@ export default class GmoCardElement extends NavigationMixin(LightningElement) {
                 }
             }
 
-            const result = await paymentClientRequest({ tokenOrCardSeq, securityCode, effectiveAccountId: this._context.effectiveAccountId })
-            await saveGMOSession({ billingAddressJsonStr: JSON.stringify(billingAddress), orderId: result.paymentData['OrderID'], accessID: result.paymentData['AccessID'] })
+            const result = await paymentClientRequest({ tokenOrCardSeq, securityCode, billingAddress: JSON.stringify(billingAddress) })
 
             if (saveCardToken) {
                 try {
@@ -169,7 +164,7 @@ export default class GmoCardElement extends NavigationMixin(LightningElement) {
     }
 
     async _saveCard(token) {
-        const card = await saveCard({ token, effectiveAccountId: this._context.effectiveAccountId })
+        const card = await saveCard({ token })
         if ("ErrInfo" in card) {
             this._throwGMOError(card)
         }
