@@ -42,4 +42,22 @@ public with sharing class GMOPaymentController {
       );
     }
   }
+
+  @AuraEnabled(cacheable=false)
+  public static WebCart setBillingAddressToCart(
+    String cartId,
+    String billingAddress
+  ) {
+    Map<String, Object> address = (Map<String, Object>) JSON.deserializeUntyped(
+      billingAddress
+    );
+    WebCart cart = new WebCart(Id = cartId);
+    cart.BillingStreet = (String) address.get('street');
+    cart.BillingCity = (String) address.get('city');
+    cart.BillingState = (String) address.get('region');
+    cart.BillingPostalCode = (String) address.get('postalCode');
+    cart.BillingCountry = (String) address.get('country');
+    update cart;
+    return cart;
+  }
 }

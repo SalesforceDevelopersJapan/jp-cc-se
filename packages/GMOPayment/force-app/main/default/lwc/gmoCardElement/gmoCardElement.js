@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-undef
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import { loadScript } from 'lightning/platformResourceLoader';
 import GMOPayment_TokenErrorCode100 from '@salesforce/label/c.GMOPayment_TokenErrorCode100';
 import GMOPayment_TokenErrorCode101 from '@salesforce/label/c.GMOPayment_TokenErrorCode101';
@@ -17,14 +17,16 @@ import GMOPayment_ErrorPleaseSelect from '@salesforce/label/c.GMOPayment_ErrorPl
 import GMOPayment_ErrorInvalidCardForm from '@salesforce/label/c.GMOPayment_ErrorInvalidCardForm';
 import GMOPayment_ErrorInvalidSecurityCode from '@salesforce/label/c.GMOPayment_ErrorInvalidSecurityCode';
 import saveCard from '@salesforce/apex/GMOPaymentController.saveCard';
+import setBillingAddressToCart from '@salesforce/apex/GMOPaymentController.setBillingAddressToCart';
 import { paymentClientRequest } from 'commerce/checkoutApi';
 import { NavigationMixin } from 'lightning/navigation';
-
+import { CartSummaryAdapter } from 'commerce/cartApi';
 
 export default class GmoCardElement extends NavigationMixin(LightningElement) {
 
     _webstoreId
     _clientConfiguration
+    cartId
     processingCallback = false
     errorMessage = ""
     errorMap = {
@@ -39,6 +41,15 @@ export default class GmoCardElement extends NavigationMixin(LightningElement) {
         "122": GMOPayment_TokenErrorCode122,
         "131": GMOPayment_TokenErrorCode131,
         "132": GMOPayment_TokenErrorCode132
+    }
+
+    @wire(CartSummaryAdapter)
+    async cart({ data, error }) {
+        if (data) {
+            this.cartId = data.cartId;
+        } else if (error) {
+            console.error(error);
+        }
     }
 
     @api
@@ -96,6 +107,7 @@ export default class GmoCardElement extends NavigationMixin(LightningElement) {
             }
 
             if (result.paymentData['RedirectUrl']) {
+                await setBillingAddressToCart({ cartId: this.cartId, billingAddress: JSON.stringify(billingAddress) });
                 return await this[NavigationMixin.GenerateUrl]({
                     type: 'standard__webPage',
                     attributes: {

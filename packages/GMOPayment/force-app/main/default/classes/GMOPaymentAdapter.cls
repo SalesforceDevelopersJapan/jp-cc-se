@@ -228,7 +228,6 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
     Map<String, Object> paymentsData
   ) {
     String securityCode = (String) paymentsData.get('securityCode');
-    // String billingAddress = (String) paymentsData.get('billingAddress');
     if (
       String.isNotBlank(securityCode) &&
       !GMOUtils.isValidSecurityCode(securityCode)

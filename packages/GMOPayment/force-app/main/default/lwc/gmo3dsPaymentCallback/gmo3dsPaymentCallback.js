@@ -1,4 +1,4 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { postAuthorizePayment, placeOrder } from 'commerce/checkoutApi';
 import GMOPayment_Error3DSCheck from '@salesforce/label/c.GMOPayment_Error3DSCheck';
