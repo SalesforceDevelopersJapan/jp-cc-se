@@ -1,0 +1,177 @@
+<template>
+  <c-oci-inv-reg-modal
+    is-loading={isSubmitting}
+    title={title}
+    execute-btn-text={label.OCI_INV_REG_Request}
+    class="reservation-modal"
+    onexecute={handleExecute}
+  >
+    <div if:true={isInitialized}>
+      <lightning-layout
+        multiple-rows="true"
+        class="x-large"
+        if:true={inventory}
+      >
+        <lightning-layout-item flexibility="grow" padding="around-small">
+          <div class="demo-only" style="width: 30rem">
+            <article class="slds-tile">
+              <div class="slds-tile__detail">
+                <dl class="slds-list_horizontal slds-wrap">
+                  <dt
+                    class="slds-item_label slds-text-color_weak slds-truncate"
+                  >
+                    <span if:true={inventory.isLocationGroup}
+                      >{label.OCI_INV_REG_LocationGroup}:</span
+                    >
+                    <span if:false={inventory.isLocationGroup}
+                      >{label.OCI_INV_REG_Locations}:</span
+                    >
+                  </dt>
+                  <dd class="slds-item_detail slds-truncate">
+                    {inventory.identifier}
+                  </dd>
+                  <dt
+                    class="slds-item_label slds-text-color_weak slds-truncate"
+                  >
+                    {label.OCI_INV_REG_SKU}:
+                  </dt>
+                  <dd class="slds-item_detail slds-truncate">
+                    {inventory.stockKeepingUnit}
+                  </dd>
+                  <dt
+                    class="slds-item_label slds-text-color_weak slds-truncate"
+                  >
+                    {label.OCI_INV_REG_EffectiveDate}:
+                  </dt>
+                  <dd class="slds-item_detail slds-truncate">
+                    {inventory.effectiveDate}
+                  </dd>
+                  <dt
+                    class="slds-item_label slds-text-color_weak slds-truncate"
+                  >
+                    {label.OCI_INV_REG_ATF}:
+                  </dt>
+                  <dd class="slds-item_detail slds-truncate">
+                    {inventory.availableToFulfill}
+                  </dd>
+                  <dt
+                    class="slds-item_label slds-text-color_weak slds-truncate"
+                  >
+                    {label.OCI_INV_REG_ATO}:
+                  </dt>
+                  <dd class="slds-item_detail slds-truncate">
+                    {inventory.availableToOrder}
+                  </dd>
+                  <dt
+                    class="slds-item_label slds-text-color_weak slds-truncate"
+                  >
+                    {label.OCI_INV_REG_Futures}:
+                  </dt>
+                  <dd class="slds-item_detail slds-truncate">
+                    {inventory.futures}
+                  </dd>
+                  <dt
+                    class="slds-item_label slds-text-color_weak slds-truncate"
+                  >
+                    {label.OCI_INV_REG_OnHand}:
+                  </dt>
+                  <dd class="slds-item_detail slds-truncate">
+                    {inventory.onHand}
+                  </dd>
+                  <dt
+                    class="slds-item_label slds-text-color_weak slds-truncate"
+                  >
+                    {label.OCI_INV_REG_Reserved}:
+                  </dt>
+                  <dd class="slds-item_detail slds-truncate">
+                    {inventory.reserved}
+                  </dd>
+                  <dt
+                    class="slds-item_label slds-text-color_weak slds-truncate"
+                  >
+                    {label.OCI_INV_REG_SafetyStockCount}:
+                  </dt>
+                  <dd class="slds-item_detail slds-truncate">
+                    {inventory.safetyStockCount}
+                  </dd>
+                </dl>
+              </div>
+            </article>
+          </div>
+        </lightning-layout-item>
+      </lightning-layout>
+
+      <lightning-layout multiple-rows="true" class="x-large">
+        <lightning-layout-item flexibility="grow" padding="around-small">
+          <lightning-layout multiple-rows="true" class="x-large">
+            <lightning-layout-item flexibility="grow">
+              <lightning-input
+                type="number"
+                data-name="quantity"
+                label={label.OCI_INV_REG_Quantity}
+                required
+                onchange={handleChange}
+                value={record.quantity}
+                min="1"
+              ></lightning-input>
+            </lightning-layout-item>
+          </lightning-layout>
+          <lightning-layout
+            multiple-rows="true"
+            class="x-large"
+            if:true={isTransfer}
+          >
+            <lightning-layout-item flexibility="grow">
+              <lightning-combobox
+                label={label.OCI_INV_REG_TransferTo}
+                options={transferToList}
+                data-name="transfer-to"
+                onchange={handleChange}
+                value={transferToValue}
+                required
+              ></lightning-combobox>
+              <div style="margin-top: 0.5rem">
+                <lightning-input
+                  data-name="all-or-nothing"
+                  type="checkbox"
+                  label={label.OCI_INV_REG_AllOrNothing}
+                  onchange={handleChange}
+                ></lightning-input>
+              </div>
+            </lightning-layout-item>
+          </lightning-layout>
+          <lightning-layout
+            multiple-rows="true"
+            class="x-large"
+            if:true={isCreate}
+          >
+            <lightning-layout-item flexibility="grow">
+              <lightning-input
+                type="number"
+                data-name="expiration-seconds"
+                label={label.OCI_INV_REG_ExpirationSeconds}
+                onchange={handleChange}
+                min="0"
+                max="14400"
+              ></lightning-input>
+              <lightning-input
+                data-name="reservation-time"
+                type="datetime"
+                label={label.OCI_INV_REG_ReservationTime}
+                onchange={handleChange}
+              ></lightning-input>
+              <div style="margin-top: 0.5rem">
+                <lightning-input
+                  data-name="allow-partial"
+                  type="checkbox"
+                  label={label.OCI_INV_REG_AllowPartialReservations}
+                  onchange={handleChange}
+                ></lightning-input>
+              </div>
+            </lightning-layout-item>
+          </lightning-layout>
+        </lightning-layout-item>
+      </lightning-layout>
+    </div>
+  </c-oci-inv-reg-modal>
+</template>

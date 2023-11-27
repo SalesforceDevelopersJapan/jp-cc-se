@@ -111,6 +111,7 @@
               location={item}
               is-location-group
               onfuture={handleFuture}
+              onreservation={handleReservation}
             ></c-oci-inv-reg-inventory-list>
           </template>
         </lightning-layout-item>
@@ -125,6 +126,7 @@
               location={item}
               onedit={handleLocationEdit}
               onfuture={handleFuture}
+              onreservation={handleReservation}
             ></c-oci-inv-reg-inventory-list>
           </template>
         </lightning-layout-item>
@@ -176,4 +178,10 @@
     onexecute={handleExecute}
   >
   </c-oci-inv-reg-location-update-form-modal>
+  <c-oci-inv-reg-reservation-edit-modal
+    inventory={selectedReservation}
+    type={selectedReservationType}
+    locations={locations} 
+    location-groups={locationGroups}
+  ></c-oci-inv-reg-reservation-edit-modal>
 </template>

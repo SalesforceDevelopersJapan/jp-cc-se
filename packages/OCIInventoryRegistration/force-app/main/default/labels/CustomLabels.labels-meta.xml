@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>OCI_INV_REG_LocationGroup</fullName>
@@ -25,8 +25,10 @@
         <fullName>OCI_INV_REG_PleaseSearchDescription</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Please select locationg group and input SKU and click search button.</shortDescription>
-        <value>Please select locationg group and input SKU and click search button.</value>
+        <shortDescription
+    >Please select locationg group and input SKU and click search button.</shortDescription>
+        <value
+    >Please select locationg group and input SKU and click search button.</value>
     </labels>
     <labels>
         <fullName>OCI_INV_REG_Search</fullName>
@@ -74,7 +76,8 @@
         <fullName>OCI_INV_REG_InventoryNotFoundDescrption</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Inventory information of the SKU was not found.</shortDescription>
+        <shortDescription
+    >Inventory information of the SKU was not found.</shortDescription>
         <value>Inventory information of the SKU was not found.</value>
     </labels>
     <labels>
@@ -207,21 +210,25 @@
         <fullName>OCI_INV_REG_RequestJobFails</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Availability update job was finished with status FAILED.</shortDescription>
+        <shortDescription
+    >Availability update job was finished with status FAILED.</shortDescription>
         <value>Availability update job was finished with status FAILED.</value>
     </labels>
     <labels>
         <fullName>OCI_INV_REG_RequestJobCompleted</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Availability update job was finished with status COMPLETED.</shortDescription>
-        <value>Availability update job was finished with status COMPLETED.</value>
+        <shortDescription
+    >Availability update job was finished with status COMPLETED.</shortDescription>
+        <value
+    >Availability update job was finished with status COMPLETED.</value>
     </labels>
     <labels>
         <fullName>OCI_INV_REG_RequestJobOther</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Availability update job was finished with status {0}.</shortDescription>
+        <shortDescription
+    >Availability update job was finished with status {0}.</shortDescription>
         <value>Availability update job was finished with status {0}.</value>
     </labels>
     <labels>
@@ -235,15 +242,18 @@
         <fullName>OCI_INV_REG_RetrievingInventoryAvailabilityFail</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Retrieving inventory availability was faild</shortDescription>
+        <shortDescription
+    >Retrieving inventory availability was faild</shortDescription>
         <value>Retrieving inventory availability was faild</value>
     </labels>
     <labels>
         <fullName>OCI_INV_REG_RequestInventoryAvailabilitySuccess</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Updating inventory availability was requested successfully.</shortDescription>
-        <value>Updating inventory availability was requested successfully.</value>
+        <shortDescription
+    >Updating inventory availability was requested successfully.</shortDescription>
+        <value
+    >Updating inventory availability was requested successfully.</value>
     </labels>
     <labels>
         <fullName>OCI_INV_REG_RequestFail</fullName>
@@ -279,5 +289,69 @@
         <protected>false</protected>
         <shortDescription>Inventory Registration</shortDescription>
         <value>Inventory Registration</value>
+    </labels>
+
+    <labels>
+        <fullName>OCI_INV_REG_CreateReservation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Reservation</shortDescription>
+        <value>Create Reservation</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_ReleaseReservation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Release Reservation</shortDescription>
+        <value>Release Reservation</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_FulfillReservation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fulfill Reservation</shortDescription>
+        <value>Fulfill Reservation</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_TransferReservation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Transfer Reservation</shortDescription>
+        <value>Transfer Reservation</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_ExpirationSeconds</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Expiration Seconds</shortDescription>
+        <value>Expiration Seconds</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_ReservationTime</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reservation Time</shortDescription>
+        <value>Reservation Time</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_AllowPartialReservations</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Allow Partial Reservations</shortDescription>
+        <value>Allow Partial Reservations</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_AllOrNothing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Allow or nothing</shortDescription>
+        <value>Allow or nothing</value>
+    </labels>
+    <labels>
+        <fullName>OCI_INV_REG_TransferTo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Transfer to</shortDescription>
+        <value>Transfer to</value>
     </labels>
 </CustomLabels>

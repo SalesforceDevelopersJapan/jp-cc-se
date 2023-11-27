@@ -1,32 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version='1.0' encoding='utf-8' ?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
-        <label>ロケーショングループ</label>
+        <label>위치 그룹</label>
         <name>OCI_INV_REG_LocationGroup</name>
     </customLabels>
     <customLabels>
-        <label>ロケーション</label>
+        <label>위치</label>
         <name>OCI_INV_REG_Locations</name>
     </customLabels>
     <customLabels>
-        <label>在庫を検索してください</label>
+        <label>인벤토리 검색</label>
         <name>OCI_INV_REG_PleaseSearchTitle</name>
     </customLabels>
     <customLabels>
         <label
-    >ロケーショングループを選択し、SKUを入力した後、検索ボタンをクリックしてください</label>
+    >위치 그룹을 선택하고 SKU를 입력한 후 검색 버튼을 클릭합니다.</label>
         <name>OCI_INV_REG_PleaseSearchDescription</name>
     </customLabels>
     <customLabels>
-        <label>検索</label>
+        <label>검색</label>
         <name>OCI_INV_REG_Search</name>
     </customLabels>
     <customLabels>
-        <label>読み込み中...</label>
+        <label>로드 중...</label>
         <name>OCI_INV_REG_Loading</name>
     </customLabels>
     <customLabels>
-        <label>ロケーショングループが見つかりませんでした。</label>
+        <label>위치 그룹을 찾을 수 없습니다.</label>
         <name>OCI_INV_REG_LocationGroupNotFound</name>
     </customLabels>
     <customLabels>
@@ -34,63 +34,63 @@
         <name>OCI_INV_REG_SKU</name>
     </customLabels>
     <customLabels>
-        <label>在庫情報が見つかりませんでした</label>
+        <label>인벤토리 정보를 찾을 수 없습니다.</label>
         <name>OCI_INV_REG_InventoryNotFound</name>
     </customLabels>
     <customLabels>
-        <label>お探しのSKUの在庫情報は見つかりませんでした。</label>
+        <label>찾는 SKU 재고 정보를 찾을 수 없습니다.</label>
         <name>OCI_INV_REG_InventoryNotFoundDescrption</name>
     </customLabels>
     <customLabels>
-        <label>少々お待ちください。</label>
+        <label>조금 기다려주세요.</label>
         <name>OCI_INV_REG_Waiting</name>
     </customLabels>
     <customLabels>
-        <label>将来在庫</label>
+        <label>미래 재고</label>
         <name>OCI_INV_REG_Futures</name>
     </customLabels>
     <customLabels>
-        <label>将来在庫は見つかりませんでした</label>
+        <label>향후 인벤토리를 찾을 수 없습니다.</label>
         <name>OCI_INV_REG_NoFuture</name>
     </customLabels>
     <customLabels>
-        <label>リクエスト</label>
+        <label>요청</label>
         <name>OCI_INV_REG_Request</name>
     </customLabels>
     <customLabels>
-        <label>編集</label>
+        <label>편집</label>
         <name>OCI_INV_REG_Edit</name>
     </customLabels>
     <customLabels>
-        <label>データが見つかりませんでした。</label>
+        <label>데이터를 찾을 수 없습니다.</label>
         <name>OCI_INV_REG_NoData</name>
     </customLabels>
     <customLabels>
-        <label>手持ち在庫</label>
+        <label>소지품 재고</label>
         <name>OCI_INV_REG_OnHand</name>
     </customLabels>
     <customLabels>
-        <label>安全在庫</label>
+        <label>안전 재고</label>
         <name>OCI_INV_REG_SafetyStockCount</name>
     </customLabels>
     <customLabels>
-        <label>安全在庫</label>
+        <label>안전 재고</label>
         <name>OCI_INV_REG_SSC</name>
     </customLabels>
     <customLabels>
-        <label>有効日</label>
+        <label>유효일</label>
         <name>OCI_INV_REG_EffectiveDate</name>
     </customLabels>
     <customLabels>
-        <label>追加</label>
+        <label>추가</label>
         <name>OCI_INV_REG_Add</name>
     </customLabels>
     <customLabels>
-        <label>数量</label>
+        <label>수량</label>
         <name>OCI_INV_REG_Quantity</name>
     </customLabels>
     <customLabels>
-        <label>予定日</label>
+        <label>예정일</label>
         <name>OCI_INV_REG_ExpectedDate</name>
     </customLabels>
     <customLabels>
@@ -102,96 +102,96 @@
         <name>OCI_INV_REG_ATO</name>
     </customLabels>
     <customLabels>
-        <label>将来在庫を見る</label>
+        <label>미래 재고 보기</label>
         <name>OCI_INV_REG_ShowFutures</name>
     </customLabels>
     <customLabels>
-        <label>在庫更新リクエストジョブが失敗しました。</label>
+        <label>인벤토리 업데이트 요청 작업이 실패했습니다.</label>
         <name>OCI_INV_REG_RequestJobFails</name>
     </customLabels>
     <customLabels>
-        <label>在庫更新リクエストジョブが成功しました。</label>
+        <label>인벤토리 업데이트 요청 작업이 성공했습니다.</label>
         <name>OCI_INV_REG_RequestJobCompleted</name>
     </customLabels>
     <customLabels>
-        <label>在庫更新リクエストジョブがステータス({0})で終了しました。</label>
+        <label>재고 갱신 요청 작업이 상태({0})로 종료되었습니다.</label>
         <name>OCI_INV_REG_RequestJobOther</name>
     </customLabels>
     <customLabels>
-        <label>ロケーショングループの取得に失敗しました。</label>
+        <label>위치 그룹을 가져오지 못했습니다.</label>
         <name>OCI_INV_REG_RetrievingLocationGroupFail</name>
     </customLabels>
     <customLabels>
-        <label>在庫情報の取得に失敗しました。</label>
+        <label>인벤토리 정보를 가져오지 못했습니다.</label>
         <name>OCI_INV_REG_RetrievingInventoryAvailabilityFail</name>
     </customLabels>
     <customLabels>
-        <label>在庫情報の更新リクエストに成功しました。</label>
+        <label>인벤토리 정보 업데이트 요청에 성공했습니다.</label>
         <name>OCI_INV_REG_RequestInventoryAvailabilitySuccess</name>
     </customLabels>
     <customLabels>
-        <label>リクエスト失敗</label>
+        <label>요청 실패</label>
         <name>OCI_INV_REG_RequestFail</name>
     </customLabels>
     <customLabels>
-        <label>リクエスト成功</label>
+        <label>요청 성공</label>
         <name>OCI_INV_REG_RequestSuccess</name>
     </customLabels>
     <customLabels>
-        <label>閉じる</label>
+        <label>닫다</label>
         <name>OCI_INV_REG_Close</name>
     </customLabels>
     <customLabels>
-        <label>実行</label>
+        <label>실행</label>
         <name>OCI_INV_REG_Execute</name>
     </customLabels>
     <customLabels>
-        <label>予約在庫</label>
+        <label>예약 재고</label>
         <name>OCI_INV_REG_Reserved</name>
     </customLabels>
     <customLabels>
-        <label>削除</label>
+        <label>삭제</label>
         <name>OCI_INV_REG_Delete</name>
     </customLabels>
     <customLabels>
-        <label>在庫登録</label>
+        <label>재고 등록</label>
         <name>OCI_INV_REG_InventoryRegistration</name>
     </customLabels>
 
     <customLabels>
-        <label>予約を作成する</label>
+        <label>예약 만들기</label>
         <name>OCI_INV_REG_CreateReservation</name>
     </customLabels>
     <customLabels>
-        <label>予約を解放する</label>
+        <label>예약 해제</label>
         <name>OCI_INV_REG_ReleaseReservation</name>
     </customLabels>
     <customLabels>
-        <label>予約を履行する</label>
+        <label>예약 이행</label>
         <name>OCI_INV_REG_FulfillReservation</name>
     </customLabels>
     <customLabels>
-        <label>予約を転送する</label>
+        <label>예약 전송</label>
         <name>OCI_INV_REG_TransferReservation</name>
     </customLabels>
     <customLabels>
-        <label>有効時間（秒）</label>
+        <label>유효 시간(초)</label>
         <name>OCI_INV_REG_ExpirationSeconds</name>
     </customLabels>
     <customLabels>
-        <label>予約時間</label>
+        <label>예약 시간</label>
         <name>OCI_INV_REG_ReservationTime</name>
     </customLabels>
     <customLabels>
-        <label>全体予約できない場合に部分的な予約の作成を許可</label>
+        <label>전체 예약이 불가능한 경우 부분 예약 생성 허용</label>
         <name>OCI_INV_REG_AllowPartialReservations</name>
     </customLabels>
     <customLabels>
-        <label>一部の転送が失敗したときは全ての転送をキャンセル</label>
+        <label>일부 전송이 실패하면 모든 전송 취소</label>
         <name>OCI_INV_REG_AllOrNothing</name>
     </customLabels>
     <customLabels>
-        <label>転送先</label>
+        <label>전송처</label>
         <name>OCI_INV_REG_TransferTo</name>
     </customLabels>
 </Translations>

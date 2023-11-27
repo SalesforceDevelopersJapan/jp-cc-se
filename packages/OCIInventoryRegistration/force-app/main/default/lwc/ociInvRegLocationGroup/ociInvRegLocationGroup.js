@@ -52,6 +52,10 @@ export default class OciInvRegLocationGroup extends LightningElement {
     selectedFutures = []
     selectedLocationId = ""
 
+    // Selected Reservation
+    selectedReservation = null
+    selectedReservationType = ""
+
     // Input State
     sku = ""
     locationGroupId = ""
@@ -151,6 +155,16 @@ export default class OciInvRegLocationGroup extends LightningElement {
         if (index !== -1 && location) {
             this.selectedFutures = location.inventoryRecords[index].futures;
             this.template.querySelector('c-oci-inv-reg-modal.futures').open();
+        }
+    }
+
+    handleReservation(event) {
+        const { row, inventory, type } = event.detail
+        const { index } = row;
+        if (index !== -1 && inventory) {
+            this.selectedReservation = inventory;
+            this.selectedReservationType = type
+            this.template.querySelector('c-oci-inv-reg-reservation-edit-modal').open();
         }
     }
 
