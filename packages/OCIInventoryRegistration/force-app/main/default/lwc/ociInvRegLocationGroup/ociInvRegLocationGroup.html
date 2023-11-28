@@ -101,7 +101,7 @@
         class="x-large"
         if:true={hasLocationGroup}
       >
-        <lightning-layout-item>
+        <lightning-layout-item flexibility="auto" style="width: 100%">
           <h2 style="font-size: 1.2rem; margin: 1rem 0">
             {label.OCI_INV_REG_LocationGroup}
           </h2>
@@ -116,7 +116,7 @@
           </template>
         </lightning-layout-item>
 
-        <lightning-layout-item>
+        <lightning-layout-item flexibility="auto" style="width: 100%">
           <h2 style="font-size: 1.2rem; margin: 1rem 0">
             {label.OCI_INV_REG_Locations}
           </h2>
@@ -181,7 +181,7 @@
   <c-oci-inv-reg-reservation-edit-modal
     inventory={selectedReservation}
     type={selectedReservationType}
-    locations={locations} 
+    locations={locations}
     location-groups={locationGroups}
   ></c-oci-inv-reg-reservation-edit-modal>
 </template>

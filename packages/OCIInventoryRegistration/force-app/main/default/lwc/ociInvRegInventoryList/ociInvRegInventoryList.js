@@ -35,6 +35,7 @@ export default class OciInvRegInventoryList extends LightningElement {
                 minute: "2-digit"
             }
             , editable: false
+            , initialWidth: 150
         },
         { label: OCI_INV_REG_ATF, fieldName: 'availableToFulfill', type: 'number', editable: false, initialWidth: 120 },
         { label: OCI_INV_REG_ATO, fieldName: 'availableToOrder', type: 'number', editable: false, initialWidth: 120 },
