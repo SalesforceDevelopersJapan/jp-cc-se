@@ -23,7 +23,7 @@ You can choose a card from saved list.
 1. Set up Trusted Sites in Experience Builder for `https://stg.static.mul-pay.jp` and `https://pt01.mul-pay.jp`.
     ![](images/csp.png)
 1. Assign access to Apex `GMOPaymentController` to shopper profile. (**Setup > Apex Classes > Security** in `GMOPaymentController`)
-1. Go to Experience Builder and drag and drop `GMO 3DS Payment Cacllback` to Payment Processing page.
+1. Go to Experience Builder and drag and drop `GMO 3DS Payment Callback` to Payment Processing page.
     ![](images/payment-process.png)
 
 ## GMOClientConfiguration(Custom Metadata)

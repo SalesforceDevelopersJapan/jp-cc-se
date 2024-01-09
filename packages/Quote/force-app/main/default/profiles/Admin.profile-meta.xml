@@ -6,7 +6,7 @@
         <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
-        <field>CartItem.Quote__c</field>
+        <field>WebCart.Quote__c</field>
         <readable>true</readable>
         <editable>true</editable>
     </fieldPermissions>

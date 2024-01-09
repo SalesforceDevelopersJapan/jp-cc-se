@@ -48,7 +48,8 @@ export default class GenericCartFieldForCheckout extends CheckoutComponentBase {
 
     @api
     checkValidity() {
-        return true;
+        const el = this.template.querySelector('c-generic-cart-field')
+        return el.checkValidity();
     }
 
     /**
@@ -105,7 +106,7 @@ export default class GenericCartFieldForCheckout extends CheckoutComponentBase {
             case this.CheckoutStage.CHECK_VALIDITY_UPDATE:
                 return this.checkValidity();
             case this.CheckoutStage.REPORT_VALIDITY_SAVE:
-                if(!this.reportValidity()){
+                if (!this.reportValidity()) {
                     return false
                 }
                 try {
