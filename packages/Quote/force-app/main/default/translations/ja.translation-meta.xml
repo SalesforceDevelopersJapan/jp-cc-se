@@ -162,4 +162,8 @@
         </flows>
         <fullName>Request_a_Quote</fullName>
     </flowDefinitions>
+    <quickActions>
+        <name>Quote.Convert_quote_to_cart</name>
+        <label>カートへ変換</label>
+    </quickActions>
 </Translations>
