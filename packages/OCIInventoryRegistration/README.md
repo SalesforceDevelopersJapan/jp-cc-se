@@ -10,6 +10,13 @@ You can edit inventory info.
 You can see future inventory info.
 ![](images/futures.png)
 
+## Setup instruction
+1. Grant permissions to the APEX class
+   1. Go to Setup -> Custom Code -> APEX Classes.
+   1. On the `OciInvRegController` class, click "Security".
+   1. Assign operater profile(s).
+   1. Click Save.
+
 ## Add this component to page
 You can add this component named "OCI Inventory Registration Component" to any page and you can also use custom label named "{!$Label.OCI_INV_REG_InventoryRegistration}".
 
@@ -17,7 +24,7 @@ You can add this component named "OCI Inventory Registration Component" to any p
 
 
 ## Sample Data
-you need to enable Field Service setting to run this command.
+You need to [enable Field Service setting](https://help.salesforce.com/s/articleView?id=sf.fs_enable.htm&type=5) to run this command.
 ```
 sfdx force:apex:execute -f ./scripts/apex/data.apex -u {username or alias}
 ```
