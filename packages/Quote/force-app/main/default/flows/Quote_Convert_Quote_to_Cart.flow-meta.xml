@@ -227,21 +227,9 @@
         <expression>SUBSTITUTE({!$Label.Quote_Flow_QuoteCartName},&apos;{quoteNumber}&apos;, {!Get_Quote.QuoteNumber})</expression>
     </formulas>
     <formulas>
-        <name>loopAdjustedSaleTotal</name>
-        <dataType>Number</dataType>
-        <expression>{!loopUnitAdjustedPrice}*{!Loop_Quote_Items.Quantity}</expression>
-        <scale>2</scale>
-    </formulas>
-    <formulas>
         <name>loopListTotal</name>
         <dataType>Number</dataType>
         <expression>{!Loop_Quote_Items.ListPrice}*{!Loop_Quote_Items.Quantity}</expression>
-        <scale>2</scale>
-    </formulas>
-    <formulas>
-        <name>loopSaleTotal</name>
-        <dataType>Number</dataType>
-        <expression>{!Loop_Quote_Items.UnitPrice}*{!Loop_Quote_Items.Quantity}</expression>
         <scale>2</scale>
     </formulas>
     <formulas>
