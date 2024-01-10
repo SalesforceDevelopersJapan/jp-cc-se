@@ -130,14 +130,14 @@
             <assignToReference>cartItem.SalesPrice</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Loop_Quote_Items.UnitPrice</elementReference>
+                <elementReference>loopUnitAdjustedPrice</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>cartItem.TotalLineAmount</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>loopSaleTotal</elementReference>
+                <elementReference>Loop_Quote_Items.TotalPrice</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -158,7 +158,7 @@
             <assignToReference>cartItem.TotalPrice</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>loopAdjustedSaleTotal</elementReference>
+                <elementReference>Loop_Quote_Items.TotalPrice</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
