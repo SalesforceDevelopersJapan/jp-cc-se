@@ -27,11 +27,7 @@ global class GenericCartFieldPickupList extends VisualEditor.DynamicPickList {
     Schema.DescribeSObjectResult sd = s.getDescribe();
     for (Schema.SObjectField ss : sd.fields.getMap().values()) {
       DescribeFieldResult field = ss.getDescribe();
-      if (
-        supportedTypes.indexOf(field.getType()) > -1 &&
-        field.isCustom() &&
-        field.isUpdateable()
-      ) {
+      if (supportedTypes.indexOf(field.getType()) > -1 && field.isCustom()) {
         opts.addRow(
           new VisualEditor.DataRow(field.getLabel(), field.getName())
         );
