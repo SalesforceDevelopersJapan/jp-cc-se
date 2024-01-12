@@ -65,7 +65,8 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
 
     // This logic is used to avoid token validation
     String orderId = (String) altPaymentMethod.gatewayToken;
-    Double amount = GMOUtils.convertProperAmount(request.amount);
+    String currencyIsoCode = request.currencyIsoCode;
+    Double amount = GMOUtils.convertProperAmount(request.amount, null);
     GMOPaymentService service = new GMOPaymentService();
     Map<String, Object> searchMap = service.searchTrade(orderId);
     if ((String) searchMap.get('Status') == 'AUTHENTICATED') {
@@ -102,12 +103,23 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
       LIMIT 1
     ];
     PaymentAuthorization paymentAuthorization = (PaymentAuthorization) s;
+    String currencyIsoCode = null;
+    // if (UserInfo.isMultiCurrencyOrganization()) {
+    //   currencyIsoCode = String.valueOf(
+    //     paymentAuthorization.get('CurrencyIsoCode')
+    //   );
+    // } else {
+    //   currencyIsoCode = UserInfo.getDefaultCurrency();
+    // }
     Map<String, Object> access = (Map<String, Object>) JSON.deserializeUntyped(
       paymentAuthorization.GatewayRefDetails
     );
     String accessId = (String) access.get('accessId');
     String accessPass = (String) access.get('accessPass');
-    Double amount = GMOUtils.convertProperAmount(request.amount);
+    Double amount = GMOUtils.convertProperAmount(
+      request.amount,
+      currencyIsoCode
+    );
     GMOPaymentService service = new GMOPaymentService();
     Map<String, Object> execMap = service.captureOrChangeSalesTransaction(
       accessId,
@@ -133,12 +145,21 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
       LIMIT 1
     ];
     Payment payment = (Payment) s;
+    String currencyIsoCode = null;
+    // if (UserInfo.isMultiCurrencyOrganization()) {
+    //   currencyIsoCode = String.valueOf(payment.get('CurrencyIsoCode'));
+    // } else {
+    //   currencyIsoCode = UserInfo.getDefaultCurrency();
+    // }
     Map<String, Object> access = (Map<String, Object>) JSON.deserializeUntyped(
       payment.GatewayRefDetails
     );
     String accessId = (String) access.get('accessId');
     String accessPass = (String) access.get('accessPass');
-    Double amount = GMOUtils.convertProperAmount(request.amount);
+    Double amount = GMOUtils.convertProperAmount(
+      request.amount,
+      currencyIsoCode
+    );
     GMOPaymentService service = new GMOPaymentService();
     Map<String, Object> execMap = service.cancelTransaction(
       accessId,
@@ -170,12 +191,23 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
       LIMIT 1
     ];
     PaymentAuthorization paymentAuthorization = (PaymentAuthorization) s;
+    String currencyIsoCode = null;
+    // if (UserInfo.isMultiCurrencyOrganization()) {
+    //   currencyIsoCode = String.valueOf(
+    //     paymentAuthorization.get('CurrencyIsoCode')
+    //   );
+    // } else {
+    //   currencyIsoCode = UserInfo.getDefaultCurrency();
+    // }
     Map<String, Object> access = (Map<String, Object>) JSON.deserializeUntyped(
       paymentAuthorization.GatewayRefDetails
     );
     String accessId = (String) access.get('accessId');
     String accessPass = (String) access.get('accessPass');
-    Double amount = GMOUtils.convertProperAmount(request.amount);
+    Double amount = GMOUtils.convertProperAmount(
+      request.amount,
+      currencyIsoCode
+    );
     GMOPaymentService service = new GMOPaymentService();
     Map<String, Object> execMap = service.cancelTransaction(
       accessId,
@@ -235,8 +267,10 @@ global with sharing class GMOPaymentAdapter implements commercepayments.PaymentG
       throw new GMOException('Security code is invalid');
     }
 
+    // String currencyCode = context.getCurrencyCode();
     Double amount = GMOUtils.convertProperAmount(
-      context.getAmount().doubleValue()
+      context.getAmount().doubleValue(),
+      null
     );
     String orderId = GMOUtils.generateId();
     GMOPaymentNCService service = new GMOPaymentNCService();

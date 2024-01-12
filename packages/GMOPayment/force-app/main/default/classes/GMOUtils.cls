@@ -83,7 +83,10 @@ public class GMOUtils {
     return securityCode.length() < 5 && securityCode.isNumeric();
   }
 
-  public static Double convertProperAmount(Double amount) {
+  public static Double convertProperAmount(
+    Double amount,
+    String currencyIsoCode
+  ) {
     return Math.ceil(amount);
   }
 

@@ -69,7 +69,9 @@ This package use urlsfor GMO staging environment (e.g. `https://stg.static.mul-p
 
 ## GMO test card
 [Test cards](https://mp-faq.gmo-pg.com/s/article/DA046)
+[About credit card](https://docs.mul-pay.jp/payment/credit/overview)
 
-## Out of scope (as of 2023/05)
+## Out of scope (as of 2024/01)
+- Multi currency
 - Showing card brand logo
 - SOM related functions
