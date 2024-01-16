@@ -20,4 +20,19 @@ trigger QuoteCartItem on CartItem(before update, before delete) {
       }
     }
   }
+  // if (Trigger.isDelete) {
+  //   for (CartItem oldItem : Trigger.old) {
+  //     WebCart cart = [
+  //       SELECT Id, Quote__c
+  //       FROM WebCart
+  //       WHERE Id = :oldItem.CartId
+  //       LIMIT 1
+  //     ];
+  //     if (cart.Quote__c != null) {
+  //       oldItem.addError(
+  //         'You cannot delete an item in a cart that is associated with a quote.'
+  //       );
+  //     }
+  //   }
+  // }
 }

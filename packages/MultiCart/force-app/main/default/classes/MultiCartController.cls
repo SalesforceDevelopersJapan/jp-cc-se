@@ -20,7 +20,8 @@ public with sharing class MultiCartController {
           OwnerId = :ownerId
           AND AccountId = :effectiveAccountId
           AND WebStoreId = :webStoreId
-          AND Status = 'Active'
+          AND (Status = 'Active'
+          OR Status = 'Checkout')
         WITH SECURITY_ENFORCED
       ];
     } else {
@@ -36,7 +37,8 @@ public with sharing class MultiCartController {
         WHERE
           OwnerId = :ownerId
           AND WebStoreId = :webStoreId
-          AND Status = 'Active'
+          AND (Status = 'Active'
+          OR Status = 'Checkout')
         WITH SECURITY_ENFORCED
       ];
     }
