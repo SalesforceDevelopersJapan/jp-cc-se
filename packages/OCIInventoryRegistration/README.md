@@ -24,7 +24,6 @@ You can add this component named "OCI Inventory Registration Component" to any p
 
 
 ## Sample Data
-You need to [enable Field Service setting](https://help.salesforce.com/s/articleView?id=sf.fs_enable.htm&type=5) to run this command.
 ```
 sfdx force:apex:execute -f ./scripts/apex/data.apex -u {username or alias}
 ```

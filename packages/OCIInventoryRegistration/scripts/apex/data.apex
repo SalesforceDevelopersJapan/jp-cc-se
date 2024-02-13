@@ -66,27 +66,29 @@ try {
 
   /**
    * Insert Product Items for locations
+   * You need to enable Field Service setting to use ProductItem. 
+   * https://help.salesforce.com/s/articleView?id=sf.fs_enable.htm&type=5
    */
-  Schema.ProductItem productItem1 = new Schema.ProductItem(
-    Product2Id = product1.Id,
-    LocationId = locationOsaka.Id,
-    QuantityOnHand = 30
-  );
-  Schema.ProductItem productItem2 = new Schema.ProductItem(
-    Product2Id = product1.Id,
-    LocationId = locationTokyo.Id,
-    QuantityOnHand = 20
-  );
-  Schema.ProductItem productItem3 = new Schema.ProductItem(
-    Product2Id = product2.Id,
-    LocationId = locationTokyo.Id,
-    QuantityOnHand = 10
-  );
-  insert new List<Schema.ProductItem>{
-    productItem1,
-    productItem2,
-    productItem3
-  };
+  // Schema.ProductItem productItem1 = new Schema.ProductItem(
+  //   Product2Id = product1.Id,
+  //   LocationId = locationOsaka.Id,
+  //   QuantityOnHand = 30
+  // );
+  // Schema.ProductItem productItem2 = new Schema.ProductItem(
+  //   Product2Id = product1.Id,
+  //   LocationId = locationTokyo.Id,
+  //   QuantityOnHand = 20
+  // );
+  // Schema.ProductItem productItem3 = new Schema.ProductItem(
+  //   Product2Id = product2.Id,
+  //   LocationId = locationTokyo.Id,
+  //   QuantityOnHand = 10
+  // );
+  // insert new List<Schema.ProductItem>{
+  //   productItem1,
+  //   productItem2,
+  //   productItem3
+  // };
 } catch (Exception e) {
   Database.rollback(sp);
   System.debug('An unexpected error has occurred: ' + e.getMessage());
