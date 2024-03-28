@@ -4,11 +4,11 @@ try {
    * Insert Location Group
    */
   Schema.LocationGroup locationGroup = new Schema.LocationGroup(
-    LocationGroupName = 'Sample Location Group',
+    LocationGroupName = 'Sample Japan Warehouse Group',
     ExternalReference = 'inventory_m_sample',
     IsEnabled = true,
     ShouldSyncWithOci = true,
-    Description = 'Description for Sample Location Group'
+    Description = 'Description for Sample Warehouse Group'
   );
   insert locationGroup;
 
@@ -16,20 +16,20 @@ try {
    * Insert Locations for Osaka and Tokyo
    */
   Schema.Location locationOsaka = new Schema.Location(
-    Name = 'Osaka Warehouse',
+    Name = 'Sample Osaka Warehouse',
     ExternalReference = 'inventory_m_sample_osaka',
     LocationType = 'Warehouse',
     ShouldSyncWithOci = true,
     IsInventoryLocation = true,
-    Description = 'Description for Osaka Warehouse'
+    Description = 'Description for Sample Osaka Warehouse'
   );
   Schema.Location locationTokyo = new Schema.Location(
-    Name = 'Tokyo Warehouse',
+    Name = 'Sample Tokyo Warehouse',
     ExternalReference = 'inventory_m_sample_tokyo',
     LocationType = 'Warehouse',
     ShouldSyncWithOci = true,
     IsInventoryLocation = true,
-    Description = 'Description for Tokyo Warehouse'
+    Description = 'Description for Sample Tokyo Warehouse'
   );
   insert new List<Schema.Location>{ locationOsaka, locationTokyo };
 
@@ -50,19 +50,19 @@ try {
   /**
    * Insert Products
    */
-  Schema.Product2 product1 = new Schema.Product2(
-    StockKeepingUnit = 'TestProduct01',
-    Description = 'description form Test Product 01',
-    Name = 'Test Product 01',
-    IsActive = true
-  );
-  Schema.Product2 product2 = new Schema.Product2(
-    StockKeepingUnit = 'TestProduct02',
-    Description = 'description form Test Product 02',
-    Name = 'Test Product 02',
-    IsActive = true
-  );
-  insert new List<Schema.Product2>{ product1, product2 };
+  // Schema.Product2 product1 = new Schema.Product2(
+  //   StockKeepingUnit = 'TestProduct01',
+  //   Description = 'description form Test Product 01',
+  //   Name = 'Test Product 01',
+  //   IsActive = true
+  // );
+  // Schema.Product2 product2 = new Schema.Product2(
+  //   StockKeepingUnit = 'TestProduct02',
+  //   Description = 'description form Test Product 02',
+  //   Name = 'Test Product 02',
+  //   IsActive = true
+  // );
+  // insert new List<Schema.Product2>{ product1, product2 };
 
   /**
    * Insert Product Items for locations

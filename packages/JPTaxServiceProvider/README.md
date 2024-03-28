@@ -1,20 +1,29 @@
 # Sample japan tax service provider
-This is sample code for [tax calculation service](https://help.salesforce.com/s/articleView?id=sf.comm_set_up_tax.htm&type=5) for Japan consumption tax.
+インボイス制度に対応した計算のための[税計算サービス](https://help.salesforce.com/s/articleView?id=sf.comm_set_up_tax.htm&type=5)と [Salesforce コマース拡張](https://developer.salesforce.com/docs/commerce/salesforce-commerce/guide/extensions.html)を利用したサンプルコードです。
 
-## Prerequirement
-- You need to Scan for state and country/territory data from **Data > State and Country/Territory Picklists** in setup screan.
-- You need to have sfdx and jq command to run tax.sh script
-- You need to set up tax treatment to all products following [this help](https://help.salesforce.com/s/articleView?id=sf.comm_what_is_tax_solution.htm&type=5). But You dont need to set up defaut tax policy in store.
+## 前提条件
+- **設定 > 州/国/テリトリー選択リスト** からスキャンを実行してください。
+- ローカルに `sfdx`, `jq` コマンドが必要です。
+- 税金の設定は [Salesforce 税金ソリューション](https://help.salesforce.com/s/articleView?id=sf.comm_what_is_tax_solution.htm&type=5) に基づいたオブジェクトの構成ですが、Tax Policy オブジェクトは今回利用していません。
 
-## Setup Instruction
-1. Deploy all sources.
-1. Run command below.
+## 設定手順
+1. ソースコードをデプロイしてください。
+1.  下記のコマンドを実行してデフォルトの税率（10%）を設定します。
     ```
-    sh scripts/shell/tax.sh -u {your org user} -a JapanTaxCalculationService
+    sh scripts/shell/default_taxrate.sh -u {your org user}
     ```
-1. Link integration called "Japan Tax Service" following [this help](https://help.salesforce.com/s/articleView?id=sf.comm_set_up_tax.htm&type=5).
+1. (Cart Calculate API が無効な場合) 下記のコマンドを実行してインテグレーションサービスとして登録します。
+    ```
+    sh scripts/shell/integrations.sh -u {your org user}
+    ```
+1. (Cart Calculate API が有効な場合) 下記のコマンドを実行して拡張プロバイダーとして登録します。
+    ```
+    sh scripts/shell/extentions.sh -u {your org user}
+    ```
+1. (Cart Calculate API が無効な場合) `Japan_Tax_Service` というインテグレーションを[このヘルプ](https://help.salesforce.com/s/articleView?id=sf.comm_set_up_tax.htm&type=5)に従ってリンクしてください。
+1. (Cart Calculate API が有効な場合) `Japan_Tax_Service_DE` というカスタムプロバイダーを[このヘルプ](https://help.salesforce.com/s/articleView?id=sf.comm_set_up_tax.htm&type=5)に従って設定してください。
 
 
-## Limitation
-- This sample code work only with store having Net tax type.
-- Default tax rate is setup with tax.sh and it fetched in Apex class. Please change archtecture as needed.  
+## 制限
+- このサンプルはストアの税タイプがネットの場合にのみ対応しています。
+- デフォルトの税率は `default_taxrate.sh` にて 税コード `defalt_tax` として TaxRate オブジェクトとして設定されますが、必要に応じて変更してください。 

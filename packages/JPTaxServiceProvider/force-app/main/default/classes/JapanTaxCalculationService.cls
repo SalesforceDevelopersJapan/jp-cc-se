@@ -21,7 +21,7 @@ global class JapanTaxCalculationService implements sfdc_checkout.CartTaxCalculat
 
     public TaxRate defaultTaxRate;
 
-    // This tax setting is set up by tax.sh
+    // この税コードは default_taxrate.sh にて設定されています
     final String DEFAULT_TAX_CODE = 'defalt_tax';
 
     public CartItemsTax(List<CartItem> cartItems) {
@@ -97,14 +97,14 @@ global class JapanTaxCalculationService implements sfdc_checkout.CartTaxCalculat
         );
       }
 
-      // If there are taxes from a previously cancelled checkout, delete them.
+      // カートアイテムに紐づく税金を削除
       delete [
         SELECT Id
         FROM CartTax
         WHERE CartItemId IN (SELECT Id FROM CartItem WHERE CartId = :cartId)
       ];
 
-      // Get cart items by cart id
+      // カートアイテムを取得
       List<CartItem> cartItems = [
         SELECT
           Id,
@@ -121,40 +121,40 @@ global class JapanTaxCalculationService implements sfdc_checkout.CartTaxCalculat
         WHERE CartId = :cartId
       ];
 
-      // Retrieve tax rate from cart items
+      // カートアイテムから税レートを取得
       CartItemsTax cartItemsTax = new CartItemsTax(cartItems);
 
-      // List for storing tax rate and amount
+      // 税率と料金を保持するための変数を宣言
       List<CartItemResult> itemList = new List<CartItemResult>{};
 
-      // Map for storing tax rate and total amount by tax rate
+      // 税率と税率ごとの合計を保持するためのマップ変数を宣言
       Map<Double, TaxRateResult> rateTotalMap = new Map<Double, TaxRateResult>();
 
       for (CartItem cartItem : cartItems) {
-        // Get tax rate from cart
+        // 商品の税率を取得
         TaxRate rate = cartItemsTax.getRateByPoduct2Code(
           cartItem.Product2.ProductCode
         );
 
-        // Calcurate total amount by tax rate
+        // 税率ごとの合計を取得
         Decimal total = rateTotalMap.get(rate.Rate) != null
           ? (Decimal) rateTotalMap.get(rate.Rate).total
           : 0;
 
-        // Calcurate total ajusted amount for each item
+        // 各ラインアイテムごとの調整後の合計を計算
         Decimal amount = cartItem.TotalAdjustmentAmount == null
           ? (Decimal) cartItem.TotalLineAmount
           : (Decimal) cartItem.TotalLineAmount +
             (Decimal) cartItem.TotalAdjustmentAmount;
 
-        // Make list of item id and CartItemResult
+        // 各ラインアイテムごとの計算結果と税率とラインアイテムオブジェクトを保持したオブジェクトをリストに追加
         CartItemResult item = new CartItemResult();
         item.amount = amount;
         item.rate = rate;
         item.item = cartItem;
         itemList.add(item);
 
-        // Make map of tax rate and TaxRateResult
+        // 税率ごとの計算結果をマップに保存
         TaxRateResult taxResult = rateTotalMap.get(rate.Rate);
         if (taxResult == null) {
           taxResult = new TaxRateResult();
@@ -167,7 +167,7 @@ global class JapanTaxCalculationService implements sfdc_checkout.CartTaxCalculat
         }
       }
 
-      // Calcurate by tax rate
+      // 税率ごとの税金を計算
       for (Double rate : rateTotalMap.keyset()) {
         TaxRateResult result = rateTotalMap.get(rate);
         Decimal tax =
@@ -175,7 +175,7 @@ global class JapanTaxCalculationService implements sfdc_checkout.CartTaxCalculat
         result.tax = (Decimal) tax.round(System.RoundingMode.UP);
       }
 
-      // Prorate tax amount to each item and insert them
+      // 計算した税金を各ラインアイテムに按分して保存
       CartTax[] cartTaxesToInsert = new List<CartTax>{};
       for (CartItemResult item : itemList) {
         TaxRateResult result = rateTotalMap.get(item.rate.Rate);
@@ -193,7 +193,7 @@ global class JapanTaxCalculationService implements sfdc_checkout.CartTaxCalculat
         cartTaxesToInsert.add(tax);
       }
 
-      // Check if the sum of prorated tax amount is equal to the total tax amount and modify it if not
+      // 按分した税金の合計が税金の合計と一致するかチェックしてしていなければ修正
       for (Double rate : rateTotalMap.keyset()) {
         TaxRateResult result = rateTotalMap.get(rate);
         if (result.tax != result.totalProratedTax) {
@@ -206,10 +206,10 @@ global class JapanTaxCalculationService implements sfdc_checkout.CartTaxCalculat
         }
       }
 
-      // Insert cart taxes
+      // 税金の保存
       insert (cartTaxesToInsert);
 
-      // Set success status
+      // 成功ステータスの設定
       integStatus.status = sfdc_checkout.IntegrationStatus.Status.SUCCESS;
     } catch (Exception e) {
       return integrationStatusFailedWithCartValidationOutputError(

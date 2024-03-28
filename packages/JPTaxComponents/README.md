@@ -1,35 +1,36 @@
 # Sample components for japan taxation
 
-## Prerequirement
+## 前提条件
 
-- [Has to enable translation workbench](https://help.salesforce.com/s/articleView?id=sf.wcc_setup_enable_translation.htm&type=5)
-- [Has to be multi currency organization](https://help.salesforce.com/s/articleView?id=sf.admin_enable_multicurrency.htm&type=5)
+- [トランスレーションワークベンチを有効にしてください](https://help.salesforce.com/s/articleView?id=sf.wcc_setup_enable_translation.htm&type=5)
+- [マルチ通過を有効にしてください](https://help.salesforce.com/s/articleView?id=sf.admin_enable_multicurrency.htm&type=5)
 
-## Setup Instruction
-1. Deploy all sources.
-1. Go to Setup -> Custom Code -> APEX Classes. On the `JapanTaxController` and `JapanTaxInvoiceVFPDFController` class, click "Security". Assign the buyer user profile(s) or other user profiles that will use your components.
-1. Go to Setup -> Custom Code -> Visualforce Pages. On the `JapanTaxInvoiceVFPDF`, click "Security". Assign the buyer user profile(s) or other user profiles that will use your components.
+## 設定手順
+1. ソースを全て組織にデプロイします
+1. `Setup -> Custom Code -> APEX Classes` に遷移
+1. `JapanTaxController` と `JapanTaxInvoiceVFPDFController` クラスの「セキュリティ」をクリックしてバイヤーのプロファイルを割り当ててください。
+1. `Setup -> Custom Code -> Visualforce Pages` に遷移
+1. `JapanTaxInvoiceVFPDF` ページの「セキュリティ」をクリックしてバイヤーのプロファイルを割り当ててください。
 
-## Components
+## コンポーネント
 
-### Japan Tax Order Summary Totals & Japan Tax Invoice PDF Download Button (Experience)
+### 「Japan Tax Order Summary Totals」 と 「Japan Tax Invoice PDF Download Button (Experience)」
 
-These compoenents work in order detail page in B2B/D2C Commerce on LWR experirnce site.
+これらのコンポーネントは B2B/D2C Commerce LWR テンプレートの注文詳細ページで利用します。
 ![](images/orderdetail.png)
 
-### Japan Tax Invoice PDF Download Button (Platform)
+### 「Japan Tax Invoice PDF Download Button (Platform)」
 
-These compoenents work in order summary record page on platform.
+これらのコンポーネントはプラットフォームの注文概要レコードページで利用します。
 ![](images/ordersummary.png)
 
-## Japan Tax Checkout Summary
+## 「Japan Tax Checkout Summary」
 
-This component show with tax by rate in checkout summary.
+このコンポーネントは B2B/D2C Commerce LWR テンプレートのチェックアウトページで利用します。
 ![](images/checkoutsummary.png)
 
-## Sample Invoice PDF
-
-This invoice is displayed following [rule tax](https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0020006-027.pdf).
-You can modify layout by editing `force-app/main/default/pages/JapanTaxInvoiceVFPDF.page` file.
+## サンプル請求書
+この PDF は「[適格請求書等保存方式
+の概要](https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0020006-027.pdf)」に基づいてレイアウトを作成しています。レイアウトの修正は `force-app/main/default/pages/JapanTaxInvoiceVFPDF.page` ファイルを修正して行います。
 ![](images/sampleinvoice.png)
 ![](images/invoiceinstruction.png)

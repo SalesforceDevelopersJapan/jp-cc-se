@@ -95,9 +95,11 @@ public with sharing class GenericCartFieldController {
       String.escapeSingleQuotes(cartId) +
       '\' LIMIT 1';
     WebCart cart = Database.query(soql);
-    Object data = GenericCartFieldDataFactory.create(type, value);
-    cart.put(fieldName, data);
-    update cart;
+    if (value != null) {
+      Object data = GenericCartFieldDataFactory.create(type, value);
+      cart.put(fieldName, data);
+      update cart;
+    }
     return cart;
   }
 }

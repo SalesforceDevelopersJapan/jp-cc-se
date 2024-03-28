@@ -20,6 +20,10 @@ You can see future inventory info.
 ## Add this component to page
 You can add this component named "OCI Inventory Registration Component" to any page and you can also use custom label named "{!$Label.OCI_INV_REG_InventoryRegistration}".
 
+> [!WARNING]  
+> You need assing the page to Inventory application whrn you activate the page. 
+
+
 ![](images/setting.png)
 
 
