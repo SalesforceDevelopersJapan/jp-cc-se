@@ -197,7 +197,8 @@ public class JapanTaxCalculationServiceDE extends CartExtension.TaxCartCalculato
       }
 
       // 計算した税金を各ラインアイテムに按分して保存
-      CartTax[] cartTaxesToInsert = new List<CartTax>{};
+      System.debug(itemList);
+      System.debug(itemList.size());
       for (CartItemResult item : itemList) {
         CartExtension.CartItem cartItem = item.item;
         TaxRateResult result = rateTotalMap.get(item.rate.Rate);
@@ -210,10 +211,8 @@ public class JapanTaxCalculationServiceDE extends CartExtension.TaxCartCalculato
           : 0;
         Decimal amount = (Decimal) cartItem.getTotalAmount() + adjustment;
         Decimal taxRate = (Decimal) item.rate.Rate / 100;
-        Decimal unitPriceAfterAdjustments = (Decimal) cartItem.getUnitPriceAfterAdjustments();
         cartItem.setNetUnitPrice((amount + prorated) / quantity);
         cartItem.setGrossUnitPrice(0);
-        cartItem.setNetUnitPriceAfterAdjustments(unitPriceAfterAdjustments);
         CartExtension.CartTaxList cartTaxCollection = cartItem.getCartTaxes();
         CartExtension.CartTax cartTax = new CartExtension.CartTax(
           CartExtension.TaxTypeEnum.ACTUAL,
