@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>OciLocationInventoryController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <description>Permissions for ociLocationInventory component execution.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>OCI Location Inventory User</label>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>UseOmnichannelInventoryAPIs</name>
+    </userPermissions>
+</PermissionSet>

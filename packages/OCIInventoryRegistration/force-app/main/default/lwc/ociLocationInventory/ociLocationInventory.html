@@ -1,0 +1,60 @@
+<template>
+    <template lwc:if={shouldRender}>
+        <div class="inventory-card">
+        <template lwc:if={titleLabel}>
+            <div class="section-title">{titleLabel}</div>
+        </template>
+
+        <template lwc:if={isLoading}>
+            <lightning-spinner size="small" alternative-text="Loading inventory"></lightning-spinner>
+        </template>
+
+        <template lwc:elseif={errorMessage}>
+            <div class="error-text">{errorMessage}</div>
+        </template>
+
+        <template lwc:else>
+            <template lwc:if={isLocationGroup}>
+                <div class="group-total">
+                    <span class="label">{groupTotalLabel}</span>
+                    <span class="group-total-right">
+                        <span class="value">{displayGroupTotal}</span>
+                        <template lwc:if={showReservedTotal}>
+                            <span class="reserved-total">{renderedReservedLabel}</span>
+                        </template>
+                    </span>
+                </div>
+            </template>
+
+            <template lwc:if={showLocationRows}>
+                <div class="location-list">
+                    <template for:each={locations} for:item="loc">
+                        <div key={loc.locationId} class="location-row">
+                            <span class="location-name">{loc.displayName}</span>
+                            <span class="location-qty">{loc.displayQty}</span>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <template lwc:if={showDebug}>
+            <div class="debug-panel">
+                <div class="debug-header">
+                    <div class="debug-title">Debug Log</div>
+                    <lightning-button
+                        label="ログをコピー"
+                        variant="neutral"
+                        onclick={handleCopyDebugLog}
+                        disabled={disableCopyDebugButton}
+                    ></lightning-button>
+                </div>
+                <template lwc:if={copyMessage}>
+                    <div class="debug-copy-message">{copyMessage}</div>
+                </template>
+                <pre class="debug-body">{debugLogText}</pre>
+            </div>
+        </template>
+        </div>
+    </template>
+</template>

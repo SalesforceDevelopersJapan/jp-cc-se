@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>OCI Location Inventory</masterLabel>
+    <description>Display OCI inventory per location on PDP.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property
+                name="titleLabel"
+                type="String"
+                label="タイトル"
+                description="コンポーネント見出し"
+                default="拠点在庫"
+            />
+            <property
+                name="groupTotalOnly"
+                type="Boolean"
+                label="ロケーショングループ合計のみ表示"
+                description="ロケーショングループの場合、ロケーション別表示を行わずグループ合計のみ表示します。"
+                default="false"
+            />
+            <property
+                name="groupTotalLabel"
+                type="String"
+                label="ロケーショングループ合計ラベル"
+                description="ロケーショングループ合計見出しの表示文言"
+                default="ロケーショングループ合計"
+            />
+            <property
+                name="reservedLabelTemplate"
+                type="String"
+                label="予約済み表示テンプレート"
+                description="予約済み数の表示テンプレート。{value} のような {任意文字} を数値に置換します。"
+                default="(予約済み数 {value})"
+            />
+            <property
+                name="debugEnabled"
+                type="Boolean"
+                label="デバッグログ表示"
+                description="ONにすると商品ID解決やAPI呼び出しのログを画面に表示します。"
+                default="false"
+            />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
